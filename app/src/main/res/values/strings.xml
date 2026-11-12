@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Cartelera</string>
+
+    <!-- Login -->
+    <string name="login_titulo">Cartelera</string>
+    <string name="login_subtitulo">Las funciones de la semana, en un solo lugar.</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_clave">Contraseña</string>
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="btn_registrar">Crear cuenta</string>
+
+    <string name="error_email_vacio">Ingresá tu correo electrónico.</string>
+    <string name="error_email_invalido">El correo no tiene un formato válido.</string>
+    <string name="error_clave_vacia">Ingresá una contraseña.</string>
+    <string name="error_clave_corta">La contraseña debe tener al menos 6 caracteres.</string>
+    <string name="error_email_en_uso">Ya existe una cuenta con ese correo. Probá con Ingresar.</string>
+    <string name="error_credenciales">Correo o contraseña incorrectos.</string>
+    <string name="error_red">Sin conexión. Revisá tu red e intentá de nuevo.</string>
+    <string name="error_generico">No pudimos completar la operación. Intentá de nuevo.</string>
+
+    <!-- Cartelera -->
+    <string name="cartelera_titulo">Esta semana</string>
+    <string name="accion_salir">Cerrar sesión</string>
+    <string name="cartelera_vacia">No hay funciones programadas por ahora.</string>
+    <string name="cartelera_error">No pudimos cargar la cartelera.</string>
+    <string name="btn_reintentar">Reintentar</string>
+    <string name="item_detalle">%1$s · %2$d min · %3$s</string>
+    <string name="cd_interes">Marcada como me interesa</string>
+
+    <!-- Detalle -->
+    <string name="detalle_titulo">Función</string>
+    <string name="detalle_ficha">%1$s · %2$d · %3$d min</string>
+    <string name="detalle_sala">%1$s · %2$s</string>
+    <string name="btn_interesa_no">Me interesa</string>
+    <string name="btn_interesa_si">Te interesa</string>
+    <string name="btn_comprar">Comprar entrada</string>
+    <string name="sin_navegador">No hay una app que pueda abrir la venta de entradas.</string>
+    <string name="detalle_error">No pudimos cargar la función.</string>
+    <string name="cd_volver">Volver</string>
+</resources>

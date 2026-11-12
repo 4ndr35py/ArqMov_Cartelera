@@ -1,0 +1,62 @@
+digraph G {
+  graph [rankdir=TB, fontname="Calibri", fontsize=13, nodesep=0.35, ranksep=0.42, pad=0.25, compound=true, newrank=true, bgcolor="white", labelloc=b, labeljust=r, label=<<font color="#2E7D32" point-size="12">■</font><font point-size="11">  Verde: agregado o modificado según los resultados de la prueba</font>>];
+  node  [shape=box, style="rounded,filled", fontname="Calibri", fontsize=12, color="#5c5862", fillcolor="white", penwidth=1.1, margin="0.14,0.07"];
+  edge  [fontname="Calibri", fontsize=10, color="#5c5862", arrowsize=0.7, fontcolor="#3a3740"];
+
+  subgraph cluster_disp {
+    label=<<b>Dispositivo Android</b>  ·  app Cartelera v2 (Kotlin, MVVM)>; labeljust=l; labelloc=t; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
+
+    subgraph cluster_view {
+      label="Vista  (Activities + layouts XML)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
+      login [label="LoginActivity\n(solo al marcar interés)"]; cart [label="CarteleraActivity\n+ FuncionAdapter"]; det [label="DetalleActivity"];
+    }
+    subgraph cluster_vm {
+      label="ViewModel  (estado en LiveData)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F3ECE0"; color="#d8c7a6"; fontcolor="#6b4f1d";
+      lvm [label="LoginViewModel"]; cvm [label="CarteleraViewModel"]; dvm [label="DetalleViewModel"];
+    }
+    subgraph cluster_data {
+      label="Datos  (repositorios: única puerta a Firebase)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E7EEF5"; color="#a9bdd2"; fontcolor="#1f3b57";
+      ar [label="AuthRepository\n+ ingreso anónimo y\nvinculación de cuenta", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      fr [label="FuncionRepository"]; met [label="Metricas\n(eventos de medición)"];
+      aviso [label="Servicio de avisos\n(FirebaseMessagingService:\nguarda el token y\nmuestra la notificación)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      {rank=same; ar -> fr -> met -> aviso [style=invis];}
+    }
+    subgraph cluster_sdk {
+      label="SDK de Firebase  (BoM 35.1.0)"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#9a96a0"; fontcolor="#5c5862";
+      sauth [label="firebase-auth"]; sfs [label="firebase-firestore"]; san [label="firebase-analytics"];
+      smsg [label="firebase-messaging", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      {rank=same; sauth -> sfs -> san -> smsg [style=invis];}
+    }
+    login -> lvm; cart -> cvm; det -> dvm;
+    lvm -> ar; cvm -> ar [label=" sesión\n anónima"]; cvm -> fr; dvm -> fr;
+    dvm -> met [style=dashed, ltail=cluster_vm, label=" eventos"];
+    ar -> sauth; fr -> sfs; met -> san;
+    aviso -> smsg [dir=back, color="#2E7D32", penwidth=1.4];
+  }
+
+  share [label="Sharesheet de Android\n(Intent ACTION_SEND)\n→ WhatsApp u otra app", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+  nav [label="Navegador\n(Intent ACTION_VIEW)", fillcolor="#F2F2F2"];
+  det -> share [label=" Compartir", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.4];
+  det -> nav [xlabel="Comprar entrada  "];
+
+  subgraph cluster_cloud {
+    label=<<b>Firebase / Google Cloud</b>>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#FFF8E8"; color="#C8963E"; penwidth=1.6; fontcolor="#7a5719";
+    fauth [label="Firebase Authentication\n(anónimo + email\ny contraseña)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    ffs [label="Cloud Firestore\nfunciones/{id}\nusuarios/{uid}/intereses/{id}\nusuarios/{uid}.tokenFcm\n+ reglas de seguridad"];
+    fan [label="Google Analytics\nfor Firebase"];
+    fun [label="Cloud Functions\n(interés creado → programa\nel recordatorio previo\na la función)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fcm [label="Firebase Cloud\nMessaging (FCM)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+  }
+  sauth -> fauth [label=" HTTPS"]; sfs -> ffs [label=" gRPC"]; san -> fan [label=" lotes"];
+  ffs -> fun [label=" disparador", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.4];
+  fun -> fcm [color="#2E7D32", penwidth=1.4, constraint=false];
+  smsg -> fcm [dir=back, label=" push", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.4];
+
+  venta [label="Sitio de venta de entradas\nexistente del cine", fillcolor="#F2F2F2"];
+  nav -> venta;
+  op [label="Programador del cine\n(carga manual)", style="rounded,filled,dashed", fillcolor="#F2F2F2"];
+  op -> ffs [style=dashed, label=" escribe la cartelera"];
+
+
+  {rank=same; fauth -> ffs -> fan -> fcm [style=invis]; venta}
+}

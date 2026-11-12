@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/app/build/
+/captures
+.externalNativeBuild
+.cxx
+# Configuracion de Firebase: cada quien descarga la suya
+app/google-services.json
+# Claves de cuenta de servicio
+*-admin.json
+seed/.venv/

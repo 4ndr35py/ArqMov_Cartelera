@@ -1,0 +1,74 @@
+[
+  {
+    "id": "f01",
+    "titulo": "La ciénaga",
+    "director": "Lucrecia Martel",
+    "anio": 2001,
+    "duracionMin": 103,
+    "sinopsis": "Durante un verano sofocante en el norte argentino, dos familias emparentadas comparten días de pileta estancada, siestas interminables y pequeños accidentes domésticos.",
+    "sala": "Sala 1",
+    "dia": 1,
+    "hora": "20:30",
+    "precio": 3500
+  },
+  {
+    "id": "f02",
+    "titulo": "Nueve reinas",
+    "director": "Fabián Bielinsky",
+    "anio": 2000,
+    "duracionMin": 114,
+    "sinopsis": "Dos estafadores se cruzan por casualidad en una estación de servicio y, en menos de un día, se embarcan en el golpe de su vida: vender una plancha de estampillas falsas.",
+    "sala": "Sala 1",
+    "dia": 2,
+    "hora": "21:00",
+    "precio": 3500
+  },
+  {
+    "id": "f03",
+    "titulo": "Paris, Texas",
+    "director": "Wim Wenders",
+    "anio": 1984,
+    "duracionMin": 145,
+    "sinopsis": "Un hombre aparece caminando en el desierto después de cuatro años de ausencia e intenta reconstruir el vínculo con su hijo y encontrar a la madre del chico.",
+    "sala": "Sala 2",
+    "dia": 3,
+    "hora": "19:00",
+    "precio": 3000
+  },
+  {
+    "id": "f04",
+    "titulo": "Relatos salvajes",
+    "director": "Damián Szifron",
+    "anio": 2014,
+    "duracionMin": 122,
+    "sinopsis": "Seis historias independientes sobre personas comunes que, ante una injusticia o una provocación, pierden el control y cruzan un límite.",
+    "sala": "Sala 1",
+    "dia": 4,
+    "hora": "22:30",
+    "precio": 3500
+  },
+  {
+    "id": "f05",
+    "titulo": "Cinema Paradiso",
+    "director": "Giuseppe Tornatore",
+    "anio": 1988,
+    "duracionMin": 155,
+    "sinopsis": "Un director de cine vuelve a su pueblo natal en Sicilia y recuerda su infancia en la cabina de proyección junto al proyectorista que le enseñó a amar el cine.",
+    "sala": "Sala 2",
+    "dia": 5,
+    "hora": "18:00",
+    "precio": 0
+  },
+  {
+    "id": "f06",
+    "titulo": "Historias extraordinarias",
+    "director": "Mariano Llinás",
+    "anio": 2008,
+    "duracionMin": 245,
+    "sinopsis": "Tres hombres sin relación entre sí, en distintos puntos de la provincia de Buenos Aires, quedan atrapados en historias que los superan. Proyección con intervalo.",
+    "sala": "Sala 1",
+    "dia": 6,
+    "hora": "17:00",
+    "precio": 4000
+  }
+]

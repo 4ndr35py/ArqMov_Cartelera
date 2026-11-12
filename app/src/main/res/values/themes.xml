@@ -1,0 +1,14 @@
+<resources>
+    <style name="Theme.Cartelera" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/butaca</item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <item name="colorPrimaryContainer">#F6DADD</item>
+        <item name="colorOnPrimaryContainer">@color/butaca_osc</item>
+        <item name="colorSecondary">@color/dorado</item>
+        <item name="android:colorBackground">@color/papel</item>
+        <item name="colorSurface">@color/papel</item>
+        <item name="colorOnSurface">@color/tinta</item>
+        <item name="colorOnSurfaceVariant">@color/gris</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

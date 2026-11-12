@@ -1,0 +1,50 @@
+digraph G {
+  graph [rankdir=TB, fontname="Carlito", fontsize=13, nodesep=0.35, ranksep=0.42, pad=0.25, compound=true, newrank=true, bgcolor="white"];
+  node  [shape=box, style="rounded,filled", fontname="Carlito", fontsize=12, color="#5c5862", fillcolor="white", penwidth=1.1, margin="0.14,0.07"];
+  edge  [fontname="Carlito", fontsize=10, color="#5c5862", arrowsize=0.7, fontcolor="#3a3740"];
+
+  subgraph cluster_disp {
+    label=<<b>Dispositivo Android</b>  ·  app Cartelera (Kotlin, MVVM)>; labeljust=l; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
+
+    subgraph cluster_view {
+      label="Vista  (Activities + layouts XML)"; labeljust=l; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
+      login [label="LoginActivity"]; cart [label="CarteleraActivity\n+ FuncionAdapter"]; det [label="DetalleActivity"];
+    }
+    subgraph cluster_vm {
+      label="ViewModel  (estado en LiveData, sobrevive a la rotación)"; labeljust=l; style="rounded,filled"; fillcolor="#F3ECE0"; color="#d8c7a6"; fontcolor="#6b4f1d";
+      lvm [label="LoginViewModel"]; cvm [label="CarteleraViewModel"]; dvm [label="DetalleViewModel"];
+    }
+    subgraph cluster_data {
+      label="Datos  (repositorios: única puerta a Firebase)"; labeljust=l; style="rounded,filled"; fillcolor="#E7EEF5"; color="#a9bdd2"; fontcolor="#1f3b57";
+      ar [label="AuthRepository"]; fr [label="FuncionRepository"]; met [label="Metricas\n(eventos de medición)"];
+      {rank=same; ar -> fr -> met [style=invis];}
+    }
+    subgraph cluster_sdk {
+      label="SDK de Firebase  (BoM 35.1.0)"; labeljust=l; style="rounded,dashed"; color="#9a96a0"; fontcolor="#5c5862";
+      sauth [label="firebase-auth"]; sfs [label="firebase-firestore\n(caché local offline)"]; san [label="firebase-analytics"];
+      {rank=same; sauth -> sfs -> san [style=invis];}
+    }
+    login -> lvm; cart -> cvm; det -> dvm;
+    lvm -> ar; cvm -> fr; dvm -> fr;
+    dvm -> met [style=dashed, ltail=cluster_vm, label=" eventos de\n todas las pantallas"];
+    ar -> sauth; fr -> sfs; met -> san;
+  }
+
+  nav [label="Navegador\n(Intent implícito ACTION_VIEW)", fillcolor="#F2F2F2"];
+  det -> nav [xlabel="Comprar entrada  "];
+
+  subgraph cluster_cloud {
+    label=<<b>Firebase / Google Cloud</b>>; labeljust=l; style="rounded,filled"; fillcolor="#FFF8E8"; color="#C8963E"; penwidth=1.6; fontcolor="#7a5719";
+    fauth [label="Firebase\nAuthentication\n(email y contraseña)"];
+    ffs [label="Cloud Firestore\nfunciones/{id}\nusuarios/{uid}/intereses/{id}\n+ reglas de seguridad"];
+    fan [label="Google Analytics\nfor Firebase\n(reportes y DebugView)"];
+  }
+  sauth -> fauth [label=" HTTPS"]; sfs -> ffs [label=" gRPC"]; san -> fan [label=" lotes"];
+
+  venta [label="Sitio de venta de entradas\nexistente del cine", fillcolor="#F2F2F2"];
+  nav -> venta;
+  op [label="Programador del cine\n(carga manual: consola o\nscript con Admin SDK)", shape=box, style="rounded,filled,dashed", fillcolor="#F2F2F2"];
+  op -> ffs [style=dashed, label=" escribe la cartelera"];
+
+  {rank=same; fauth -> ffs -> fan [style=invis]; venta}
+}
