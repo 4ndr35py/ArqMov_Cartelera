@@ -32,7 +32,7 @@ class DetalleActivity : AppCompatActivity() {
         }
         binding.toolbar.setNavigationOnClickListener { finish() }
 
-        // Lectura defensiva del extra (practica revisada en el TP1).
+        // Lectura defensiva del extra.
         val id = intent.getStringExtra(EXTRA_FUNCION_ID)
         if (id.isNullOrBlank()) {
             finish()

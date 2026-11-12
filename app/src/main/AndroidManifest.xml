@@ -11,7 +11,7 @@
         android:name="com.google.android.gms.permission.AD_ID"
         tools:node="remove" />
 
-    <!-- Visibilidad de paquetes (leccion del TP1): necesitamos consultar
+    <!-- Visibilidad de paquetes: necesitamos consultar
          si hay un navegador para abrir la pagina de venta de entradas. -->
     <queries>
         <intent>

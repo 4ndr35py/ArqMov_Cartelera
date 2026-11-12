@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // La Activity solo observa y dibuja. El estado vive en el ViewModel,
-        // por eso sobrevive a una rotacion (ver escenario 4 del TP1).
+        // por eso sobrevive a una rotacion.
         viewModel.estado.observe(this) { estado ->
             val cargando = estado is EstadoLogin.Cargando
             binding.progreso.visibility = if (cargando) View.VISIBLE else View.GONE
