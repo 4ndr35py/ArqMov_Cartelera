@@ -1,5 +1,6 @@
 package com.example.cartelera.data
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.AuthResult
@@ -64,10 +65,17 @@ class AuthRepository(
 
     private fun Task<AuthResult>.entregar(alTerminar: (Result<Usuario>) -> Unit) {
         addOnSuccessListener { r -> alTerminar(Result.success(r.user!!.aUsuario())) }
-        addOnFailureListener { e -> alTerminar(Result.failure(traducir(e))) }
+        addOnFailureListener { e ->
+            Log.w(TAG, "Firebase Auth fallo", e)
+            alTerminar(Result.failure(traducir(e)))
+        }
     }
 
     private fun FirebaseUser.aUsuario() = Usuario(uid, isAnonymous, email)
+
+    private companion object {
+        const val TAG = "AuthRepository"
+    }
 
     private fun traducir(e: Exception) = AuthException(
         when (e) {

@@ -13,3 +13,6 @@ app/google-services.json
 # Claves de cuenta de servicio
 *-admin.json
 seed/.venv/
+# Logs del Firebase Emulator Suite y de la CLI
+*-debug.log
+.kotlin/

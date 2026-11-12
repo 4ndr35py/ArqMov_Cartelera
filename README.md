@@ -153,6 +153,20 @@ y los mensajes que se envían desde la consola llegan a `AvisosService`.
    `python cargar_funciones.py --clave ... --url ... --funcion-prueba 125`
    crea la función `f99`, que empieza en 125 minutos (el aviso llega a los 5).
 
+### Probar sin el proyecto real: Firebase Emulator Suite
+
+Auth y Firestore pueden correr en la PC, sin tocar el proyecto de Firebase:
+
+1. `npm install -g firebase-tools` (una vez) y, desde esta carpeta:
+   `firebase emulators:start --only auth,firestore` (UI en http://127.0.0.1:4000).
+   Usa `firebase.json` y aplica las mismas reglas de `firebase/firestore.rules`.
+2. En `local.properties`: `USAR_EMULADOR_FIREBASE=true`. Solo afecta al build de
+   debug, que apunta a `10.0.2.2` (la PC vista desde el emulador de Android).
+3. Cargar la cartelera en el emulador (no pide clave ni `firebase-admin`):
+   `python seed/cargar_funciones.py --emulador --url https://... --funcion-prueba 122`
+
+FCM no se puede probar con el Emulator Suite: necesita el proyecto real.
+
 ### Tests
 
 `./gradlew testDebugUnitTest` corre 31 tests: los 10 del TP2 y los del TP7

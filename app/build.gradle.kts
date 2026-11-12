@@ -13,6 +13,8 @@ val propiedadesLocales = Properties().apply {
     if (archivo.exists()) archivo.inputStream().use { load(it) }
 }
 val claveTmdb: String = propiedadesLocales.getProperty("TMDB_API_KEY", "").trim()
+// Pruebas locales con el Firebase Emulator Suite (solo debug).
+val usarEmulador: Boolean = propiedadesLocales.getProperty("USAR_EMULADOR_FIREBASE", "false").trim() == "true"
 
 android {
     namespace = "com.example.cartelera"
@@ -33,7 +35,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("boolean", "USAR_EMULADOR_FIREBASE", usarEmulador.toString())
+        }
         release {
+            buildConfigField("boolean", "USAR_EMULADOR_FIREBASE", "false")
             optimization {
                 enable = false
             }

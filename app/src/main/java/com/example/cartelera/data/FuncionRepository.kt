@@ -1,5 +1,6 @@
 package com.example.cartelera.data
 
+import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FieldValue
@@ -27,7 +28,10 @@ class FuncionRepository(
                 val lista = snap.toObjects(FuncionDoc::class.java).map { it.aFuncion() }
                 alTerminar(Result.success(lista))
             }
-            .addOnFailureListener { e -> alTerminar(Result.failure(e)) }
+            .addOnFailureListener { e ->
+                Log.w("FuncionRepository", "No se pudo leer la cartelera", e)
+                alTerminar(Result.failure(e))
+            }
     }
 
     fun cargarFuncion(id: String, alTerminar: (Result<Funcion>) -> Unit) {
