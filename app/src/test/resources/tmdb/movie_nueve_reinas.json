@@ -1,0 +1,24 @@
+{
+  "adult": false,
+  "backdrop_path": "/fondo_prueba.jpg",
+  "genres": [
+    { "id": 80, "name": "Crimen" },
+    { "id": 53, "name": "Suspense" },
+    { "id": 35, "name": "Comedia" }
+  ],
+  "id": 12345,
+  "imdb_id": "tt0000000",
+  "original_language": "es",
+  "original_title": "Nueve reinas",
+  "overview": "  Dos estafadores se conocen por casualidad y planean vender una plancha de estampillas falsas.  ",
+  "popularity": 7.5,
+  "poster_path": "/afiche_prueba.jpg",
+  "release_date": "2000-08-31",
+  "runtime": 114,
+  "status": "Released",
+  "tagline": "",
+  "title": "Nueve reinas",
+  "video": false,
+  "vote_average": 7.9,
+  "vote_count": 1500
+}

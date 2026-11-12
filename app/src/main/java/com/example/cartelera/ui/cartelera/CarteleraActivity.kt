@@ -12,7 +12,9 @@ import com.example.cartelera.R
 import com.example.cartelera.databinding.ActivityCarteleraBinding
 import com.example.cartelera.ui.detalle.DetalleActivity
 import com.example.cartelera.ui.login.LoginActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+/** Pantalla de inicio desde el TP7: la cartelera se ve sin crear una cuenta. */
 class CarteleraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCarteleraBinding
@@ -37,12 +39,21 @@ class CarteleraActivity : AppCompatActivity() {
         }
 
         binding.toolbar.setOnMenuItemClickListener { item ->
-            if (item.itemId == R.id.accion_salir) {
-                viewModel.cerrarSesion()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-                true
-            } else false
+            when (item.itemId) {
+                R.id.accion_cuenta -> {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    true
+                }
+                R.id.accion_salir -> {
+                    viewModel.cerrarSesion()
+                    true
+                }
+                R.id.accion_acerca -> {
+                    mostrarAcercaDe()
+                    true
+                }
+                else -> false
+            }
         }
 
         binding.lista.adapter = adapter
@@ -64,11 +75,29 @@ class CarteleraActivity : AppCompatActivity() {
             }
         }
         viewModel.intereses.observe(this) { adapter.actualizarIntereses(it) }
+        viewModel.tieneCuenta.observe(this) { cuenta ->
+            binding.toolbar.menu.findItem(R.id.accion_cuenta)?.isVisible = !cuenta
+            binding.toolbar.menu.findItem(R.id.accion_salir)?.isVisible = cuenta
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.alVolver()
     }
 
     private fun mostrarMensaje(texto: Int, reintentar: Boolean) {
         binding.tvMensaje.setText(texto)
         binding.btnReintentar.visibility = if (reintentar) View.VISIBLE else View.GONE
         binding.grupoMensaje.visibility = View.VISIBLE
+    }
+
+    /** Atribucion que exigen los terminos de uso de la API de TMDB. */
+    private fun mostrarAcercaDe() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.acerca_titulo)
+            .setMessage(R.string.acerca_texto)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 }

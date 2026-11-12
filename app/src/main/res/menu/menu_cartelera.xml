@@ -2,7 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/accion_cuenta"
+        android:title="@string/accion_cuenta"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/accion_salir"
         android:title="@string/accion_salir"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/accion_acerca"
+        android:title="@string/accion_acerca"
         app:showAsAction="never" />
 </menu>

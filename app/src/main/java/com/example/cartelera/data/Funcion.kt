@@ -1,22 +1,25 @@
 package com.example.cartelera.data
 
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentId
+import java.util.Date
 
 /**
- * Una funcion de la cartelera. Corresponde a un documento de la coleccion
- * "funciones" en Firestore. Todos los campos tienen valor por defecto porque
- * Firestore necesita un constructor sin argumentos para deserializar.
+ * Una funcion de la cartelera, tal como la ven los ViewModels y las vistas.
+ * Es un modelo de dominio: no depende de Firebase (el mapeo desde el
+ * documento de Firestore esta en FuncionRepository).
+ *
+ * [tmdbId] es el id de la pelicula en TMDB. Lo carga el cine junto con la
+ * funcion, para pedir afiche, sinopsis, duracion y generos sin buscar por titulo.
  */
 data class Funcion(
-    @DocumentId val id: String = "",
+    val id: String = "",
     val titulo: String = "",
     val director: String = "",
     val anio: Int = 0,
     val duracionMin: Int = 0,
     val sinopsis: String = "",
     val sala: String = "",
-    val fechaHora: Timestamp? = null,
+    val fechaHora: Date? = null,
     val precio: Double = 0.0,
-    val urlEntradas: String = ""
+    val urlEntradas: String = "",
+    val tmdbId: Int? = null
 )

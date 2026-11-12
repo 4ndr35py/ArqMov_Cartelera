@@ -23,6 +23,11 @@ def main() -> None:
     p.add_argument("--url", required=True, help="URL de la pagina de venta de entradas")
     p.add_argument("--zona", default="America/Argentina/Cordoba")
     p.add_argument("--datos", default=str(Path(__file__).with_name("funciones.json")))
+    p.add_argument(
+        "--funcion-prueba", type=int, metavar="MINUTOS",
+        help="TP7: agrega la funcion 'f99' (copia de la primera) que empieza dentro de "
+             "MINUTOS, para probar el recordatorio (se avisa 120 min antes)",
+    )
     args = p.parse_args()
 
     firebase_admin.initialize_app(credentials.Certificate(args.clave))
@@ -32,6 +37,7 @@ def main() -> None:
 
     funciones = json.loads(Path(args.datos).read_text(encoding="utf-8"))
     for f in funciones:
+        # "tmdbId" (opcional) viaja tal cual: la app lo usa para pedir /movie/{id} a TMDB.
         hh, mm = (int(x) for x in f.pop("hora").split(":"))
         fecha = hoy + timedelta(days=f.pop("dia"), hours=hh, minutes=mm)
         doc_id = f.pop("id")
@@ -39,6 +45,15 @@ def main() -> None:
         f["urlEntradas"] = args.url
         db.collection("funciones").document(doc_id).set(f)
         print(f"  {doc_id}  {fecha:%a %d/%m %H:%M}  {f['titulo']}")
+
+    if args.funcion_prueba is not None:
+        base = json.loads(Path(args.datos).read_text(encoding="utf-8"))[0]
+        for clave in ("id", "dia", "hora"):
+            base.pop(clave)
+        fecha = datetime.now(zona).replace(second=0, microsecond=0) + timedelta(minutes=args.funcion_prueba)
+        base.update(titulo=f"{base['titulo']} (prueba)", fechaHora=fecha, urlEntradas=args.url)
+        db.collection("funciones").document("f99").set(base)
+        print(f"  f99  {fecha:%a %d/%m %H:%M}  {base['titulo']}")
 
     print(f"Listo: {len(funciones)} funciones cargadas.")
 

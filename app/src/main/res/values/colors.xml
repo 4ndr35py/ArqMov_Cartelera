@@ -1,6 +1,7 @@
 <resources>
     <color name="tinta">#1C1B1F</color>
     <color name="papel">#FAF7F2</color>
+    <color name="papel_osc">#ECE6DC</color>
     <color name="butaca">#8E1B2C</color>
     <color name="butaca_osc">#5E0F1C</color>
     <color name="dorado">#C8963E</color>

@@ -9,6 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:menu="@menu/menu_detalle"
         app:navigationContentDescription="@string/cd_volver"
         app:navigationIcon="@drawable/ic_volver"
         app:title="@string/detalle_titulo" />
@@ -26,6 +27,18 @@
             android:padding="20dp"
             android:visibility="invisible">
 
+            <!-- Afiche de TMDB (relacion 2:3). Se oculta si no hay. -->
+            <ImageView
+                android:id="@+id/ivAfiche"
+                android:layout_width="160dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:background="@color/papel_osc"
+                android:contentDescription="@string/cd_afiche"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/tvTitulo"
                 android:layout_width="match_parent"
@@ -40,6 +53,15 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <TextView
+                android:id="@+id/tvGeneros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvFecha"
@@ -62,10 +84,22 @@
                 android:layout_marginTop="16dp"
                 android:lineSpacingMultiplier="1.15"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+            <!-- Atribucion exigida por los terminos de uso de la API de TMDB. -->
+            <TextView
+                android:id="@+id/grupoTmdb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/atribucion_tmdb"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/barraAcciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

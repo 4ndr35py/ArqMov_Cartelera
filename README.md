@@ -7,6 +7,10 @@ backend: Authentication (email y contraseña), Cloud Firestore y Analytics.
 Compilado y probado con AGP 9.4.1, Gradle 9.8.2, Kotlin 2.4.21,
 compileSdk/targetSdk 37, minSdk 24 y Firebase BoM 35.1.0.
 
+> **TP7 (rama `tp7`): integración de APIs y SDKs.** El estado entregado del
+> TP2 quedó en el tag `tp2-entregado`. Ver la sección [TP7](#tp7-integraciones)
+> al final.
+
 ## 1. Abrir el proyecto
 
 1. Descomprimí la carpeta y abrila desde Android Studio (File → Open).
@@ -117,3 +121,43 @@ app/src/main/java/com/example/cartelera/
 firebase/firestore.rules         reglas de seguridad
 seed/                            carga de la cartelera de prueba
 ```
+
+## TP7: integraciones
+
+| Integración | Tipo | Entra por | Para qué |
+|---|---|---|---|
+| Firebase Cloud Messaging + WorkManager | SDK | `MensajeriaRepository`, `RecordatorioRepository`, `data/avisos/` | Recordatorio 2 h antes de una función marcada |
+| Sharesheet de Android (`ACTION_SEND`) | API de la plataforma | `DetalleActivity` + `util/TextoCompartir` | Compartir una función por WhatsApp u otra app |
+| TMDB (API REST) con Retrofit | API REST | `PeliculaRepository`, `data/tmdb/` | Afiche, sinopsis, duración y géneros en es-AR |
+| Firebase Auth anónimo + vinculación | (mismo SDK de Auth) | `AuthRepository` | Ver la cartelera sin cuenta; el email se pide al marcar |
+
+Ninguna Activity ni ViewModel importa clases de Firebase, Retrofit ni WorkManager.
+
+**Recordatorio local en lugar de Cloud Functions.** El proyecto queda en el plan
+gratuito de Firebase (Spark), que no permite desplegar Functions. El aviso se
+programa en el teléfono con WorkManager al marcar la función y se cancela al
+desmarcarla. FCM sigue integrado: el token se guarda en `usuarios/{uid}.tokenFcm`
+y los mensajes que se envían desde la consola llegan a `AvisosService`.
+
+### Configuración extra
+
+1. **API key de TMDB.** Creá una cuenta en themoviedb.org → Configuración → API
+   y pedí una clave. Pegala en `local.properties` (git lo ignora):
+   `TMDB_API_KEY=tu_clave`. Sin clave, la app muestra los datos que cargó el cine.
+2. **Ingreso anónimo.** Consola de Firebase → Authentication → Sign-in method →
+   habilitá *Anónimo*.
+3. **Reglas.** Volvé a publicar `firebase/firestore.rules` (agrega `usuarios/{uid}`
+   para el token FCM).
+4. **Cartelera.** Agregá `"tmdbId"` a cada función de `seed/funciones.json` y volvé
+   a correr el script. Para probar el recordatorio:
+   `python cargar_funciones.py --clave ... --url ... --funcion-prueba 125`
+   crea la función `f99`, que empieza en 125 minutos (el aviso llega a los 5).
+
+### Tests
+
+`./gradlew testDebugUnitTest` corre 31 tests: los 10 del TP2 y los del TP7
+(`PeliculaRepositoryTest` con MockWebServer, `FichaTest`, `TextoCompartirTest`
+y `RecordatorioTest`).
+
+Datos de películas e imágenes: [TMDB](https://www.themoviedb.org). This product
+uses the TMDB API but is not endorsed or certified by TMDB.

@@ -46,6 +46,11 @@ object Metricas {
 
     fun cerrarSesion() = evento(CERRAR_SESION)
 
+    // TP7: lo que el TP2 dejo para medir en el proximo ciclo
+    fun compartirFuncion(id: String) = evento(COMPARTIR_FUNCION, "funcion_id" to id)
+
+    fun abrirAviso(id: String) = evento(ABRIR_AVISO, "funcion_id" to id)
+
     private fun evento(nombre: String, vararg params: Pair<String, String>) {
         val bundle = Bundle()
         params.forEach { (k, v) -> bundle.putString(k, v) }
@@ -58,4 +63,6 @@ object Metricas {
     const val CLICK_COMPRAR = "click_comprar"
     const val ERROR_AUTH = "error_auth"
     const val CERRAR_SESION = "cerrar_sesion"
+    const val COMPARTIR_FUNCION = "compartir_funcion"
+    const val ABRIR_AVISO = "abrir_aviso"
 }

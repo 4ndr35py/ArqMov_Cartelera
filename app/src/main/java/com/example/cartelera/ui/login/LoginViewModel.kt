@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cartelera.R
 import com.example.cartelera.analytics.Metricas
+import com.example.cartelera.data.AuthException
 import com.example.cartelera.data.AuthRepository
+import com.example.cartelera.data.ErrorAuth
+import com.example.cartelera.data.MensajeriaRepository
+import com.example.cartelera.data.Usuario
 import com.example.cartelera.util.Validador
-import com.google.firebase.FirebaseNetworkException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 sealed class EstadoLogin {
     data object Inactivo : EstadoLogin()
@@ -20,19 +20,16 @@ sealed class EstadoLogin {
     data class Error(val mensaje: Int) : EstadoLogin()
 }
 
+/**
+ * Desde el TP7 el login no es la puerta de entrada: se abre solo cuando el
+ * usuario quiere marcar una funcion. «Crear cuenta» vincula la sesion anonima.
+ */
 class LoginViewModel(
     private val repo: AuthRepository = AuthRepository()
 ) : ViewModel() {
 
     private val _estado = MutableLiveData<EstadoLogin>(EstadoLogin.Inactivo)
     val estado: LiveData<EstadoLogin> = _estado
-
-    /** Si ya hay sesion iniciada, no se vuelve a pedir credenciales. */
-    fun haySesion(): Boolean {
-        val usuario = repo.usuarioActual ?: return false
-        Metricas.identificarUsuario(usuario.uid)
-        return true
-    }
 
     fun ingresar(email: String, clave: String) = ejecutar(email, clave, nuevo = false)
 
@@ -44,10 +41,11 @@ class LoginViewModel(
             return
         }
         _estado.value = EstadoLogin.Cargando
-        val alTerminar: (Result<com.google.firebase.auth.FirebaseUser>) -> Unit = { r ->
+        val alTerminar: (Result<Usuario>) -> Unit = { r ->
             r.onSuccess { usuario ->
                 Metricas.identificarUsuario(usuario.uid)
                 if (nuevo) Metricas.registro() else Metricas.ingreso()
+                MensajeriaRepository(repo).registrarToken()
                 _estado.value = EstadoLogin.Exito
             }.onFailure { e ->
                 val (mensaje, tipo) = traducir(e)
@@ -66,12 +64,13 @@ class LoginViewModel(
         Validador.Error.CLAVE_CORTA -> R.string.error_clave_corta
     }
 
-    /** Traduce excepciones de Firebase a un mensaje y a un tipo para Analytics. */
-    private fun traducir(e: Throwable): Pair<Int, String> = when (e) {
-        is FirebaseAuthWeakPasswordException -> R.string.error_clave_corta to "clave_debil"
-        is FirebaseAuthUserCollisionException -> R.string.error_email_en_uso to "email_en_uso"
-        is FirebaseAuthInvalidCredentialsException -> R.string.error_credenciales to "credenciales"
-        is FirebaseNetworkException -> R.string.error_red to "red"
-        else -> R.string.error_generico to "otro"
-    }
+    /** Traduce el error del repositorio a un mensaje y a un tipo para Analytics. */
+    private fun traducir(e: Throwable): Pair<Int, String> =
+        when ((e as? AuthException)?.tipo ?: ErrorAuth.OTRO) {
+            ErrorAuth.CLAVE_DEBIL -> R.string.error_clave_corta to "clave_debil"
+            ErrorAuth.EMAIL_EN_USO -> R.string.error_email_en_uso to "email_en_uso"
+            ErrorAuth.CREDENCIALES -> R.string.error_credenciales to "credenciales"
+            ErrorAuth.RED -> R.string.error_red to "red"
+            ErrorAuth.OTRO -> R.string.error_generico to "otro"
+        }
 }

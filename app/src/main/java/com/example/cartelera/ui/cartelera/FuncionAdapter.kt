@@ -34,7 +34,7 @@ class FuncionAdapter(
         fun mostrar(f: Funcion) {
             val contexto = b.root.context
             b.tvTitulo.text = f.titulo
-            b.tvFecha.text = f.fechaHora?.toDate()?.let { Formato.fechaCorta(it) } ?: ""
+            b.tvFecha.text = f.fechaHora?.let { Formato.fechaCorta(it) } ?: ""
             b.tvDetalle.text = contexto.getString(
                 R.string.item_detalle, f.sala, f.duracionMin, Formato.precio(f.precio)
             )

@@ -2,11 +2,18 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Cartelera: cualquier usuario autenticado la lee. Nadie la escribe
-    // desde la app; la carga el cine (consola o script de carga).
+    // Cartelera: la lee cualquier sesion, tambien la anonima (TP7). Nadie la
+    // escribe desde la app; la carga el cine (consola o script de carga).
     match /funciones/{funcionId} {
       allow read: if request.auth != null;
       allow write: if false;
+    }
+
+    // Documento del usuario: solo guarda el token de FCM (TP7).
+    match /usuarios/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['tokenFcm', 'actualizado']);
     }
 
     // Intereses: cada usuario lee y escribe solo los suyos.
