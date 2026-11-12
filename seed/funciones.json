@@ -2,6 +2,7 @@
   {
     "id": "f01",
     "titulo": "La ciénaga",
+    "tmdbId": 58429,
     "director": "Lucrecia Martel",
     "anio": 2001,
     "duracionMin": 103,
@@ -14,6 +15,7 @@
   {
     "id": "f02",
     "titulo": "Nueve reinas",
+    "tmdbId": 18079,
     "director": "Fabián Bielinsky",
     "anio": 2000,
     "duracionMin": 114,
@@ -26,6 +28,7 @@
   {
     "id": "f03",
     "titulo": "Paris, Texas",
+    "tmdbId": 655,
     "director": "Wim Wenders",
     "anio": 1984,
     "duracionMin": 145,
@@ -38,6 +41,7 @@
   {
     "id": "f04",
     "titulo": "Relatos salvajes",
+    "tmdbId": 265195,
     "director": "Damián Szifron",
     "anio": 2014,
     "duracionMin": 122,
@@ -50,6 +54,7 @@
   {
     "id": "f05",
     "titulo": "Cinema Paradiso",
+    "tmdbId": 11216,
     "director": "Giuseppe Tornatore",
     "anio": 1988,
     "duracionMin": 155,
@@ -62,6 +67,7 @@
   {
     "id": "f06",
     "titulo": "Historias extraordinarias",
+    "tmdbId": 111188,
     "director": "Mariano Llinás",
     "anio": 2008,
     "duracionMin": 245,
