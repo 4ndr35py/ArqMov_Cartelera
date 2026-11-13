@@ -17,7 +17,7 @@ digraph G {
   nav   [label="Navegador\n(Intent ACTION_VIEW)", fillcolor="#F2F2F2"];
 
   subgraph cluster_disp {
-    label=<<b>Dispositivo Android</b>  ·  app Cartelera v3 (Kotlin, MVVM)>; labeljust=l; labelloc=t; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
+    label=<<b>Dispositivo Android</b>  ·  app Park City Film (Kotlin, MVVM, inglés y castellano)>; labeljust=l; labelloc=t; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
 
     subgraph cluster_view {
       label="Vista  (Activities + layouts XML)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
@@ -54,7 +54,7 @@ digraph G {
 
   subgraph cluster_tmdb {
     label=<<b>The Movie Database (TMDB)</b>>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#EEF4FC"; color="#1565C0"; penwidth=1.6; fontcolor="#1565C0";
-    tapi [label="API REST v3\nGET /movie/{id}\n?language=es-AR", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    tapi [label="API REST v3\nGET /movie/{id}\n?language=es | en-US", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
     timg [label="image.tmdb.org\n(afiches)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
   }
   subgraph cluster_cloud {
@@ -65,8 +65,8 @@ digraph G {
     fcm   [label="Firebase Cloud\nMessaging (FCM)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
     fun   [label="Cloud Functions\n(no implementada:\nrequiere plan Blaze)", style="rounded,dashed", color="#9a96a0", fontcolor="#7a7680", fillcolor="white"];
   }
-  venta [label="Sitio de venta\nde entradas del cine", fillcolor="#F2F2F2"];
-  op    [label="Programador del cine\n(script de carga + tmdbId)", style="rounded,filled,dashed", fillcolor="#F2F2F2"];
+  venta [label="Venta de entradas\n(Eventive del cine)", fillcolor="#F2F2F2"];
+  op    [label="Programador del cine\n(script con la cartelera de\nparkcityfilm.org + tmdbId)", style="rounded,filled,dashed", fillcolor="#F2F2F2"];
 
   // ---- filas y orden horizontal ----
   {rank=same; share; nav; det; cart; login}
