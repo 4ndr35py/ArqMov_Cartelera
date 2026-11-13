@@ -7,7 +7,11 @@ data class Pelicula(
     val sinopsis: String,
     val duracionMin: Int?,
     val generos: List<String>,
-    val urlAfiche: String?
+    val urlAfiche: String?,
+    /** Clave del trailer en YouTube (se abre con youtube.com/watch?v=...). */
+    val trailerYoutube: String? = null,
+    /** Fotos de la pelicula (backdrops de TMDB). */
+    val fotos: List<String> = emptyList()
 )
 
 /**

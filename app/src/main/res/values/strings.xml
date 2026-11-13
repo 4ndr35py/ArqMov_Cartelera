@@ -21,7 +21,7 @@
     <string name="error_generico">Something went wrong. Please try again.</string>
 
     <!-- Schedule -->
-    <string name="cartelera_titulo">Upcoming</string>
+    <string name="cartelera_titulo">Now showing</string>
     <string name="accion_cuenta">Sign in or create account</string>
     <string name="accion_salir">Sign out</string>
     <string name="accion_acerca">About</string>
@@ -30,6 +30,19 @@
     <string name="btn_reintentar">Retry</string>
     <string name="item_detalle">%1$s · %2$d min · %3$s</string>
     <string name="cd_interes">Saved</string>
+
+    <string name="item_pelicula_fechas">%1$s · %2$s</string>
+    <plurals name="n_funciones">
+        <item quantity="one">%d showtime</item>
+        <item quantity="other">%d showtimes</item>
+    </plurals>
+
+    <!-- Movie (since TP7 the schedule is organized by movie) -->
+    <string name="pelicula_titulo">Movie</string>
+    <string name="funciones_titulo">Choose a showtime</string>
+    <string name="btn_trailer">Watch trailer</string>
+    <string name="fotos_titulo">Photos</string>
+    <string name="cd_foto">Still from the movie</string>
 
     <!-- Detail -->
     <string name="detalle_titulo">Showtime</string>

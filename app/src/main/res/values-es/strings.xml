@@ -21,7 +21,7 @@
     <string name="error_generico">No pudimos completar la operación. Intentá de nuevo.</string>
 
     <!-- Cartelera -->
-    <string name="cartelera_titulo">Próximas funciones</string>
+    <string name="cartelera_titulo">En cartel</string>
     <string name="accion_cuenta">Ingresar o crear cuenta</string>
     <string name="accion_salir">Cerrar sesión</string>
     <string name="accion_acerca">Acerca de</string>
@@ -30,6 +30,19 @@
     <string name="btn_reintentar">Reintentar</string>
     <string name="item_detalle">%1$s · %2$d min · %3$s</string>
     <string name="cd_interes">Marcada como me interesa</string>
+
+    <string name="item_pelicula_fechas">%1$s · %2$s</string>
+    <plurals name="n_funciones">
+        <item quantity="one">%d función</item>
+        <item quantity="other">%d funciones</item>
+    </plurals>
+
+    <!-- Pelicula (desde el TP7 la cartelera se organiza por pelicula) -->
+    <string name="pelicula_titulo">Película</string>
+    <string name="funciones_titulo">Elegí cuándo verla</string>
+    <string name="btn_trailer">Ver tráiler</string>
+    <string name="fotos_titulo">Fotos</string>
+    <string name="cd_foto">Foto de la película</string>
 
     <!-- Detalle -->
     <string name="detalle_titulo">Función</string>

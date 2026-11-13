@@ -68,6 +68,12 @@
             android:exported="false"
             android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
+        <!-- TP7: una pelicula con sus fotos, su trailer y sus funciones. -->
+        <activity
+            android:name=".ui.pelicula.PeliculaActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
         <!-- Servicio de avisos: recibe los mensajes de FCM y los tokens nuevos. -->
         <service
             android:name=".data.avisos.AvisosService"

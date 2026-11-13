@@ -76,6 +76,25 @@ class PeliculaRepositoryTest {
         assertEquals(114, pelicula.duracionMin)
         assertEquals(listOf("Crimen", "Suspense", "Comedia"), pelicula.generos)
         assertEquals("${TmdbApi.URL_IMAGENES}/afiche_prueba.jpg", pelicula.urlAfiche)
+        assertEquals(
+            listOf("${TmdbApi.URL_FOTOS}/foto_1.jpg", "${TmdbApi.URL_FOTOS}/foto_2.jpg"),
+            pelicula.fotos
+        )
+    }
+
+    @Test fun eligeElTrailerDeYoutubeEnElIdiomaDelTelefono() {
+        servidor.enqueue(respuesta(200, fixture("movie_nueve_reinas.json")))
+        servidor.enqueue(respuesta(200, fixture("movie_nueve_reinas.json")))
+        val repo = repositorio()
+
+        // En castellano gana el trailer en castellano (aunque no sea oficial); el de Vimeo y el teaser no cuentan.
+        assertEquals("trailer_es", cargar(repo, 12345, "es").getOrThrow().trailerYoutube)
+        // En ingles, el oficial en ingles.
+        assertEquals("trailer_en", cargar(repo, 12345, "en-US").getOrThrow().trailerYoutube)
+
+        val pedido = servidor.takeRequest()
+        assertEquals("videos,images", pedido.url.queryParameter("append_to_response"))
+        assertEquals("es,en,null", pedido.url.queryParameter("include_video_language"))
     }
 
     @Test fun elIdiomaDeTmdbSigueAlDelTelefono() {

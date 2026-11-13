@@ -20,5 +20,19 @@
   "title": "Nueve reinas",
   "video": false,
   "vote_average": 7.9,
-  "vote_count": 1500
+  "vote_count": 1500,
+  "videos": {
+    "results": [
+      { "key": "teaser_en", "site": "YouTube", "type": "Teaser", "official": true, "iso_639_1": "en" },
+      { "key": "trailer_en", "site": "YouTube", "type": "Trailer", "official": true, "iso_639_1": "en" },
+      { "key": "trailer_vimeo", "site": "Vimeo", "type": "Trailer", "official": true, "iso_639_1": "es" },
+      { "key": "trailer_es", "site": "YouTube", "type": "Trailer", "official": false, "iso_639_1": "es" }
+    ]
+  },
+  "images": {
+    "backdrops": [
+      { "file_path": "/foto_1.jpg" },
+      { "file_path": "/foto_2.jpg" }
+    ]
+  }
 }

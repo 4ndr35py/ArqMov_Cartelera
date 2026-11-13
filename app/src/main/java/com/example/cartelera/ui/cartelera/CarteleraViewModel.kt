@@ -6,16 +6,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cartelera.analytics.Metricas
 import com.example.cartelera.data.AuthRepository
-import com.example.cartelera.data.Funcion
 import com.example.cartelera.data.FuncionRepository
 import com.example.cartelera.data.MensajeriaRepository
+import com.example.cartelera.data.PeliculaEnCartel
+import com.example.cartelera.data.PeliculaRepository
 import com.example.cartelera.data.RecordatorioRepository
 import com.example.cartelera.data.Suscripcion
+import com.example.cartelera.util.Cartelera
 import java.util.Date
 
 sealed class EstadoCartelera {
     data object Cargando : EstadoCartelera()
-    data class Lista(val funciones: List<Funcion>) : EstadoCartelera()
+    /** Desde el TP7 la cartelera se organiza por pelicula; las funciones se eligen adentro. */
+    data class Lista(val peliculas: List<PeliculaEnCartel>) : EstadoCartelera()
     data object Vacia : EstadoCartelera()
     data object Error : EstadoCartelera()
 }
@@ -31,12 +34,17 @@ class CarteleraViewModel(app: Application) : AndroidViewModel(app) {
     private val repo = FuncionRepository()
     private val mensajeria = MensajeriaRepository(auth)
     private val recordatorios = RecordatorioRepository(app)
+    private val tmdb = PeliculaRepository(app)
 
     private val _estado = MutableLiveData<EstadoCartelera>()
     val estado: LiveData<EstadoCartelera> = _estado
 
     private val _intereses = MutableLiveData<Set<String>>(emptySet())
     val intereses: LiveData<Set<String>> = _intereses
+
+    /** tmdbId -> URL del afiche, para las tarjetas de la cartelera. */
+    private val _afiches = MutableLiveData<Map<Int, String>>(emptyMap())
+    val afiches: LiveData<Map<Int, String>> = _afiches
 
     private val _tieneCuenta = MutableLiveData(auth.tieneCuenta)
     val tieneCuenta: LiveData<Boolean> = _tieneCuenta
@@ -72,10 +80,23 @@ class CarteleraViewModel(app: Application) : AndroidViewModel(app) {
         repo.cargarCartelera(Date()) { r ->
             r.onSuccess { lista ->
                 Metricas.verCartelera(lista.size)
-                _estado.value = if (lista.isEmpty()) EstadoCartelera.Vacia
-                else EstadoCartelera.Lista(lista)
+                val peliculas = Cartelera.agrupar(lista)
+                _estado.value = if (peliculas.isEmpty()) EstadoCartelera.Vacia
+                else EstadoCartelera.Lista(peliculas)
+                cargarAfiches(peliculas)
             }.onFailure {
                 _estado.value = EstadoCartelera.Error
+            }
+        }
+    }
+
+    /** Afiche de cada pelicula que esta en TMDB (cacheado: la segunda vez no sale a la red). */
+    private fun cargarAfiches(peliculas: List<PeliculaEnCartel>) {
+        peliculas.mapNotNull { it.tmdbId }.distinct().forEach { id ->
+            tmdb.cargar(id) { r ->
+                r.onSuccess { p ->
+                    p.urlAfiche?.let { url -> _afiches.value = _afiches.value.orEmpty() + (id to url) }
+                }
             }
         }
     }

@@ -34,6 +34,27 @@ object Formato {
         return f.format(fecha)
     }
 
+    /**
+     * Rango de fechas de una pelicula para la tarjeta de la cartelera:
+     * un dia "sáb 14 nov" / "Sat, Nov 14"; mismo mes "13–15 nov" / "Nov 13–15";
+     * distinto mes "28 nov – 2 dic" / "Nov 28 – Dec 2".
+     */
+    fun rangoFechas(desde: Date, hasta: Date, zona: TimeZone = TimeZone.getDefault(), idioma: Locale = Locale.getDefault()): String {
+        val es = esCastellano(idioma)
+        fun f(patron: String, fecha: Date) =
+            SimpleDateFormat(patron, idioma).apply { timeZone = zona }.format(fecha).replace(".", "")
+        val dia = SimpleDateFormat("yyyyMMdd", Locale.ROOT).apply { timeZone = zona }
+        val mes = SimpleDateFormat("yyyyMM", Locale.ROOT).apply { timeZone = zona }
+        return when {
+            dia.format(desde) == dia.format(hasta) ->
+                if (es) f("EEE d MMM", desde) else f("EEE, MMM d", desde)
+            mes.format(desde) == mes.format(hasta) ->
+                if (es) "${f("d", desde)}–${f("d MMM", hasta)}" else "${f("MMM d", desde)}–${f("d", hasta)}"
+            else ->
+                if (es) "${f("d MMM", desde)} – ${f("d MMM", hasta)}" else "${f("MMM d", desde)} – ${f("MMM d", hasta)}"
+        }
+    }
+
     /** "Gratis" / "Free"; si no, el precio en dolares ("US$ 12" / "$12"). */
     fun precio(valor: Double, idioma: Locale = Locale.getDefault()): String {
         if (valor <= 0.0) return if (esCastellano(idioma)) "Gratis" else "Free"

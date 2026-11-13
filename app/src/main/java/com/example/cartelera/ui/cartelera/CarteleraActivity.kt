@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cartelera.R
 import com.example.cartelera.databinding.ActivityCarteleraBinding
-import com.example.cartelera.ui.detalle.DetalleActivity
+import com.example.cartelera.ui.pelicula.PeliculaActivity
 import com.example.cartelera.ui.login.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -22,10 +22,11 @@ class CarteleraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCarteleraBinding
     private val viewModel: CarteleraViewModel by viewModels()
 
-    private val adapter = FuncionAdapter { funcion ->
+    /** Una tarjeta por pelicula; adentro se elige la funcion. */
+    private val adapter = PeliculaAdapter { pelicula ->
         startActivity(
-            Intent(this, DetalleActivity::class.java)
-                .putExtra(DetalleActivity.EXTRA_FUNCION_ID, funcion.id)
+            Intent(this, PeliculaActivity::class.java)
+                .putExtra(PeliculaActivity.EXTRA_CLAVE, pelicula.clave)
         )
     }
 
@@ -68,7 +69,7 @@ class CarteleraActivity : AppCompatActivity() {
             binding.grupoMensaje.visibility = View.GONE
             when (estado) {
                 is EstadoCartelera.Lista -> {
-                    adapter.submitList(estado.funciones)
+                    adapter.submitList(estado.peliculas)
                     binding.lista.visibility = View.VISIBLE
                 }
                 is EstadoCartelera.Vacia -> mostrarMensaje(R.string.cartelera_vacia, reintentar = false)
@@ -77,6 +78,7 @@ class CarteleraActivity : AppCompatActivity() {
             }
         }
         viewModel.intereses.observe(this) { adapter.actualizarIntereses(it) }
+        viewModel.afiches.observe(this) { adapter.actualizarAfiches(it) }
         viewModel.tieneCuenta.observe(this) { cuenta ->
             binding.toolbar.menu.findItem(R.id.accion_cuenta)?.isVisible = !cuenta
             binding.toolbar.menu.findItem(R.id.accion_salir)?.isVisible = cuenta

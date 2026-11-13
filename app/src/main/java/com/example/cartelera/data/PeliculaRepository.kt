@@ -59,7 +59,7 @@ class PeliculaRepository internal constructor(
             override fun onResponse(call: Call<PeliculaTmdb>, response: Response<PeliculaTmdb>) {
                 val cuerpo = response.body()
                 if (response.isSuccessful && cuerpo != null) {
-                    val pelicula = cuerpo.aPelicula()
+                    val pelicula = cuerpo.aPelicula(idioma)
                     memoria[clave] = pelicula
                     alTerminar(Result.success(pelicula))
                 } else {

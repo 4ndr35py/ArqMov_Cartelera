@@ -150,9 +150,13 @@ class DetalleActivity : AppCompatActivity() {
     private fun abrirVenta() {
         val url = viewModel.funcion.value?.urlEntradas ?: return
         viewModel.registrarClickComprar()
-        val ver = Intent(Intent.ACTION_VIEW, url.toUri())
-        if (ver.resolveActivity(packageManager) != null) startActivity(ver)
-        else Toast.makeText(this, R.string.sin_navegador, Toast.LENGTH_SHORT).show()
+        try {
+            // Directo: con la visibilidad de paquetes de Android 11+, resolveActivity()
+            // puede no encontrar la app que de verdad abre el link.
+            startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
+        } catch (_: android.content.ActivityNotFoundException) {
+            Toast.makeText(this, R.string.sin_navegador, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun avisar(texto: Int) =

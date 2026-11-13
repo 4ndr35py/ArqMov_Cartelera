@@ -51,6 +51,10 @@ object Metricas {
 
     fun abrirAviso(id: String) = evento(ABRIR_AVISO, "funcion_id" to id)
 
+    fun verPelicula(clave: String) = evento(VER_PELICULA, "pelicula" to clave.take(100))
+
+    fun verTrailer(clave: String) = evento(VER_TRAILER, "pelicula" to clave.take(100))
+
     private fun evento(nombre: String, vararg params: Pair<String, String>) {
         val bundle = Bundle()
         params.forEach { (k, v) -> bundle.putString(k, v) }
@@ -65,4 +69,6 @@ object Metricas {
     const val CERRAR_SESION = "cerrar_sesion"
     const val COMPARTIR_FUNCION = "compartir_funcion"
     const val ABRIR_AVISO = "abrir_aviso"
+    const val VER_PELICULA = "ver_pelicula"
+    const val VER_TRAILER = "ver_trailer"
 }
