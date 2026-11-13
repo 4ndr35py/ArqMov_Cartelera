@@ -56,7 +56,7 @@ source .venv/bin/activate          # en Windows: .venv\Scripts\activate
 pip install firebase-admin
 python cargar_funciones.py \
   --clave ~/claves/cartelera-admin.json \
-  --url "https://www.ejemplo-cine.com.ar/entradas"
+  --url "https://parkcityfilm.org/"
 deactivate
 ```
 
@@ -163,7 +163,7 @@ Auth y Firestore pueden correr en la PC, sin tocar el proyecto de Firebase:
 2. En `local.properties`: `USAR_EMULADOR_FIREBASE=true`. Solo afecta al build de
    debug, que apunta a `10.0.2.2` (la PC vista desde el emulador de Android).
 3. Cargar la cartelera en el emulador (no pide clave ni `firebase-admin`):
-   `python seed/cargar_funciones.py --emulador --url https://... --funcion-prueba 122`
+   `python seed/cargar_funciones.py --emulador --url https://parkcityfilm.org/ --funcion-prueba 122`
 
 FCM no se puede probar con el Emulator Suite: necesita el proyecto real.
 
