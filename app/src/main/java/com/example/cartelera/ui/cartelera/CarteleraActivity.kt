@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cartelera.R
 import com.example.cartelera.databinding.ActivityCarteleraBinding
+import com.example.cartelera.ui.donacion.DonacionActivity
 import com.example.cartelera.ui.pelicula.PeliculaActivity
 import com.example.cartelera.ui.login.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -49,6 +50,10 @@ class CarteleraActivity : AppCompatActivity() {
                 }
                 R.id.accion_salir -> {
                     viewModel.cerrarSesion()
+                    true
+                }
+                R.id.accion_apoyar -> {
+                    startActivity(Intent(this, DonacionActivity::class.java))
                     true
                 }
                 R.id.accion_acerca -> {

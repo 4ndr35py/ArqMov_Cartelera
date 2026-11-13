@@ -70,4 +70,14 @@
     <string name="cd_logo_tmdb">The Movie Database (TMDB) logo</string>
     <string name="acerca_titulo">Park City Film</string>
     <string name="acerca_texto">Schedule for Park City Film, Summit County\'s nonprofit art house cinema.\n\nMovie data and images provided by The Movie Database (TMDB). This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+    <!-- TP4: donaciones in-app (Google Play Billing) -->
+    <string name="accion_apoyar">Support the cinema</string>
+    <string name="donacion_titulo">Support the cinema</string>
+    <string name="donacion_intro">Park City Film is a nonprofit organization. Your one-time donation helps keep the art house programming going. It does not unlock any extra feature in the app.</string>
+    <string name="donacion_boton">US$ %1$d · %2$s</string>
+    <string name="donacion_sugerida_cd">Suggested donation: US$ %1$d</string>
+    <string name="donacion_no_disponible">Donations are not available right now.</string>
+    <string name="donacion_gracias">Thank you for your donation of US$ %1$d.</string>
+    <string name="donacion_pendiente">Your donation is pending payment.</string>
+    <string name="donacion_fallo">We could not process the donation (code %1$d).</string>
 </resources>

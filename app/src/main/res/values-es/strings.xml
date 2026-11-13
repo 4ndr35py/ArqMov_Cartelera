@@ -70,4 +70,14 @@
     <string name="cd_logo_tmdb">Logo de The Movie Database (TMDB)</string>
     <string name="acerca_titulo">Park City Film</string>
     <string name="acerca_texto">Cartelera de Park City Film, el cine de arte sin fines de lucro de Summit County (Utah).\n\nDatos de películas e imágenes provistos por The Movie Database (TMDB). This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+    <!-- TP4: donaciones in-app (Google Play Billing) -->
+    <string name="accion_apoyar">Apoyar al cine</string>
+    <string name="donacion_titulo">Apoyar al cine</string>
+    <string name="donacion_intro">Park City Film es una organización sin fines de lucro. Tu donación única ayuda a sostener la programación de cine de arte. No desbloquea ninguna función extra de la app.</string>
+    <string name="donacion_boton">US$ %1$d · %2$s</string>
+    <string name="donacion_sugerida_cd">Donación sugerida: US$ %1$d</string>
+    <string name="donacion_no_disponible">Las donaciones no están disponibles en este momento.</string>
+    <string name="donacion_gracias">Gracias por tu donación de US$ %1$d.</string>
+    <string name="donacion_pendiente">Tu donación quedó pendiente de pago.</string>
+    <string name="donacion_fallo">No pudimos procesar la donación (código %1$d).</string>
 </resources>

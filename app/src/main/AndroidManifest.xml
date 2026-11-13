@@ -74,6 +74,12 @@
             android:exported="false"
             android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
+        <!-- TP4: donaciones in-app (Google Play Billing). -->
+        <activity
+            android:name=".ui.donacion.DonacionActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
         <!-- Servicio de avisos: recibe los mensajes de FCM y los tokens nuevos. -->
         <service
             android:name=".data.avisos.AvisosService"

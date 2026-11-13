@@ -55,6 +55,13 @@ object Metricas {
 
     fun verTrailer(clave: String) = evento(VER_TRAILER, "pelicula" to clave.take(100))
 
+    // TP4: monetizacion. H1 del plan: cuanta gente abre "Apoyar al cine".
+    fun apoyarAbrir() = evento(APOYAR_ABRIR)
+
+    fun donarIniciar(montoUsd: Int) = evento(DONAR_INICIAR, "monto_usd" to montoUsd.toString())
+
+    fun donacionCompletada(montoUsd: Int) = evento(DONACION_COMPLETADA, "monto_usd" to montoUsd.toString())
+
     private fun evento(nombre: String, vararg params: Pair<String, String>) {
         val bundle = Bundle()
         params.forEach { (k, v) -> bundle.putString(k, v) }
@@ -71,4 +78,7 @@ object Metricas {
     const val ABRIR_AVISO = "abrir_aviso"
     const val VER_PELICULA = "ver_pelicula"
     const val VER_TRAILER = "ver_trailer"
+    const val APOYAR_ABRIR = "apoyar_abrir"
+    const val DONAR_INICIAR = "donar_iniciar"
+    const val DONACION_COMPLETADA = "donacion_completada"
 }
