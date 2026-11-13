@@ -127,7 +127,7 @@ seed/                            carga de la cartelera de prueba
 | Integración | Tipo | Entra por | Para qué |
 |---|---|---|---|
 | Firebase Cloud Messaging + WorkManager | SDK | `MensajeriaRepository`, `RecordatorioRepository`, `data/avisos/` | Recordatorio 2 h antes de una función marcada |
-| Sharesheet de Android (`ACTION_SEND`) | API de la plataforma | `DetalleActivity` + `util/TextoCompartir` | Compartir una función por WhatsApp u otra app |
+| Sharesheet de Android (`ACTION_SEND`) | API de la plataforma | `DetalleActivity` + `util/TextoCompartir` | Compartir una función con la app que elija el usuario |
 | TMDB (API REST) con Retrofit | API REST | `PeliculaRepository`, `data/tmdb/` | Afiche, sinopsis, duración y géneros en es-AR |
 | Firebase Auth anónimo + vinculación | (mismo SDK de Auth) | `AuthRepository` | Ver la cartelera sin cuenta; el email se pide al marcar |
 

@@ -132,7 +132,7 @@ class DetalleActivity : AppCompatActivity() {
         }
     }
 
-    /** Sharesheet de Android: el usuario elige WhatsApp u otra app. */
+    /** Sharesheet de Android: el usuario elige con qué app compartir. */
     private fun compartir() {
         val texto = viewModel.textoParaCompartir() ?: return
         val enviar = Intent(Intent.ACTION_SEND).apply {

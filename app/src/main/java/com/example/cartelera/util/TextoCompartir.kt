@@ -5,7 +5,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 /**
- * Texto que se manda por el Sharesheet de Android (WhatsApp u otra app), en el
+ * Texto que se manda por el Sharesheet de Android (a la app que elija el usuario), en el
  * idioma del telefono. Logica pura, probada con JUnit.
  *
  *   «Everest: The Other Side» (Jimmy Chin, Elizabeth Chai Vasarhelyi, 2025)

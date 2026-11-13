@@ -13,7 +13,7 @@ digraph G {
   node  [shape=box, style="rounded,filled", fontname="Calibri", fontsize=15, color="#5c5862", fillcolor="white", penwidth=1.1, margin="0.12,0.06"];
   edge  [fontname="Calibri", fontsize=12, color="#5c5862", arrowsize=0.7, fontcolor="#3a3740"];
 
-  share [label="Sharesheet de Android\n(Intent ACTION_SEND)\n→ WhatsApp u otra app", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+  share [label="Sharesheet de Android\n(Intent ACTION_SEND)\n→ la app que elija\nel usuario", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
   nav   [label="Navegador\n(Intent ACTION_VIEW)", fillcolor="#F2F2F2"];
 
   subgraph cluster_disp {
