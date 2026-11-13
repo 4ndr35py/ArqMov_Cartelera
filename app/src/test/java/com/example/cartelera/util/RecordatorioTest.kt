@@ -60,7 +60,14 @@ class RecordatorioTest {
     @Test fun textoDeLaNotificacion() {
         assertEquals(
             "Empieza el sábado 14 de noviembre, 21:00 h en Sala 1.",
-            Recordatorio.texto(fecha(14, 21, 0), "Sala 1", zona)
+            Recordatorio.texto(fecha(14, 21, 0), "Sala 1", zona, java.util.Locale.forLanguageTag("es-AR"))
+        )
+    }
+
+    @Test fun textoDeLaNotificacionEnIngles() {
+        assertEquals(
+            "Starts Saturday, November 14, 9:00 PM at Sala 1.",
+            Recordatorio.texto(fecha(14, 21, 0), "Sala 1", zona, java.util.Locale.US)
         )
     }
 }

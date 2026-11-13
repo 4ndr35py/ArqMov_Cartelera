@@ -1,6 +1,7 @@
 package com.example.cartelera.util
 
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 
 /**
@@ -27,9 +28,17 @@ object Recordatorio {
     /** Milisegundos que faltan para el aviso (0 si es inmediato). */
     fun demoraMs(momento: Date, ahora: Date): Long = (momento.time - ahora.time).coerceAtLeast(0)
 
-    /** Texto de la notificacion: "Empieza el sábado 31 de octubre, 21:00 h en Sala 1." */
-    fun texto(fecha: Date, sala: String, zona: TimeZone = TimeZone.getDefault()): String {
-        val cuando = Formato.fechaLarga(fecha, zona)
-        return if (sala.isBlank()) "Empieza el $cuando." else "Empieza el $cuando en $sala."
+    /**
+     * Texto de la notificacion, en el idioma del telefono:
+     * "Empieza el sábado 14 de noviembre, 19:00 h en Jim Santy Auditorium."
+     * "Starts Saturday, November 14, 7:00 PM at Jim Santy Auditorium."
+     */
+    fun texto(fecha: Date, sala: String, zona: TimeZone = TimeZone.getDefault(), idioma: Locale = Locale.getDefault()): String {
+        val cuando = Formato.fechaLarga(fecha, zona, idioma)
+        return if (Formato.esCastellano(idioma)) {
+            if (sala.isBlank()) "Empieza el $cuando." else "Empieza el $cuando en $sala."
+        } else {
+            if (sala.isBlank()) "Starts $cuando." else "Starts $cuando at $sala."
+        }
     }
 }

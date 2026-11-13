@@ -1,0 +1,114 @@
+{
+  "cine": "Park City Film",
+  "fuente": "https://parkcityfilm.org/showtimes/upcoming/ (relevado el 12/11/2026)",
+  "zona": "America/Denver",
+  "sala": "Jim Santy Auditorium",
+  "peliculas": [
+    {
+      "slug": "the-way-out",
+      "titulo": "Matchstick Productions Presents: The Way Out",
+      "director": "Matchstick Productions",
+      "anio": 2026,
+      "duracionMin": 60,
+      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, \"The Way Out,\" a raw tribute to the timeless culture and lifestyle of skiing.",
+      "precio": 8,
+      "urlEntradas": "https://parkcityfilm.eventive.org/schedule/6a7ff4b9aa9d3d0631af1575",
+      "funciones": [["2026-11-13", "19:30"], ["2026-11-14", "19:00"], ["2026-11-15", "18:00"]]
+    },
+    {
+      "slug": "nocturna",
+      "titulo": "Nocturna",
+      "director": "Adrià García, Víctor Maldonado",
+      "anio": 2007,
+      "duracionMin": 83,
+      "sinopsis": "An orphan boy named Tim is afraid of the dark. However, when the stars start going out in the sky, he finds himself exploring the world of the night, alongside his new friend, the Cat Shepherd.",
+      "precio": 0,
+      "tmdbId": 26700,
+      "urlEntradas": "https://parkcityfilm.eventive.org/Film_schedule/-6aece9bc466d747c316e4c9b",
+      "funciones": [["2026-11-14", "16:00"]]
+    },
+    {
+      "slug": "girl-winter-film-tour-2026",
+      "titulo": "Girl Winter Film Tour 2026",
+      "director": "Various",
+      "anio": 2026,
+      "duracionMin": 90,
+      "sinopsis": "Five short films with range, from big mountain skiing and storytelling to humor, followed by a Q+A and poster signing with the athletes and filmmakers.",
+      "precio": 8,
+      "urlEntradas": "https://parkcityfilm.eventive.org/Film_schedule/-6aa4caf71889538450eb0592",
+      "funciones": [["2026-11-19", "19:00"]]
+    },
+    {
+      "slug": "everest-the-other-side",
+      "titulo": "Everest: The Other Side",
+      "director": "Jimmy Chin, Elizabeth Chai Vasarhelyi",
+      "anio": 2026,
+      "duracionMin": 115,
+      "sinopsis": "Jim Morrison and Hilaree Nelson became extreme sports stars in 2018 when they were the first to ski down Lhotse, the fourth tallest mountain in the world. For their next challenge, the couple intended to scale Everest's rarely attempted north face and then ski down from the summit.",
+      "precio": 8,
+      "tmdbId": 1603262,
+      "urlEntradas": "https://parkcityfilm.eventive.org/films/6abe67f09b68e6a9d1843fde",
+      "funciones": [["2026-11-20", "19:00"], ["2026-11-21", "19:00"], ["2026-11-22", "18:00"]]
+    },
+    {
+      "slug": "the-only-living-pickpocket-in-new-york",
+      "titulo": "The Only Living Pickpocket in New York",
+      "director": "Noah Segan",
+      "anio": 2026,
+      "duracionMin": 88,
+      "sinopsis": "When a theft goes awry, a veteran pickpocket is sent on a mission through New York to reclaim it.",
+      "precio": 8,
+      "tmdbId": 1458099,
+      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b30513365937268ee532",
+      "funciones": [["2026-11-27", "19:00"], ["2026-11-28", "19:00"], ["2026-11-29", "18:00"]]
+    },
+    {
+      "slug": "wild-horse-nine",
+      "titulo": "Wild Horse Nine",
+      "director": "Martin McDonagh",
+      "anio": 2026,
+      "duracionMin": 117,
+      "sinopsis": "CIA agents Chris and Lee face a trust-testing mission from Santiago to Easter Island during 1973 in Chile.",
+      "precio": 8,
+      "tmdbId": 891621,
+      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b323e8d7b9e505209294",
+      "funciones": [["2026-12-04", "19:00"], ["2026-12-05", "19:00"], ["2026-12-06", "18:00"]]
+    },
+    {
+      "slug": "la-bola-negra",
+      "titulo": "La Bola Negra",
+      "director": "Javier Ambrossi, Javier Calvo",
+      "anio": 2026,
+      "duracionMin": 160,
+      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy.",
+      "precio": 8,
+      "tmdbId": 1422041,
+      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b229fc5dccb99b114c22",
+      "funciones": [["2026-12-11", "19:00"], ["2026-12-12", "19:00"], ["2026-12-13", "18:00"]]
+    },
+    {
+      "slug": "wallace-and-gromit",
+      "titulo": "Wallace & Gromit: The Curse of the Were-Rabbit",
+      "director": "Steve Box, Nick Park",
+      "anio": 2005,
+      "duracionMin": 85,
+      "sinopsis": "Wallace and his loyal dog, Gromit, set out to discover the mystery behind the garden sabotage that plagues their village and threatens the annual giant vegetable growing contest.",
+      "precio": 0,
+      "tmdbId": 533,
+      "urlEntradas": "https://parkcityfilm.eventive.org/Film_schedule/-6aece9bc466d747c316e4c9b",
+      "funciones": [["2026-12-12", "16:00"]]
+    },
+    {
+      "slug": "a-talent-for-murder",
+      "titulo": "A Talent for Murder",
+      "director": "Anton Corbijn",
+      "anio": 2026,
+      "duracionMin": 106,
+      "sinopsis": "A mysterious young man from a New York publisher is sent to Switzerland to persuade the renowned writer Patricia Highsmith to write one final installment of the Ripley anthology.",
+      "precio": 8,
+      "tmdbId": 1084409,
+      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b3f114e7812d23eaf4a8",
+      "funciones": [["2026-12-18", "19:00"], ["2026-12-19", "19:00"], ["2026-12-20", "18:00"]]
+    }
+  ]
+}

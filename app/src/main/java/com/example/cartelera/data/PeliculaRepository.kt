@@ -15,6 +15,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.io.File
+import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
@@ -32,15 +33,21 @@ class TmdbException(val codigo: Int, mensaje: String) : Exception(mensaje)
 class PeliculaRepository internal constructor(
     private val api: TmdbApi,
     private val hayClave: Boolean,
-    private val memoria: MutableMap<Int, Pelicula> = MEMORIA
+    private val memoria: MutableMap<String, Pelicula> = MEMORIA
 ) {
     constructor(context: Context) : this(
         crearApi(File(context.cacheDir, "tmdb"), BuildConfig.TMDB_API_KEY, TmdbApi.URL_BASE),
         BuildConfig.TMDB_API_KEY.isNotBlank()
     )
 
-    fun cargar(tmdbId: Int, alTerminar: (Result<Pelicula>) -> Unit) {
-        memoria[tmdbId]?.let {
+    /** [idioma] de TMDB: "es" o "en-US" segun el telefono (TmdbApi.idiomaPara). */
+    fun cargar(
+        tmdbId: Int,
+        idioma: String = TmdbApi.idiomaPara(Locale.getDefault()),
+        alTerminar: (Result<Pelicula>) -> Unit
+    ) {
+        val clave = "$tmdbId|$idioma"
+        memoria[clave]?.let {
             alTerminar(Result.success(it))
             return
         }
@@ -48,12 +55,12 @@ class PeliculaRepository internal constructor(
             alTerminar(Result.failure(TmdbException(0, "Falta TMDB_API_KEY en local.properties")))
             return
         }
-        api.pelicula(tmdbId).enqueue(object : Callback<PeliculaTmdb> {
+        api.pelicula(tmdbId, idioma).enqueue(object : Callback<PeliculaTmdb> {
             override fun onResponse(call: Call<PeliculaTmdb>, response: Response<PeliculaTmdb>) {
                 val cuerpo = response.body()
                 if (response.isSuccessful && cuerpo != null) {
                     val pelicula = cuerpo.aPelicula()
-                    memoria[tmdbId] = pelicula
+                    memoria[clave] = pelicula
                     alTerminar(Result.success(pelicula))
                 } else {
                     alTerminar(Result.failure(TmdbException(response.code(), response.message())))
@@ -67,7 +74,7 @@ class PeliculaRepository internal constructor(
     }
 
     companion object {
-        private val MEMORIA = ConcurrentHashMap<Int, Pelicula>()
+        private val MEMORIA = ConcurrentHashMap<String, Pelicula>()
         private const val TAMANIO_CACHE = 10L * 1024 * 1024
         private const val VIGENCIA_S = 24 * 60 * 60
 

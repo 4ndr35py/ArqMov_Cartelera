@@ -1,32 +1,39 @@
 package com.example.cartelera.util
 
 import com.example.cartelera.data.Funcion
+import java.util.Locale
 import java.util.TimeZone
 
 /**
- * Texto que se manda por el Sharesheet de Android (WhatsApp u otra app).
- * Logica pura, probada con JUnit.
+ * Texto que se manda por el Sharesheet de Android (WhatsApp u otra app), en el
+ * idioma del telefono. Logica pura, probada con JUnit.
  *
- *   «Nueve reinas» (Fabián Bielinsky, 2000)
- *   sábado 14 de noviembre, 21:00 h · Sala 1 · $ 3.500
+ *   «Everest: The Other Side» (Jimmy Chin, Elizabeth Chai Vasarhelyi, 2025)
+ *   viernes 20 de noviembre, 19:00 h · Jim Santy Auditorium · US$ 12
  *   Entradas: https://...
  */
 object TextoCompartir {
 
-    fun armar(f: Funcion, zona: TimeZone = TimeZone.getDefault()): String {
+    fun armar(f: Funcion, zona: TimeZone = TimeZone.getDefault(), idioma: Locale = Locale.getDefault()): String {
+        val es = Formato.esCastellano(idioma)
         val lineas = mutableListOf<String>()
 
         val ficha = listOf(f.director, f.anio.takeIf { it > 0 }?.toString())
             .filterNot { it.isNullOrBlank() }
             .joinToString(", ")
-        lineas += if (ficha.isEmpty()) "«${f.titulo}»" else "«${f.titulo}» ($ficha)"
+        val titulo = if (es) "«${f.titulo}»" else "“${f.titulo}”"
+        lineas += if (ficha.isEmpty()) titulo else "$titulo ($ficha)"
 
-        val cuando = f.fechaHora?.let { Formato.fechaLarga(it, zona) }
-        lineas += listOfNotNull(cuando, f.sala.ifBlank { null }, Formato.precio(f.precio))
+        val cuando = f.fechaHora?.let { Formato.fechaLarga(it, zona, idioma) }
+        lineas += listOfNotNull(cuando, f.sala.ifBlank { null }, Formato.precio(f.precio, idioma))
             .joinToString(" · ")
 
         if (f.urlEntradas.isNotBlank()) {
-            lineas += if (f.precio > 0.0) "Entradas: ${f.urlEntradas}" else "Más info: ${f.urlEntradas}"
+            val etiqueta = when {
+                f.precio > 0.0 -> if (es) "Entradas" else "Tickets"
+                else -> if (es) "Más info" else "More info"
+            }
+            lineas += "$etiqueta: ${f.urlEntradas}"
         }
         return lineas.joinToString("\n")
     }

@@ -33,7 +33,7 @@ class PeliculaRepositoryTest {
     @After fun cerrar() = servidor.close()
 
     private fun repositorio(
-        memoria: MutableMap<Int, Pelicula> = HashMap(),
+        memoria: MutableMap<String, Pelicula> = HashMap(),
         dirCache: java.io.File? = carpeta.newFolder()
     ) = PeliculaRepository(
         PeliculaRepository.crearApi(dirCache, "clave-de-prueba", servidor.url("/3/").toString()),
@@ -51,10 +51,10 @@ class PeliculaRepositoryTest {
         javaClass.getResource("/tmdb/$nombre")!!.readText()
 
     /** Llama al repositorio y espera el callback (Retrofit responde en otro hilo). */
-    private fun cargar(repo: PeliculaRepository, id: Int): Result<Pelicula> {
+    private fun cargar(repo: PeliculaRepository, id: Int, idioma: String = "es"): Result<Pelicula> {
         var resultado: Result<Pelicula>? = null
         val listo = CountDownLatch(1)
-        repo.cargar(id) {
+        repo.cargar(id, idioma) {
             resultado = it
             listo.countDown()
         }
@@ -78,6 +78,26 @@ class PeliculaRepositoryTest {
         assertEquals("${TmdbApi.URL_IMAGENES}/afiche_prueba.jpg", pelicula.urlAfiche)
     }
 
+    @Test fun elIdiomaDeTmdbSigueAlDelTelefono() {
+        assertEquals("es", TmdbApi.idiomaPara(java.util.Locale.forLanguageTag("es-AR")))
+        assertEquals("en-US", TmdbApi.idiomaPara(java.util.Locale.US))
+        assertEquals("en-US", TmdbApi.idiomaPara(java.util.Locale.FRANCE))
+    }
+
+    @Test fun cadaIdiomaSePideYSeGuardaAparte() {
+        servidor.enqueue(respuesta(200, fixture("movie_nueve_reinas.json")))
+        servidor.enqueue(respuesta(200, fixture("movie_nueve_reinas.json")))
+        val repo = repositorio(dirCache = null)
+
+        cargar(repo, 12345, "es")
+        cargar(repo, 12345, "en-US")
+        cargar(repo, 12345, "es")   // ya esta en memoria: no sale a la red
+
+        assertEquals(2, servidor.requestCount)
+        assertEquals("es", servidor.takeRequest().url.queryParameter("language"))
+        assertEquals("en-US", servidor.takeRequest().url.queryParameter("language"))
+    }
+
     @Test fun pideLaPeliculaPorIdEnCastellanoConLaClave() {
         servidor.enqueue(respuesta(200, fixture("movie_nueve_reinas.json")))
 
@@ -86,7 +106,7 @@ class PeliculaRepositoryTest {
         val pedido = servidor.takeRequest()
         assertEquals("GET", pedido.method)
         assertEquals("/3/movie/12345", pedido.url.encodedPath)
-        assertEquals("es-AR", pedido.url.queryParameter("language"))
+        assertEquals("es", pedido.url.queryParameter("language"))
         assertEquals("clave-de-prueba", pedido.url.queryParameter("api_key"))
     }
 
