@@ -1,0 +1,108 @@
+// Figura del TP7: parte de la Figura 2 del TP2 (arquitectura_v2.dot).
+// Verde: propuesto en el TP2 e implementado en el TP7.
+// Azul: nuevo en el TP7.  Gris punteado: propuesto en el TP2 y no implementado.
+digraph G {
+  graph [rankdir=TB, fontname="Calibri", fontsize=15, nodesep=0.25, ranksep=0.45, pad=0.2, compound=true, newrank=true, bgcolor="white", labelloc=b, labeljust=r,
+         label=<<table border="0" cellspacing="6" cellpadding="2"><tr>
+           <td bgcolor="#E3F2E5" border="1" color="#2E7D32" width="18"> </td><td align="left"><font point-size="15">Verde: propuesto en el TP2 e implementado en el TP7</font></td>
+           <td width="12"> </td>
+           <td bgcolor="#E3EEFB" border="1" color="#1565C0" width="18"> </td><td align="left"><font point-size="15">Azul: nuevo en el TP7</font></td>
+           <td width="12"> </td>
+           <td border="1" color="#9a96a0" style="dashed" width="18"> </td><td align="left"><font point-size="15">Gris punteado: propuesto en el TP2 y no implementado</font></td>
+         </tr></table>>];
+  node  [shape=box, style="rounded,filled", fontname="Calibri", fontsize=15, color="#5c5862", fillcolor="white", penwidth=1.1, margin="0.12,0.06"];
+  edge  [fontname="Calibri", fontsize=12, color="#5c5862", arrowsize=0.7, fontcolor="#3a3740"];
+
+  share [label="Sharesheet de Android\n(Intent ACTION_SEND)\n→ WhatsApp u otra app", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+  nav   [label="Navegador\n(Intent ACTION_VIEW)", fillcolor="#F2F2F2"];
+
+  subgraph cluster_disp {
+    label=<<b>Dispositivo Android</b>  ·  app Cartelera v3 (Kotlin, MVVM)>; labeljust=l; labelloc=t; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
+
+    subgraph cluster_view {
+      label="Vista  (Activities + layouts XML)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
+      det   [label="DetalleActivity\n(afiche, Compartir y permiso\nde notificaciones al marcar)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      cart  [label="CarteleraActivity\n+ FuncionAdapter\n(inicio, sin cuenta)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      login [label="LoginActivity\n(solo al marcar interés)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_vm {
+      label="ViewModel  (LiveData; no importan Firebase, Retrofit ni WorkManager)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F3ECE0"; color="#d8c7a6"; fontcolor="#6b4f1d";
+      dvm [label="DetalleViewModel"]; cvm [label="CarteleraViewModel"]; lvm [label="LoginViewModel"];
+    }
+    subgraph cluster_data {
+      label="Datos  (repositorios: única puerta a cada SDK o API)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E7EEF5"; color="#a9bdd2"; fontcolor="#1f3b57";
+      rr  [label="RecordatorioRepository\n(programa y cancela\nel aviso)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      pr  [label="PeliculaRepository\n(caché en memoria\ny en disco, 24 h)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      met [label="Metricas\n(eventos de\nmedición)"];
+      fr  [label="FuncionRepository\n(+ tmdbId)"];
+      ar  [label="AuthRepository\n+ ingreso anónimo y\nvinculación de cuenta", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      mr  [label="MensajeriaRepository\n(guarda el token FCM)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      aviso [label="Servicio de avisos\n(AvisosService + Notificador:\nmuestra la notificación)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_libs {
+      label="Otras librerías (TP7)"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#1565C0"; fontcolor="#1565C0";
+      work  [label="WorkManager 2.12\n(RecordatorioWorker)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      retro [label="Retrofit 3 + OkHttp 5\n+ kotlinx.serialization", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      coil  [label="Coil 3\n(afiches)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    }
+    subgraph cluster_sdk {
+      label="SDK de Firebase  (BoM 35.1.0)"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#9a96a0"; fontcolor="#5c5862";
+      san [label="firebase-analytics"]; sfs [label="firebase-firestore"]; sauth [label="firebase-auth"];
+      smsg [label="firebase-messaging", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+  }
+
+  subgraph cluster_tmdb {
+    label=<<b>The Movie Database (TMDB)</b>>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#EEF4FC"; color="#1565C0"; penwidth=1.6; fontcolor="#1565C0";
+    tapi [label="API REST v3\nGET /movie/{id}\n?language=es-AR", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    timg [label="image.tmdb.org\n(afiches)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+  }
+  subgraph cluster_cloud {
+    label=<<b>Firebase / Google Cloud</b>  (plan Spark, sin costo)>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#FFF8E8"; color="#C8963E"; penwidth=1.6; fontcolor="#7a5719";
+    fan   [label="Google Analytics\nfor Firebase"];
+    ffs   [label="Cloud Firestore\nfunciones/{id} (+ tmdbId)\nusuarios/{uid}/intereses/{id}\nusuarios/{uid}.tokenFcm\n+ reglas de seguridad"];
+    fauth [label="Firebase Authentication\n(anónimo + email\ny contraseña)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fcm   [label="Firebase Cloud\nMessaging (FCM)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fun   [label="Cloud Functions\n(no implementada:\nrequiere plan Blaze)", style="rounded,dashed", color="#9a96a0", fontcolor="#7a7680", fillcolor="white"];
+  }
+  venta [label="Sitio de venta\nde entradas del cine", fillcolor="#F2F2F2"];
+  op    [label="Programador del cine\n(script de carga + tmdbId)", style="rounded,filled,dashed", fillcolor="#F2F2F2"];
+
+  // ---- filas y orden horizontal ----
+  {rank=same; share; nav; det; cart; login}
+  {rank=same; dvm; cvm; lvm}
+  {rank=same; aviso; rr; pr; fr; ar; met; mr}
+  {rank=same; coil; work; retro; sfs; sauth; san; smsg; op}
+    {rank=same; venta; timg; tapi; ffs; fauth; fan; fcm; fun}
+  share -> nav -> det -> cart -> login [style=invis];
+  dvm -> cvm -> lvm [style=invis];
+  aviso -> rr -> pr -> fr -> ar -> met -> mr [style=invis];
+  coil -> work -> retro -> sfs -> sauth -> san -> smsg -> op [style=invis];
+  venta -> timg -> tapi -> ffs -> fauth -> fan -> fcm -> fun [style=invis];
+  // columnas
+  nav -> venta [weight=3];
+  met -> san [weight=8]; fr -> sfs [weight=8]; ar -> sauth [weight=8]; mr -> smsg [weight=8];
+  rr -> work [weight=8, color="#1565C0", penwidth=1.4];
+  pr -> retro [weight=8, color="#1565C0", penwidth=1.4];
+  retro -> tapi [weight=8, label=" HTTPS + api_key", color="#1565C0", fontcolor="#1565C0", penwidth=1.4];
+  coil -> timg [weight=8, label=" HTTPS", color="#1565C0", fontcolor="#1565C0", penwidth=1.2];
+  san -> fan [weight=8, label=" lotes"]; sfs -> ffs [weight=8, label=" gRPC"]; sauth -> fauth [weight=8, label=" HTTPS"];
+  smsg -> fcm [weight=8, dir=back, label=" push", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.4];
+  work -> aviso [weight=4, label=" a la hora\n programada", color="#1565C0", fontcolor="#1565C0", penwidth=1.4];
+  aviso -> smsg [dir=back, weight=0, xlabel="mensaje FCM", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.2, constraint=false];
+
+  // ---- relaciones ----
+  det -> dvm; cart -> cvm; login -> lvm;
+  det -> share [label=" Compartir", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.4];
+  nav -> det [dir=back, label=" Comprar\n entrada"];
+  det -> login [color="#2E7D32", penwidth=1.4, xlabel="sin cuenta", fontcolor="#2E7D32", constraint=false];
+  dvm -> rr [color="#1565C0", penwidth=1.4, label=" marcar /\n desmarcar", fontcolor="#1565C0"];
+  dvm -> pr [color="#1565C0", penwidth=1.4, label=" tmdbId", fontcolor="#1565C0"];
+  dvm -> met [style=dashed, label=" eventos"];
+  dvm -> fr; cvm -> fr; cvm -> ar [label=" sesión\n anónima"]; lvm -> ar;
+  lvm -> mr [color="#2E7D32", penwidth=1.2];
+  det -> coil [color="#1565C0", style=dashed, penwidth=1.1, label=" afiche", fontcolor="#1565C0"];
+  ffs -> fun [style=dashed, color="#9a96a0", constraint=false];
+  fun -> fcm [style=dashed, color="#9a96a0", constraint=false];
+  op -> ffs [style=dashed, label=" escribe la cartelera"];
+}
