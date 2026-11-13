@@ -22,12 +22,13 @@ digraph G {
     subgraph cluster_view {
       label="Vista  (Activities + layouts XML)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
       det   [label="DetalleActivity\n(afiche, Compartir y permiso\nde notificaciones al marcar)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
-      cart  [label="CarteleraActivity\n+ FuncionAdapter\n(inicio, sin cuenta)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      cart  [label="CarteleraActivity\n+ PeliculaAdapter\n(una tarjeta por película,\nsin cuenta)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      pel   [label="PeliculaActivity\n(fotos, tráiler y\nfunciones para elegir)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
       login [label="LoginActivity\n(solo al marcar interés)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
     }
     subgraph cluster_vm {
       label="ViewModel  (LiveData; no importan Firebase, Retrofit ni WorkManager)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F3ECE0"; color="#d8c7a6"; fontcolor="#6b4f1d";
-      dvm [label="DetalleViewModel"]; cvm [label="CarteleraViewModel"]; lvm [label="LoginViewModel"];
+      dvm [label="DetalleViewModel"]; pvm [label="PeliculaViewModel", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6]; cvm [label="CarteleraViewModel"]; lvm [label="LoginViewModel"];
     }
     subgraph cluster_data {
       label="Datos  (repositorios: única puerta a cada SDK o API)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E7EEF5"; color="#a9bdd2"; fontcolor="#1f3b57";
@@ -43,7 +44,7 @@ digraph G {
       label="Otras librerías (TP7)"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#1565C0"; fontcolor="#1565C0";
       work  [label="WorkManager 2.12\n(RecordatorioWorker)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
       retro [label="Retrofit 3 + OkHttp 5\n+ kotlinx.serialization", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
-      coil  [label="Coil 3\n(afiches)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      coil  [label="Coil 3\n(afiches y fotos)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
     }
     subgraph cluster_sdk {
       label="SDK de Firebase  (BoM 35.1.0)"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#9a96a0"; fontcolor="#5c5862";
@@ -54,8 +55,8 @@ digraph G {
 
   subgraph cluster_tmdb {
     label=<<b>The Movie Database (TMDB)</b>>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#EEF4FC"; color="#1565C0"; penwidth=1.6; fontcolor="#1565C0";
-    tapi [label="API REST v3\nGET /movie/{id}\n?language=es | en-US", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
-    timg [label="image.tmdb.org\n(afiches)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    tapi [label="API REST v3\nGET /movie/{id}\n+ videos e imágenes\n?language=es | en-US", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    timg [label="image.tmdb.org\n(afiches y fotos)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
   }
   subgraph cluster_cloud {
     label=<<b>Firebase / Google Cloud</b>  (plan Spark, sin costo)>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#FFF8E8"; color="#C8963E"; penwidth=1.6; fontcolor="#7a5719";
@@ -65,17 +66,18 @@ digraph G {
     fcm   [label="Firebase Cloud\nMessaging (FCM)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
     fun   [label="Cloud Functions\n(no implementada:\nrequiere plan Blaze)", style="rounded,dashed", color="#9a96a0", fontcolor="#7a7680", fillcolor="white"];
   }
+  yt    [label="App de YouTube\no navegador\n(tráiler)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
   venta [label="Venta de entradas\n(Eventive del cine)", fillcolor="#F2F2F2"];
   op    [label="Programador del cine\n(script con la cartelera de\nparkcityfilm.org + tmdbId)", style="rounded,filled,dashed", fillcolor="#F2F2F2"];
 
   // ---- filas y orden horizontal ----
-  {rank=same; share; nav; det; cart; login}
-  {rank=same; dvm; cvm; lvm}
+  {rank=same; share; nav; det; pel; cart; login; yt}
+  {rank=same; dvm; pvm; cvm; lvm}
   {rank=same; aviso; rr; pr; fr; ar; met; mr}
   {rank=same; coil; work; retro; sfs; sauth; san; smsg; op}
     {rank=same; venta; timg; tapi; ffs; fauth; fan; fcm; fun}
-  share -> nav -> det -> cart -> login [style=invis];
-  dvm -> cvm -> lvm [style=invis];
+  share -> nav -> det -> pel -> cart -> login -> yt [style=invis];
+  dvm -> pvm -> cvm -> lvm [style=invis];
   aviso -> rr -> pr -> fr -> ar -> met -> mr [style=invis];
   coil -> work -> retro -> sfs -> sauth -> san -> smsg -> op [style=invis];
   venta -> timg -> tapi -> ffs -> fauth -> fan -> fcm -> fun [style=invis];
@@ -92,7 +94,11 @@ digraph G {
   aviso -> smsg [dir=back, weight=0, xlabel="mensaje FCM", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.2, constraint=false];
 
   // ---- relaciones ----
-  det -> dvm; cart -> cvm; login -> lvm;
+  det -> dvm; cart -> cvm; login -> lvm; pel -> pvm;
+  cart -> pel [color="#1565C0", penwidth=1.4, xlabel="elige película", fontcolor="#1565C0", constraint=false];
+  pel -> det [color="#1565C0", penwidth=1.4, xlabel="elige función", fontcolor="#1565C0", constraint=false];
+  pel -> yt [color="#1565C0", penwidth=1.4, xlabel="Ver tráiler", fontcolor="#1565C0", constraint=false];
+  pvm -> pr [color="#1565C0", penwidth=1.4, label=" fotos y\n tráiler", fontcolor="#1565C0"]; pvm -> fr;
   det -> share [label=" Compartir", color="#2E7D32", fontcolor="#2E7D32", penwidth=1.4];
   nav -> det [dir=back, label=" Comprar\n entrada"];
   det -> login [color="#2E7D32", penwidth=1.4, xlabel="sin cuenta", fontcolor="#2E7D32", constraint=false];
