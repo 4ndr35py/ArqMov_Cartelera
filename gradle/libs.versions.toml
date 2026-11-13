@@ -18,6 +18,8 @@ okhttp = "5.5.1"
 kotlinxSerialization = "1.12.0"
 coil = "3.6.3"
 work = "2.12.0"
+# TP4: Google Play Billing Library (donaciones in-app)
+billing = "9.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +45,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
 coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

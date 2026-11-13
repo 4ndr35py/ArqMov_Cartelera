@@ -15,6 +15,12 @@ val propiedadesLocales = Properties().apply {
 val claveTmdb: String = propiedadesLocales.getProperty("TMDB_API_KEY", "").trim()
 // Pruebas locales con el Firebase Emulator Suite (solo debug).
 val usarEmulador: Boolean = propiedadesLocales.getProperty("USAR_EMULADOR_FIREBASE", "false").trim() == "true"
+// TP4: firma de release. keystore.properties NO se versiona (ver .gitignore) y
+// contiene las rutas y contraseñas del almacen de claves.
+val propiedadesFirma = Properties().apply {
+    val archivo = rootProject.file("keystore.properties")
+    if (archivo.exists()) archivo.inputStream().use { load(it) }
+}
 
 android {
     namespace = "com.example.cartelera"
@@ -34,6 +40,17 @@ android {
         buildConfigField("String", "TMDB_API_KEY", "\"$claveTmdb\"")
     }
 
+    signingConfigs {
+        create("release") {
+            if (propiedadesFirma.containsKey("storeFile")) {
+                storeFile = rootProject.file(propiedadesFirma.getProperty("storeFile"))
+                storePassword = propiedadesFirma.getProperty("storePassword")
+                keyAlias = propiedadesFirma.getProperty("keyAlias")
+                keyPassword = propiedadesFirma.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         debug {
             buildConfigField("boolean", "USAR_EMULADOR_FIREBASE", usarEmulador.toString())
@@ -42,6 +59,9 @@ android {
             buildConfigField("boolean", "USAR_EMULADOR_FIREBASE", "false")
             optimization {
                 enable = false
+            }
+            if (propiedadesFirma.containsKey("storeFile")) {
+                signingConfig = signingConfigs.getByName("release")
             }
         }
     }
@@ -87,6 +107,9 @@ dependencies {
     // TP7: carga y cache de los afiches
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
+
+    // TP4: donaciones in-app (Google Play Billing)
+    implementation(libs.billing.ktx)
 
     testImplementation(libs.junit)
     testImplementation(libs.okhttp.mockwebserver)

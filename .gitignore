@@ -19,3 +19,8 @@ seed/.venv/
 
 # Cache del Firebase CLI (no se versiona)
 .firebase/
+
+# TP4: firma de release. Nunca se versiona el almacen de claves ni sus contrasenas.
+keystore.properties
+*.jks
+*.keystore
