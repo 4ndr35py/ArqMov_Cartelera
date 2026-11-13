@@ -3,6 +3,8 @@ package com.example.cartelera.ui.cartelera
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -94,9 +96,20 @@ class CarteleraActivity : AppCompatActivity() {
 
     /** Atribucion que exigen los terminos de uso de la API de TMDB. */
     private fun mostrarAcercaDe() {
+        val margen = (24 * resources.displayMetrics.density).toInt()
+        // TMDB pide que su logo sea menos prominente que el de la app: tamaño natural (110 dp).
+        val logo = FrameLayout(this).apply {
+            setPadding(margen, margen / 2, margen, 0)
+            addView(ImageView(context).apply {
+                setImageResource(R.drawable.logo_tmdb)
+                contentDescription = getString(R.string.cd_logo_tmdb)
+            }, FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT))
+        }
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.acerca_titulo)
             .setMessage(R.string.acerca_texto)
+            .setView(logo)
             .setPositiveButton(android.R.string.ok, null)
             .show()
     }

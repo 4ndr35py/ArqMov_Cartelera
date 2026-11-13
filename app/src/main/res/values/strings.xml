@@ -53,6 +53,7 @@
 
     <!-- TMDB: atribucion exigida por los terminos de uso de la API -->
     <string name="atribucion_tmdb">Afiche, sinopsis, duración y géneros: TMDB. Este producto usa la API de TMDB, pero TMDB no lo avala ni lo certifica.</string>
+    <string name="cd_logo_tmdb">Logo de The Movie Database (TMDB)</string>
     <string name="acerca_titulo">Cartelera</string>
     <string name="acerca_texto">Datos de películas e imágenes provistos por The Movie Database (TMDB).\n\nThis product uses the TMDB API but is not endorsed or certified by TMDB.</string>
 </resources>
