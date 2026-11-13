@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cartelera.analytics.Metricas
 import com.example.cartelera.data.AuthRepository
+import com.example.cartelera.data.CarteleraRepository
 import com.example.cartelera.data.Ficha
 import com.example.cartelera.data.FuncionRepository
 import com.example.cartelera.data.Pelicula
@@ -23,6 +24,7 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
 
     private val auth = AuthRepository()
     private val repo = FuncionRepository()
+    private val carteleraPublicada = CarteleraRepository(app, repo)
     private val peliculas = PeliculaRepository(app)
 
     private val _cartel = MutableLiveData<PeliculaEnCartel?>()
@@ -45,7 +47,7 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
         if (clave == claveCargada) return
         claveCargada = clave
         Metricas.verPelicula(clave)
-        repo.cargarCartelera(Date()) { r ->
+        carteleraPublicada.cargar(Date()) { r ->
             r.onSuccess { lista ->
                 val cartel = Cartelera.agrupar(lista).firstOrNull { it.clave == clave }
                 _cartel.value = cartel

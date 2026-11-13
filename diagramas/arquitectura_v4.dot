@@ -1,0 +1,104 @@
+// Figura del TP3: arquitectura con estrategia de escalabilidad (plan Spark, sin cobros).
+// Parte de la Figura del TP7 (arquitectura_v3.dot) y muestra los cambios.
+// Verde: ya implementado (TP2/TP7).  Azul: nuevo en el TP3.
+// Gris punteado: evaluado y descartado para el plan sin cobros (Blaze).
+digraph G {
+  graph [rankdir=TB, fontname="Calibri", fontsize=15, nodesep=0.25, ranksep=0.45, pad=0.2, compound=true, newrank=true, bgcolor="white", labelloc=b, labeljust=r,
+         label=<<table border="0" cellspacing="6" cellpadding="2"><tr>
+           <td bgcolor="#E3F2E5" border="1" color="#2E7D32" width="18"> </td><td align="left"><font point-size="15">Verde: ya implementado (TP2 / TP7)</font></td>
+           <td width="12"> </td>
+           <td bgcolor="#E3EEFB" border="1" color="#1565C0" width="18"> </td><td align="left"><font point-size="15">Azul: nuevo en el TP3</font></td>
+           <td width="12"> </td>
+           <td border="1" color="#9a96a0" style="dashed" width="18"> </td><td align="left"><font point-size="15">Gris punteado: descartado sin cobros (requiere Blaze)</font></td>
+         </tr></table>>];
+  node  [shape=box, style="rounded,filled", fontname="Calibri", fontsize=15, color="#5c5862", fillcolor="white", penwidth=1.1, margin="0.12,0.06"];
+  edge  [fontname="Calibri", fontsize=12, color="#5c5862", arrowsize=0.7, fontcolor="#3a3740"];
+
+  subgraph cluster_disp {
+    label=<<b>Dispositivo Android</b>  ·  app Park City Film (Kotlin, MVVM)>; labeljust=l; labelloc=t; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
+
+    subgraph cluster_view {
+      label="Vista  (Activities + layouts XML)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
+      cart [label="CarteleraActivity\n(sin cuenta)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      pel  [label="PeliculaActivity\n(fotos, tráiler, funciones)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      det  [label="DetalleActivity\n(marcar interés, compartir)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_vm {
+      label="ViewModel  (LiveData)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F3ECE0"; color="#d8c7a6"; fontcolor="#6b4f1d";
+      cvm [label="CarteleraViewModel"]; pvm [label="PeliculaViewModel"]; dvm [label="DetalleViewModel"];
+    }
+    subgraph cluster_data {
+      label="Datos  (repositorios: única puerta a cada fuente)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E7EEF5"; color="#a9bdd2"; fontcolor="#1f3b57";
+      cr  [label="CarteleraRepository\nlee cartelera.json\ncaché en disco, 5 min\n(reemplaza la consulta a Firestore)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      pr  [label="PeliculaRepository\ncaché en memoria y disco, 24 h", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      fr  [label="FuncionRepository\nsolo intereses y detalle\n(Firestore)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      ar  [label="AuthRepository", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      mr  [label="MensajeriaRepository\n(token FCM)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      met [label="Metricas\n(Analytics)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_libs {
+      label="Otras librerías"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#2E7D32"; fontcolor="#2E7D32";
+      retro [label="Retrofit + OkHttp\n(caché HTTP 24 h)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      coil  [label="Coil\n(afiches, caché)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+  }
+
+  subgraph cluster_cdn {
+    label=<<b>Firebase Hosting  (CDN global, plan Spark)</b>  ·  escala sin configuración>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E3EEFB"; color="#1565C0"; penwidth=1.6; fontcolor="#1565C0";
+    host [label="cartelera.json\nCache-Control: max-age=300\nbalanceo: red de borde de Google\n(sirve la mayoría de las aperturas)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+  }
+
+  subgraph cluster_tmdb {
+    label=<<b>The Movie Database (TMDB)</b>  ·  externo>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F4F4F4"; color="#9a96a0"; fontcolor="#5c5862";
+    tapi [label="API REST v3\n/movie/{id}  (1 vez por día y dispositivo)", fillcolor="white"];
+    timg [label="image.tmdb.org\n(CDN de TMDB: afiches y fotos)", fillcolor="white"];
+  }
+
+  subgraph cluster_cloud {
+    label=<<b>Firebase / Google Cloud</b>  (plan Spark)>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#FFF8E8"; color="#C8963E"; penwidth=1.6; fontcolor="#7a5719";
+    ffs  [label="Cloud Firestore\nusuarios/{uid}/intereses\nusuarios/{uid}.tokenFcm\nescala por cuota (50.000 lecturas/día)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fauth [label="Firebase Authentication", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fcm  [label="Firebase Cloud Messaging", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fan  [label="Google Analytics for Firebase", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    mon  [label="Consola de Firebase\nUso y cuotas\n(revisión manual en eventos)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    fun  [label="Cloud Run / fachada\nBalanceador global\nCloud Functions\n(requieren Blaze: descartados)", style="rounded,dashed", color="#9a96a0", fontcolor="#7a7680", fillcolor="white"];
+  }
+
+  subgraph cluster_fuera {
+    label=<<b>Fuera de la app</b>>; labeljust=l; labelloc=t; style="rounded"; color="#9a96a0"; fontcolor="#5c5862";
+    cine [label="parkcityfilm.org\n(programación del cine)", fillcolor="#F2F2F2"];
+    pub  [label="Publicación de la cartelera\nseed/publicar_cartelera.py\n+ firebase deploy --only hosting\n(manual; automatizar es propuesta)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    venta [label="Eventive\n(venta de entradas del cine)", fillcolor="#F2F2F2"];
+  }
+
+  // ---- filas y orden horizontal ----
+  {rank=same; cart; pel; det}
+  {rank=same; cvm; pvm; dvm}
+  {rank=same; cr; pr; fr; ar; mr; met}
+  {rank=same; retro; coil}
+  {rank=same; host; tapi; timg; ffs; fauth; fcm; fan; mon}
+  {rank=same; cine; pub; venta; fun}
+  cart -> pel -> det [style=invis];
+  cvm -> pvm -> dvm [style=invis];
+  cr -> pr -> fr -> ar -> mr -> met [style=invis];
+  host -> tapi -> ffs -> fauth -> fcm -> fan -> mon [style=invis];
+
+  // ---- relaciones ----
+  cart -> cvm; pel -> pvm; det -> dvm;
+  cvm -> cr [color="#1565C0", penwidth=1.6, label=" cartelera"];
+  cr -> host [color="#1565C0", penwidth=1.6, label=" HTTPS (CDN)"];
+  pub -> host [color="#1565C0", penwidth=1.4, label=" publica"];
+  cine -> pub [label=" fuente", style=dashed];
+  pvm -> pr [label=" fotos y tráiler"];
+  dvm -> fr [label=" intereses"];
+  pr -> retro [weight=8];
+  retro -> tapi [weight=8, label=" HTTPS + api_key", color="#2E7D32", fontcolor="#2E7D32"];
+  coil -> timg [weight=8, label=" HTTPS", color="#2E7D32", fontcolor="#2E7D32"];
+  fr -> ffs [weight=8, label=" gRPC", color="#2E7D32", fontcolor="#2E7D32"];
+  ar -> fauth [weight=8, label=" HTTPS"];
+  mr -> fcm [weight=8, dir=back, label=" push", color="#2E7D32", fontcolor="#2E7D32"];
+  met -> fan [weight=8, label=" lotes"];
+  det -> venta [style=dashed, label=" Comprar entrada", constraint=false];
+  mon -> ffs [style=dashed, color="#1565C0", fontcolor="#1565C0", label=" revisa cuota"];
+  fun -> host [style=dashed, color="#9a96a0", constraint=false];
+}

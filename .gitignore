@@ -16,3 +16,6 @@ seed/.venv/
 # Logs del Firebase Emulator Suite y de la CLI
 *-debug.log
 .kotlin/
+
+# Cache del Firebase CLI (no se versiona)
+.firebase/

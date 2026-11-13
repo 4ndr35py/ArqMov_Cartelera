@@ -169,9 +169,26 @@ FCM no se puede probar con el Emulator Suite: necesita el proyecto real.
 
 ### Tests
 
-`./gradlew testDebugUnitTest` corre 31 tests: los 10 del TP2 y los del TP7
+`./gradlew testDebugUnitTest` corre 49 tests: los del TP2, los del TP7
 (`PeliculaRepositoryTest` con MockWebServer, `FichaTest`, `TextoCompartirTest`
-y `RecordatorioTest`).
+y `RecordatorioTest`) y los del TP3 (`CarteleraRepositoryTest`).
+
+## TP3: escalabilidad (plan Spark, sin cobros)
+
+La cartelera se lee desde `cartelera.json`, un archivo estático publicado en
+Firebase Hosting y servido por su CDN (ver `CarteleraRepository`). El orden es
+red, copia guardada en el teléfono y, como último recurso, Firestore.
+
+Para publicar la programación:
+
+```bash
+python seed/publicar_cartelera.py
+firebase deploy --only hosting
+```
+
+La configuración (`firebase.json`, sección `hosting`) y el diagrama
+`diagramas/arquitectura_v4` están versionados junto con el código. El
+documento del TP3 y el paso a paso del despliegue están en `../TP3_Escalabilidad/`.
 
 Datos de películas e imágenes: [TMDB](https://www.themoviedb.org). This product
 uses the TMDB API but is not endorsed or certified by TMDB.
