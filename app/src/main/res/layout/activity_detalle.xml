@@ -77,6 +77,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
+            <!-- TP6: subtitulos abiertos (OC), para sordos (HI) y audiodescripcion (VI) -->
+            <TextView
+                android:id="@+id/tvAccesibilidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorPrimary"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/tvSinopsis"
                 android:layout_width="match_parent"

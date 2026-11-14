@@ -21,5 +21,7 @@ data class Funcion(
     val fechaHora: Date? = null,
     val precio: Double = 0.0,
     val urlEntradas: String = "",
-    val tmdbId: Int? = null
+    val tmdbId: Int? = null,
+    /** Codigos de accesibilidad: OC, HI, VI (ver util/Accesibilidad). Vacio si no tiene. */
+    val accesibilidad: List<String> = emptyList()
 )

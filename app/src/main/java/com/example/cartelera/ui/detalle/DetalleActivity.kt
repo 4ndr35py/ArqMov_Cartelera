@@ -22,6 +22,7 @@ import com.example.cartelera.data.Ficha
 import com.example.cartelera.data.Funcion
 import com.example.cartelera.databinding.ActivityDetalleBinding
 import com.example.cartelera.ui.login.LoginActivity
+import com.example.cartelera.util.Accesibilidad
 import com.example.cartelera.util.Formato
 import com.google.android.material.snackbar.Snackbar
 
@@ -93,8 +94,19 @@ class DetalleActivity : AppCompatActivity() {
         binding.contenido.visibility = View.VISIBLE
         binding.tvFecha.text = f.fechaHora?.let { Formato.fechaLarga(it) } ?: ""
         binding.tvSala.text = getString(R.string.detalle_sala, f.sala, Formato.precio(f.precio))
+        val etiquetas = Accesibilidad.normalizar(f.accesibilidad).map { codigo -> etiqueta(codigo) }
+        binding.tvAccesibilidad.text = getString(R.string.detalle_accesibilidad, etiquetas.joinToString(" · "))
+        binding.tvAccesibilidad.visibility = if (etiquetas.isEmpty()) View.GONE else View.VISIBLE
         binding.btnComprar.isEnabled = f.urlEntradas.isNotBlank()
     }
+
+    private fun etiqueta(codigo: String): String = getString(
+        when (codigo) {
+            "OC" -> R.string.acc_oc
+            "HI" -> R.string.acc_hi
+            else -> R.string.acc_vi
+        }
+    )
 
     private fun mostrarFicha(ficha: Ficha) {
         binding.tvTitulo.text = ficha.titulo

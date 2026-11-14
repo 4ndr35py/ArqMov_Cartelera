@@ -83,10 +83,12 @@ class DestinoEmulador:
 
 # ------------------------------- datos -------------------------------
 
-def funciones_parkcity(datos: dict):
+def funciones_parkcity(datos: dict, incluir_pruebas: bool = False):
     """Formato del TP7: una entrada por pelicula, con sus funciones en fechas absolutas."""
     zona = ZoneInfo(datos["zona"])
     for p in datos["peliculas"]:
+        if p.get("prueba") and not incluir_pruebas:
+            continue  # funcion de prueba (TP6): solo con --incluir-pruebas
         for dia, hora in p["funciones"]:
             cuando = datetime.combine(date.fromisoformat(dia), time.fromisoformat(hora), zona)
             doc = {
@@ -95,6 +97,8 @@ def funciones_parkcity(datos: dict):
                 "sala": p.get("sala", datos["sala"]), "fechaHora": cuando,
                 "precio": float(p["precio"]), "urlEntradas": p["urlEntradas"],
             }
+            if p.get("accesibilidad"):
+                doc["accesibilidad"] = p["accesibilidad"]   # OC, HI, VI (TP6)
             if p.get("tmdbId"):
                 doc["tmdbId"] = p["tmdbId"]   # la app pide /movie/{id} a TMDB
             yield f"{p['slug']}-{dia}", doc
@@ -127,6 +131,8 @@ def main() -> None:
     p.add_argument("--funcion-prueba", type=int, metavar="MINUTOS",
                    help="agrega una copia de la primera funcion que empieza dentro de MINUTOS, "
                         "para probar el recordatorio (se avisa 120 min antes)")
+    p.add_argument("--incluir-pruebas", action="store_true",
+                   help="incluye las funciones de prueba (\"prueba\": true) del seed")
     args = p.parse_args()
     if not args.emulador and not args.clave:
         p.error("falta --clave (o usa --emulador)")
@@ -136,7 +142,7 @@ def main() -> None:
     datos = json.loads(Path(args.datos).read_text(encoding="utf-8"))
     if isinstance(datos, dict):
         zona = ZoneInfo(datos["zona"])
-        funciones = list(funciones_parkcity(datos))
+        funciones = list(funciones_parkcity(datos, args.incluir_pruebas))
     else:
         zona = ZoneInfo(args.zona)
         funciones = list(funciones_tp2(datos, zona, args.url))

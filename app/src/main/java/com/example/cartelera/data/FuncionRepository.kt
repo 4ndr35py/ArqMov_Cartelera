@@ -84,7 +84,8 @@ internal data class FuncionDoc(
     val fechaHora: Timestamp? = null,
     val precio: Double = 0.0,
     val urlEntradas: String = "",
-    val tmdbId: Long? = null
+    val tmdbId: Long? = null,
+    val accesibilidad: List<String> = emptyList()
 ) {
     fun aFuncion() = Funcion(
         id = id,
@@ -97,6 +98,7 @@ internal data class FuncionDoc(
         fechaHora = fechaHora?.toDate(),
         precio = precio,
         urlEntradas = urlEntradas,
-        tmdbId = tmdbId?.toInt()
+        tmdbId = tmdbId?.toInt(),
+        accesibilidad = accesibilidad
     )
 }

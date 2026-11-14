@@ -109,6 +109,19 @@
       "tmdbId": 1084409,
       "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b3f114e7812d23eaf4a8",
       "funciones": [["2026-12-18", "19:00"], ["2026-12-19", "19:00"], ["2026-12-20", "18:00"]]
+    },
+    {
+      "slug": "prueba-oc-hi",
+      "titulo": "[PRUEBA] Funcion con subtitulos abiertos",
+      "director": "Prueba",
+      "anio": 2026,
+      "duracionMin": 90,
+      "sinopsis": "Funcion de prueba para los avisos de accesibilidad (TP6). No es una pelicula: se publica solo con --incluir-pruebas y se quita antes de la cartelera real.",
+      "precio": 0,
+      "urlEntradas": "https://parkcityfilm.org/",
+      "accesibilidad": ["OC", "HI"],
+      "prueba": true,
+      "funciones": [["2026-11-24", "19:00"]]
     }
   ]
 }

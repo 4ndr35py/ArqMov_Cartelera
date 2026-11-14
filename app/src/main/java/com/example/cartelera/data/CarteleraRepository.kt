@@ -3,6 +3,7 @@ package com.example.cartelera.data
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import com.example.cartelera.util.Accesibilidad
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.Call
@@ -146,7 +147,9 @@ internal data class FuncionPublicada(
     val fechaHora: String,
     val precio: Double = 0.0,
     val urlEntradas: String = "",
-    val tmdbId: Int? = null
+    val tmdbId: Int? = null,
+    /** TP6: OC, HI, VI. Ausente en las cargas anteriores: lista vacia. */
+    val accesibilidad: List<String> = emptyList()
 ) {
     fun aFuncion() = Funcion(
         id = id,
@@ -159,7 +162,8 @@ internal data class FuncionPublicada(
         fechaHora = parsearFecha(fechaHora),
         precio = precio,
         urlEntradas = urlEntradas,
-        tmdbId = tmdbId
+        tmdbId = tmdbId,
+        accesibilidad = Accesibilidad.normalizar(accesibilidad)
     )
 
     private fun parsearFecha(texto: String): Date =

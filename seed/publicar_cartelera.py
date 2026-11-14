@@ -26,7 +26,7 @@ DATOS_POR_DEFECTO = RAIZ / "seed" / "cartelera_parkcity.json"
 SALIDA_POR_DEFECTO = RAIZ / "hosting" / "public" / "cartelera.json"
 
 
-def construir(datos: dict, desde: datetime) -> tuple[dict, list[str]]:
+def construir(datos: dict, desde: datetime, incluir_pruebas: bool = False) -> tuple[dict, list[str]]:
     """Arma el documento de cartelera. Devuelve (documento, advertencias)."""
     zona = ZoneInfo(datos["zona"])
     filas = []          # (cuando, funcion) para ordenar por fecha real
@@ -34,6 +34,8 @@ def construir(datos: dict, desde: datetime) -> tuple[dict, list[str]]:
     advertencias: list[str] = []
 
     for p in datos["peliculas"]:
+        if p.get("prueba") and not incluir_pruebas:
+            continue  # funcion de prueba (TP6): solo con --incluir-pruebas
         url = p.get("urlEntradas", "")  # vacio = pelicula gratis, sin link de compra
         if url and not url.startswith("https://"):
             raise ValueError(f"urlEntradas sin https en '{p['slug']}': {url}")
@@ -58,6 +60,8 @@ def construir(datos: dict, desde: datetime) -> tuple[dict, list[str]]:
                 "precio": float(p["precio"]),
                 "urlEntradas": url,
             }
+            if p.get("accesibilidad"):
+                funcion["accesibilidad"] = p["accesibilidad"]   # OC, HI, VI (TP6)
             if p.get("tmdbId"):
                 funcion["tmdbId"] = p["tmdbId"]
             filas.append((cuando, funcion))
@@ -87,6 +91,8 @@ def main() -> None:
     p.add_argument("--salida", type=Path, default=SALIDA_POR_DEFECTO)
     p.add_argument("--desde", type=date.fromisoformat,
                    help="fecha desde la que incluir funciones (AAAA-MM-DD). Por defecto: hoy en la zona del cine")
+    p.add_argument("--incluir-pruebas", action="store_true",
+                   help="incluye las funciones de prueba (\"prueba\": true) del seed")
     args = p.parse_args()
 
     datos = json.loads(args.datos.read_text(encoding="utf-8"))
@@ -97,7 +103,7 @@ def main() -> None:
         hoy = datetime.now(zona).date()
         desde = datetime.combine(hoy, time(0, 0), zona)
 
-    documento, advertencias = construir(datos, desde)
+    documento, advertencias = construir(datos, desde, args.incluir_pruebas)
     if not documento["funciones"]:
         raise SystemExit("No quedan funciones desde esa fecha: no se escribe el archivo.")
 
