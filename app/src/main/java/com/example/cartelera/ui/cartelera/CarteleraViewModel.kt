@@ -13,6 +13,7 @@ import com.example.cartelera.data.PeliculaEnCartel
 import com.example.cartelera.data.PeliculaRepository
 import com.example.cartelera.data.RecordatorioRepository
 import com.example.cartelera.data.Suscripcion
+import com.example.cartelera.data.avisos.AvisosRepository
 import com.example.cartelera.util.Cartelera
 import java.util.Date
 
@@ -35,6 +36,7 @@ class CarteleraViewModel(app: Application) : AndroidViewModel(app) {
     private val repo = FuncionRepository()
     private val carteleraPublicada = CarteleraRepository(app, repo)
     private val mensajeria = MensajeriaRepository(auth)
+    private val avisos = AvisosRepository(auth)
     private val recordatorios = RecordatorioRepository(app)
     private val tmdb = PeliculaRepository(app)
 
@@ -67,6 +69,7 @@ class CarteleraViewModel(app: Application) : AndroidViewModel(app) {
                 cargar()
                 escucharIntereses()
                 mensajeria.registrarToken()
+                sincronizarAvisos()
             }.onFailure {
                 _estado.value = EstadoCartelera.Error
             }
@@ -110,6 +113,18 @@ class CarteleraViewModel(app: Application) : AndroidViewModel(app) {
         if (uid != null && uid != uidEscuchado) {
             escucharIntereses()
             mensajeria.registrarToken()
+            sincronizarAvisos()
+        }
+    }
+
+    /**
+     * Los topics de FCM del telefono siguen las preferencias de avisos de la
+     * cuenta actual (TP6). Sin cuenta o sin preferencias, quedan apagados.
+     */
+    private fun sincronizarAvisos() {
+        avisos.leerTemas { temas ->
+            avisos.sincronizar(temas)
+            temas.forEach { (tema, activo) -> Metricas.propiedadTema(tema.id, activo) }
         }
     }
 

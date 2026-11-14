@@ -9,9 +9,9 @@ import com.google.firebase.messaging.RemoteMessage
  * Messaging y guarda el token cuando FCM lo rota.
  *
  * Con la app en segundo plano, los mensajes con bloque "notification" los
- * muestra el sistema en el canal por defecto (ver AndroidManifest). Con la app
- * abierta llegan aca y se muestran con el mismo Notificador que los
- * recordatorios. El dato opcional "funcionId" abre el detalle de esa funcion.
+ * muestra el sistema, y al tocarlos la app se abre con el payload como extras
+ * (CarteleraActivity lo rutea). Con la app abierta llegan aca: el campo "tipo"
+ * elige el canal del tema y [Ruteo] decide a donde lleva el toque.
  */
 class AvisosService : FirebaseMessagingService() {
 
@@ -22,8 +22,15 @@ class AvisosService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(mensaje: RemoteMessage) {
-        val titulo = mensaje.notification?.title ?: mensaje.data["titulo"] ?: return
-        val texto = mensaje.notification?.body ?: mensaje.data["texto"].orEmpty()
-        Notificador.mostrar(applicationContext, titulo, texto, mensaje.data["funcionId"])
+        val datos: Map<String, String?> = mensaje.data
+        val titulo = mensaje.notification?.title ?: datos["titulo"] ?: return
+        val texto = mensaje.notification?.body ?: datos["texto"].orEmpty()
+        Notificador.mostrar(
+            applicationContext,
+            titulo,
+            texto,
+            datos,
+            canal = Temas.canal(datos[Ruteo.TIPO])
+        )
     }
 }

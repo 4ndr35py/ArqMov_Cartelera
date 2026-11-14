@@ -81,6 +81,16 @@
                         android:text="@string/btn_trailer"
                         android:visibility="gone"
                         app:icon="@drawable/ic_play" />
+
+                    <!-- TP6: "Quiero verla" se guarda en el telefono y avisa de funciones nuevas -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQuieroVer"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:enabled="false"
+                        android:text="@string/btn_quiero_no" />
                 </LinearLayout>
             </LinearLayout>
 

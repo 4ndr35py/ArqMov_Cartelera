@@ -11,10 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cartelera.R
+import com.example.cartelera.data.avisos.Notificador
+import com.example.cartelera.data.avisos.Ruteo
 import com.example.cartelera.databinding.ActivityCarteleraBinding
+import com.example.cartelera.ui.avisos.AvisosActivity
 import com.example.cartelera.ui.donacion.DonacionActivity
 import com.example.cartelera.ui.pelicula.PeliculaActivity
 import com.example.cartelera.ui.login.LoginActivity
+import com.example.cartelera.ui.quierover.QuieroVerActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /** Pantalla de inicio desde el TP7: la cartelera se ve sin crear una cuenta. */
@@ -52,6 +56,14 @@ class CarteleraActivity : AppCompatActivity() {
                     viewModel.cerrarSesion()
                     true
                 }
+                R.id.accion_avisos -> {
+                    startActivity(Intent(this, AvisosActivity::class.java))
+                    true
+                }
+                R.id.accion_quiero_ver -> {
+                    startActivity(Intent(this, QuieroVerActivity::class.java))
+                    true
+                }
                 R.id.accion_apoyar -> {
                     startActivity(Intent(this, DonacionActivity::class.java))
                     true
@@ -82,6 +94,9 @@ class CarteleraActivity : AppCompatActivity() {
                 is EstadoCartelera.Cargando -> Unit
             }
         }
+        // Un aviso que se abre con la app cerrada llega aca con su payload en los extras.
+        if (savedInstanceState == null) abrirDestinoDelAviso(intent)
+
         viewModel.intereses.observe(this) { adapter.actualizarIntereses(it) }
         viewModel.afiches.observe(this) { adapter.actualizarAfiches(it) }
         viewModel.tieneCuenta.observe(this) { cuenta ->
@@ -93,6 +108,24 @@ class CarteleraActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.alVolver()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        abrirDestinoDelAviso(intent)
+    }
+
+    /**
+     * Si la app se abrio tocando un aviso de FCM (o de "Quiero verla"), el
+     * payload llega como extras de este Intent. Se rutea a la pantalla que
+     * corresponda; sin claves conocidas, se queda en la cartelera.
+     */
+    private fun abrirDestinoDelAviso(intent: Intent) {
+        val extras = intent.extras ?: return
+        val datos = extras.keySet().associateWith { clave -> extras.get(clave)?.toString() }
+        val destino = Ruteo.de(datos)
+        Notificador.intentDe(this, destino)?.let { startActivity(it) }
     }
 
     private fun mostrarMensaje(texto: Int, reintentar: Boolean) {

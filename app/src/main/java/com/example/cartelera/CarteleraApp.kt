@@ -10,6 +10,6 @@ class CarteleraApp : Application() {
         super.onCreate()
         EmuladorFirebase.conectarSiCorresponde()
         Metricas.inicializar(this)
-        Notificador.crearCanal(this)
+        Notificador.crearCanales(this)
     }
 }

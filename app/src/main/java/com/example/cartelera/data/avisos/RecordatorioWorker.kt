@@ -15,7 +15,7 @@ class RecordatorioWorker(context: Context, params: WorkerParameters) : Worker(co
         val id = inputData.getString(CLAVE_ID) ?: return Result.failure()
         val titulo = inputData.getString(CLAVE_TITULO).orEmpty()
         val texto = inputData.getString(CLAVE_TEXTO).orEmpty()
-        Notificador.mostrar(applicationContext, titulo, texto, id)
+        Notificador.mostrar(applicationContext, titulo, texto, mapOf(Ruteo.FUNCION_ID to id))
         return Result.success()
     }
 

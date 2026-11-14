@@ -80,6 +80,17 @@
             android:exported="false"
             android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
+        <!-- TP6: avisos por tema (topics de FCM) y lista "Quiero verla". -->
+        <activity
+            android:name=".ui.avisos.AvisosActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
+        <activity
+            android:name=".ui.quierover.QuieroVerActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
         <!-- Servicio de avisos: recibe los mensajes de FCM y los tokens nuevos. -->
         <service
             android:name=".data.avisos.AvisosService"

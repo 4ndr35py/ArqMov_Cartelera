@@ -9,11 +9,13 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Documento del usuario: solo guarda el token de FCM (TP7).
+    // Documento del usuario: token de FCM (TP7) y preferencias de avisos por
+    // tema (TP6): temas.{tema} = true|false. Ningun otro campo.
     match /usuarios/{uid} {
       allow read, delete: if request.auth != null && request.auth.uid == uid;
       allow create, update: if request.auth != null && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['tokenFcm', 'actualizado']);
+        && request.resource.data.keys().hasOnly(['tokenFcm', 'actualizado', 'temas'])
+        && (!('temas' in request.resource.data) || request.resource.data.temas is map);
     }
 
     // Intereses: cada usuario lee y escribe solo los suyos.

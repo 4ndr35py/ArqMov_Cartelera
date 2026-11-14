@@ -80,4 +80,51 @@
     <string name="donacion_gracias">Thank you for your donation of US$ %1$d.</string>
     <string name="donacion_pendiente">Your donation is pending payment.</string>
     <string name="donacion_fallo">We could not process the donation (code %1$d).</string>
+
+    <!-- TP6 · estrategia 1: avisos por tema (topics de FCM) -->
+    <string name="accion_avisos">Alerts</string>
+    <string name="avisos_titulo">Alerts</string>
+    <string name="avisos_intro">Choose what you want to hear about. We only send the topics you turn on, and you can change them anytime.</string>
+    <string name="avisos_reglas">At most one campaign a week per topic, plus the reminders you ask for. Never at night (Denver time).</string>
+    <string name="avisos_permiso_titulo">Turn on alerts?</string>
+    <string name="avisos_permiso_texto">Android needs your permission to show notifications. We only send the topics you turn on, and you can silence each one later in your phone\'s settings.</string>
+    <string name="avisos_sin_permiso">Without notification permission we can\'t show alerts. You can turn it on in your phone\'s settings.</string>
+    <string name="avisos_error">We couldn\'t save your choice. Try again.</string>
+    <string name="btn_continuar">Continue</string>
+    <string name="tema_cartelera_titulo">Weekly schedule</string>
+    <string name="tema_cartelera_desc">The week\'s showtimes, at most once a week.</string>
+    <string name="tema_accesibilidad_titulo">Accessible showings</string>
+    <string name="tema_accesibilidad_desc">Open captions (OC), captions for deaf and hard-of-hearing viewers (HI), and audio description (VI).</string>
+    <string name="tema_festival_titulo">Festival</string>
+    <string name="tema_festival_desc">Festival films, and the two weeks a year when you vote for the next one.</string>
+    <string name="tema_eventos_titulo">Events</string>
+    <string name="tema_eventos_desc">Special screenings, talks and events at the cinema.</string>
+    <string name="canal_cartelera_semanal">Weekly schedule</string>
+    <string name="canal_cartelera_semanal_desc">The week\'s showtimes.</string>
+    <string name="canal_accesibilidad">Accessible showings</string>
+    <string name="canal_accesibilidad_desc">Showings with captions or audio description.</string>
+    <string name="canal_festival">Festival</string>
+    <string name="canal_festival_desc">Festival films and voting.</string>
+    <string name="canal_eventos">Events</string>
+    <string name="canal_eventos_desc">Special screenings and events.</string>
+    <string name="acc_oc">Open captions (OC)</string>
+    <string name="acc_hi">Captions for deaf and hard of hearing (HI)</string>
+    <string name="acc_vi">Audio description (VI)</string>
+    <string name="detalle_accesibilidad">Accessibility: %1$s</string>
+
+    <!-- TP6 · estrategia 2: "Quiero verla" (guardado en el telefono) -->
+    <string name="accion_quiero_ver">My list: Want to see</string>
+    <string name="btn_quiero_no">Want to see</string>
+    <string name="btn_quiero_si">On your list</string>
+    <string name="btn_quitar">Remove</string>
+    <string name="quiero_ver_titulo">Want to see</string>
+    <string name="quiero_ver_intro">Films you want to see. We let you know when a new showtime is scheduled.</string>
+    <string name="quiero_ver_vacia">No films yet. Open a movie and tap “Want to see”.</string>
+    <string name="quiero_ver_proxima">Next: %1$s · %2$s</string>
+    <string name="quiero_ver_sin_funciones">No showtimes scheduled right now.</string>
+    <string name="quiero_ver_sin_datos">We couldn\'t check the schedule.</string>
+    <string name="quiero_ver_marcada">Added to Want to see. We\'ll let you know when a new showtime appears.</string>
+    <string name="quiero_ver_quitada">Removed from Want to see.</string>
+    <string name="quiero_ver_aviso_titulo">New showtime: %1$s</string>
+    <string name="quiero_ver_aviso_texto">%1$s · %2$s</string>
 </resources>

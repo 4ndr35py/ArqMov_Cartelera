@@ -11,6 +11,14 @@
         android:visible="false"
         app:showAsAction="never" />
     <item
+        android:id="@+id/accion_quiero_ver"
+        android:title="@string/accion_quiero_ver"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/accion_avisos"
+        android:title="@string/accion_avisos"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/accion_apoyar"
         android:title="@string/accion_apoyar"
         app:showAsAction="never" />

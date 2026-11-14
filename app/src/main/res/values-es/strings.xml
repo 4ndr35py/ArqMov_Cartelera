@@ -80,4 +80,51 @@
     <string name="donacion_gracias">Gracias por tu donación de US$ %1$d.</string>
     <string name="donacion_pendiente">Tu donación quedó pendiente de pago.</string>
     <string name="donacion_fallo">No pudimos procesar la donación (código %1$d).</string>
+
+    <!-- TP6 · estrategia 1: avisos por tema (topics de FCM) -->
+    <string name="accion_avisos">Avisos</string>
+    <string name="avisos_titulo">Avisos</string>
+    <string name="avisos_intro">Elegí de qué querés enterarte. Solo te mandamos lo que activás, y podés cambiarlo cuando quieras.</string>
+    <string name="avisos_reglas">Como máximo un aviso por semana por tema, más los recordatorios que pidas. Nunca de noche (hora de Denver).</string>
+    <string name="avisos_permiso_titulo">¿Activar avisos?</string>
+    <string name="avisos_permiso_texto">Android necesita tu permiso para mostrar notificaciones. Solo enviamos los temas que activás, y después podés silenciar cada uno desde los ajustes del teléfono.</string>
+    <string name="avisos_sin_permiso">Sin permiso de notificaciones no podemos mostrar avisos. Podés activarlo en los ajustes del teléfono.</string>
+    <string name="avisos_error">No pudimos guardar tu elección. Probá de nuevo.</string>
+    <string name="btn_continuar">Continuar</string>
+    <string name="tema_cartelera_titulo">Cartelera semanal</string>
+    <string name="tema_cartelera_desc">La programación de la semana, como máximo una vez por semana.</string>
+    <string name="tema_accesibilidad_titulo">Funciones accesibles</string>
+    <string name="tema_accesibilidad_desc">Subtítulos abiertos (OC), subtítulos para sordos (HI) y audiodescripción (VI).</string>
+    <string name="tema_festival_titulo">Festival</string>
+    <string name="tema_festival_desc">Películas del festival, y las dos semanas al año en que votás la próxima.</string>
+    <string name="tema_eventos_titulo">Eventos</string>
+    <string name="tema_eventos_desc">Funciones especiales, charlas y eventos del cine.</string>
+    <string name="canal_cartelera_semanal">Cartelera semanal</string>
+    <string name="canal_cartelera_semanal_desc">La programación de la semana.</string>
+    <string name="canal_accesibilidad">Funciones accesibles</string>
+    <string name="canal_accesibilidad_desc">Funciones con subtítulos o audiodescripción.</string>
+    <string name="canal_festival">Festival</string>
+    <string name="canal_festival_desc">Películas del festival y votaciones.</string>
+    <string name="canal_eventos">Eventos</string>
+    <string name="canal_eventos_desc">Funciones especiales y eventos.</string>
+    <string name="acc_oc">Subtítulos abiertos (OC)</string>
+    <string name="acc_hi">Subtítulos para sordos e hipoacúsicos (HI)</string>
+    <string name="acc_vi">Audiodescripción (VI)</string>
+    <string name="detalle_accesibilidad">Accesibilidad: %1$s</string>
+
+    <!-- TP6 · estrategia 2: "Quiero verla" (guardado en el teléfono) -->
+    <string name="accion_quiero_ver">Mi lista: Quiero verla</string>
+    <string name="btn_quiero_no">Quiero verla</string>
+    <string name="btn_quiero_si">En tu lista</string>
+    <string name="btn_quitar">Quitar</string>
+    <string name="quiero_ver_titulo">Quiero verla</string>
+    <string name="quiero_ver_intro">Películas que querés ver. Te avisamos cuando se programe una función nueva.</string>
+    <string name="quiero_ver_vacia">Todavía no marcaste películas. Abrí una y tocá «Quiero verla».</string>
+    <string name="quiero_ver_proxima">Próxima: %1$s · %2$s</string>
+    <string name="quiero_ver_sin_funciones">Sin funciones programadas por ahora.</string>
+    <string name="quiero_ver_sin_datos">No pudimos revisar la cartelera.</string>
+    <string name="quiero_ver_marcada">Agregada a Quiero verla. Te avisamos cuando aparezca una función nueva.</string>
+    <string name="quiero_ver_quitada">Quitada de Quiero verla.</string>
+    <string name="quiero_ver_aviso_titulo">Función nueva: %1$s</string>
+    <string name="quiero_ver_aviso_texto">%1$s · %2$s</string>
 </resources>

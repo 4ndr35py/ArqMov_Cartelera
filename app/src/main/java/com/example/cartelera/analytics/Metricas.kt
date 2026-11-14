@@ -62,6 +62,36 @@ object Metricas {
 
     fun donacionCompletada(montoUsd: Int) = evento(DONACION_COMPLETADA, "monto_usd" to montoUsd.toString())
 
+    // TP6, estrategia 1: avisos por tema (topics de FCM). La apertura y la
+    // recepcion de cada push las registra Analytics solo (notification_open y
+    // notification_receive); aca se mide la configuracion del usuario.
+    fun avisosPantalla() = evento(AVISOS_PANTALLA)
+
+    fun temaCambiado(tema: String, activo: Boolean) =
+        evento(if (activo) TEMA_ACTIVAR else TEMA_DESACTIVAR, "tema" to tema)
+
+    fun permisoAvisos(concedido: Boolean) =
+        evento(PERMISO_AVISOS, "resultado" to if (concedido) "concedido" else "rechazado")
+
+    /**
+     * Propiedad de usuario: permite segmentar campanas por audiencia en la
+     * consola ("avisos_accesibilidad = si"). Los nombres tienen que ser cortos
+     * (maximo 24 caracteres) y solo letras, numeros y guion bajo.
+     */
+    fun propiedadTema(tema: String, activo: Boolean) =
+        analytics.setUserProperty("avisos_$tema", if (activo) "si" else "no")
+
+    // TP6, estrategia 2: "Quiero verla".
+    fun quieroVerMarcar(clave: String) = evento(QUIERO_VER_MARCAR, "pelicula" to clave.take(100))
+
+    fun quieroVerQuitar(clave: String) = evento(QUIERO_VER_QUITAR, "pelicula" to clave.take(100))
+
+    fun quieroVerAviso(clave: String) = evento(QUIERO_VER_AVISO, "pelicula" to clave.take(100))
+
+    /** Usuario que tiene al menos una pelicula marcada: se cruza con click_comprar. */
+    fun propiedadQuieroVer(activo: Boolean) =
+        analytics.setUserProperty("usa_quiero_ver", if (activo) "si" else "no")
+
     private fun evento(nombre: String, vararg params: Pair<String, String>) {
         val bundle = Bundle()
         params.forEach { (k, v) -> bundle.putString(k, v) }
@@ -81,4 +111,11 @@ object Metricas {
     const val APOYAR_ABRIR = "apoyar_abrir"
     const val DONAR_INICIAR = "donar_iniciar"
     const val DONACION_COMPLETADA = "donacion_completada"
+    const val AVISOS_PANTALLA = "avisos_pantalla"
+    const val TEMA_ACTIVAR = "tema_activar"
+    const val TEMA_DESACTIVAR = "tema_desactivar"
+    const val PERMISO_AVISOS = "permiso_avisos"
+    const val QUIERO_VER_MARCAR = "quiero_ver_marcar"
+    const val QUIERO_VER_QUITAR = "quiero_ver_quitar"
+    const val QUIERO_VER_AVISO = "quiero_ver_aviso"
 }

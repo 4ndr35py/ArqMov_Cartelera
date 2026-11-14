@@ -21,6 +21,7 @@ import com.example.cartelera.databinding.ActivityPeliculaBinding
 import com.example.cartelera.databinding.ItemFuncionPeliculaBinding
 import com.example.cartelera.ui.detalle.DetalleActivity
 import com.example.cartelera.util.Formato
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Pantalla de una pelicula: afiche, ficha, trailer, fotos y la lista de
@@ -74,7 +75,20 @@ class PeliculaActivity : AppCompatActivity() {
             intereses = it
             mostrarFunciones()
         }
+        viewModel.cartel.observe(this) { binding.btnQuieroVer.isEnabled = it != null }
+        viewModel.marcadaQuieroVer.observe(this) { marcada ->
+            binding.btnQuieroVer.setText(if (marcada) R.string.btn_quiero_si else R.string.btn_quiero_no)
+            binding.btnQuieroVer.setIconResource(if (marcada) R.drawable.ic_estrella_llena else R.drawable.ic_estrella_vacia)
+        }
         binding.btnTrailer.setOnClickListener { verTrailer() }
+        binding.btnQuieroVer.setOnClickListener {
+            val marcada = viewModel.alternarQuieroVer()
+            Snackbar.make(
+                binding.root,
+                if (marcada) R.string.quiero_ver_marcada else R.string.quiero_ver_quitada,
+                Snackbar.LENGTH_LONG
+            ).setAnchorView(binding.btnQuieroVer).show()
+        }
     }
 
     override fun onResume() {
