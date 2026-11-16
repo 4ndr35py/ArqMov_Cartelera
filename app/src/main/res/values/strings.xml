@@ -144,10 +144,10 @@
     <!-- Comentarios por pelicula (TP6) -->
     <string name="btn_comentarios">Comments</string>
     <string name="comentarios_titulo">Comments</string>
-    <string name="comentarios_vacio">No comments yet. Comments show here after the cinema approves them.</string>
+    <string name="comentarios_vacio">No comments yet. Be the first to write one.</string>
     <string name="comentarios_escribir">Write a comment (500 characters max)</string>
     <string name="btn_enviar_comentario">Send</string>
-    <string name="comentario_enviado">Thanks! Your comment will show up once the cinema approves it.</string>
+    <string name="comentario_enviado">Thanks! Your comment is posted.</string>
     <string name="comentario_vacio">Write something first.</string>
     <string name="comentario_largo">Keep it under 500 characters.</string>
     <string name="comentario_error">We couldn\'t send your comment. Try again.</string>

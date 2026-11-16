@@ -10,17 +10,16 @@ data class Comentario(val texto: String, val fecha: Date?)
 /**
  * Comentarios por pelicula en Cloud Firestore.
  *
- *  comentarios/{id}  clave (pelicula), texto, uid (sesion que escribio), fecha, aprobado
+ *  comentarios/{id}  clave (pelicula), texto, uid (cuenta que escribio), fecha, aprobado (siempre true)
  *
- * Cualquiera con sesion (anonima o cuenta) puede escribir, pero el comentario
- * queda oculto (aprobado = false) hasta que el cine lo aprueba en la consola.
- * Las reglas no permiten que la app lo apruebe ni lo edite.
+ * Solo pueden escribir cuentas reales (no anonimas), y el comentario se publica
+ * al enviarlo: no hay aprobacion previa. El cine puede borrarlo desde la consola.
  */
 class ComentariosRepository(
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 ) {
 
-    /** Solo los comentarios aprobados de la pelicula, del mas nuevo al mas viejo. */
+    /** Los comentarios publicados de la pelicula, del mas nuevo al mas viejo. */
     fun cargar(clave: String, alTerminar: (Result<List<Comentario>>) -> Unit) {
         db.collection(COMENTARIOS)
             .whereEqualTo("clave", clave)
@@ -46,7 +45,7 @@ class ComentariosRepository(
                     "texto" to texto,
                     "uid" to uid,
                     "fecha" to FieldValue.serverTimestamp(),
-                    "aprobado" to false
+                    "aprobado" to true
                 )
             )
             .addOnSuccessListener { alTerminar(Result.success(Unit)) }

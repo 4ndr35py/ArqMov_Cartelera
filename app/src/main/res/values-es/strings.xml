@@ -143,10 +143,10 @@
     <!-- Comentarios por pelicula (TP6) -->
     <string name="btn_comentarios">Comentarios</string>
     <string name="comentarios_titulo">Comentarios</string>
-    <string name="comentarios_vacio">Todavía no hay comentarios. Aparecen acá cuando el cine los aprueba.</string>
+    <string name="comentarios_vacio">Todavía no hay comentarios. Sé el primero en escribir uno.</string>
     <string name="comentarios_escribir">Escribí un comentario (máximo 500 caracteres)</string>
     <string name="btn_enviar_comentario">Enviar</string>
-    <string name="comentario_enviado">¡Gracias! Tu comentario se muestra cuando el cine lo apruebe.</string>
+    <string name="comentario_enviado">¡Gracias! Tu comentario ya está publicado.</string>
     <string name="comentario_vacio">Escribí algo primero.</string>
     <string name="comentario_largo">Usá menos de 500 caracteres.</string>
     <string name="comentario_error">No pudimos enviar tu comentario. Probá de nuevo.</string>

@@ -14,7 +14,7 @@ import com.example.cartelera.databinding.ItemComentarioBinding
 import com.example.cartelera.util.Formato
 import com.google.android.material.snackbar.Snackbar
 
-/** Comentarios de una pelicula: los aprobados por el cine y un campo para escribir uno. */
+/** Comentarios de una pelicula: los publicados y un campo para escribir uno. */
 class ComentariosActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityComentariosBinding

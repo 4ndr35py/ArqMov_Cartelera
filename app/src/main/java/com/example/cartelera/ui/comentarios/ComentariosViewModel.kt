@@ -10,7 +10,7 @@ import com.example.cartelera.data.Comentario
 import com.example.cartelera.data.ComentariosRepository
 import com.example.cartelera.util.Comentarios
 
-/** Comentarios de una pelicula: carga los aprobados y envia uno nuevo (solo con cuenta). */
+/** Comentarios de una pelicula: carga los publicados y envia uno nuevo (solo con cuenta). */
 class ComentariosViewModel(app: Application) : AndroidViewModel(app) {
 
     private val repo = ComentariosRepository()
