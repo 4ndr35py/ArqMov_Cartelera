@@ -39,13 +39,15 @@
 
         <ImageView
             android:id="@+id/ivInteres"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
+            android:background="@drawable/fondo_circulo"
             android:contentDescription="@string/cd_interes"
+            android:padding="5dp"
             android:src="@drawable/ic_estrella_llena"
             android:visibility="gone"
-            app:tint="@color/negro" />
+            app:tint="@color/lima" />
 
         <ImageView
             android:layout_width="24dp"

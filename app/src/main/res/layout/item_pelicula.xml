@@ -33,24 +33,25 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvFechas"
+                android:id="@+id/tvTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/fondo_chip"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:paddingHorizontal="8dp"
-                android:paddingVertical="3dp"
-                android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:paddingVertical="4dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="@color/lima" />
 
             <TextView
-                android:id="@+id/tvTitulo"
-                android:layout_width="match_parent"
+                android:id="@+id/tvFechas"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textAppearance="?attr/textAppearanceTitleMedium" />
+                android:layout_marginTop="6dp"
+                android:textAllCaps="true"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="@color/grafito" />
 
             <TextView
                 android:id="@+id/tvDetalle"
@@ -63,12 +64,14 @@
 
         <ImageView
             android:id="@+id/ivInteres"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
+            android:background="@drawable/fondo_circulo"
             android:contentDescription="@string/cd_interes"
+            android:padding="5dp"
             android:src="@drawable/ic_estrella_llena"
             android:visibility="gone"
-            app:tint="@color/negro" />
+            app:tint="@color/lima" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

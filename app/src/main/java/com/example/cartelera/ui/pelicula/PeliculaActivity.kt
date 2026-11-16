@@ -122,13 +122,28 @@ class PeliculaActivity : AppCompatActivity() {
             fila.tvFecha.text = f.fechaHora?.let { Formato.fechaLarga(it) } ?: ""
             fila.tvDetalle.text = getString(R.string.detalle_sala, f.sala, Formato.precio(f.precio))
             fila.ivInteres.visibility = if (f.id in intereses) View.VISIBLE else View.GONE
-            fila.root.setOnClickListener {
-                startActivity(
-                    Intent(this, DetalleActivity::class.java)
-                        .putExtra(DetalleActivity.EXTRA_FUNCION_ID, f.id)
-                )
-            }
+            fila.root.setOnClickListener { comprarFuncion(f.id, f.urlEntradas) }
             contenedor.addView(fila.root)
+        }
+    }
+
+    /**
+     * Tocar una funcion abre directo su venta (la URL de esa funcion), sin pasar
+     * por el detalle. Si la funcion no tiene URL de venta, cae al detalle.
+     */
+    private fun comprarFuncion(funcionId: String, urlEntradas: String) {
+        if (urlEntradas.isBlank()) {
+            startActivity(
+                Intent(this, DetalleActivity::class.java)
+                    .putExtra(DetalleActivity.EXTRA_FUNCION_ID, funcionId)
+            )
+            return
+        }
+        viewModel.registrarCompra(funcionId)
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, urlEntradas.toUri()))
+        } catch (_: ActivityNotFoundException) {
+            Toast.makeText(this, R.string.sin_navegador, Toast.LENGTH_SHORT).show()
         }
     }
 

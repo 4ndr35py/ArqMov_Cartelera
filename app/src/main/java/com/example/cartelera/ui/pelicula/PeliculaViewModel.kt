@@ -107,6 +107,9 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
         return "https://www.youtube.com/watch?v=$clave"
     }
 
+    /** La compra se hace en la web de venta; aca solo se registra el click. */
+    fun registrarCompra(funcionId: String) = Metricas.clickComprar(funcionId)
+
     override fun onCleared() {
         suscripcion?.cancelar()
         super.onCleared()
