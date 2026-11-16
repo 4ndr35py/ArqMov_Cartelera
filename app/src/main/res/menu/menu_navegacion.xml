@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_proximas" android:icon="@drawable/ic_nav_proximas" android:title="@string/nav_proximas" />
+    <item android:id="@+id/nav_entradas" android:icon="@drawable/ic_nav_entradas" android:title="@string/nav_entradas" />
+    <item android:id="@+id/nav_guardadas" android:icon="@drawable/ic_nav_guardadas" android:title="@string/nav_guardadas" />
+    <item android:id="@+id/nav_perfil" android:icon="@drawable/ic_nav_perfil" android:title="@string/nav_perfil" />
+</menu>

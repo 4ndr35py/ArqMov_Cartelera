@@ -16,7 +16,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe"
@@ -60,4 +61,14 @@
                 android:text="@string/btn_reintentar" />
         </LinearLayout>
     </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navegacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/negro"
+        app:itemIconTint="@color/nav_icono"
+        app:itemTextColor="@color/nav_item"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_navegacion" />
 </LinearLayout>

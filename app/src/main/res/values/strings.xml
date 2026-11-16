@@ -127,4 +127,17 @@
     <string name="quiero_ver_quitada">Removed from Want to see.</string>
     <string name="quiero_ver_aviso_titulo">New showtime: %1$s</string>
     <string name="quiero_ver_aviso_texto">%1$s · %2$s</string>
+
+    <!-- Barra inferior y pestanas nuevas -->
+    <string name="nav_proximas">Upcoming</string>
+    <string name="nav_entradas">Tickets</string>
+    <string name="nav_guardadas">Saved</string>
+    <string name="nav_perfil">Profile</string>
+    <string name="entradas_titulo">Your tickets</string>
+    <string name="entradas_intro">Tickets are bought on the cinema\'s ticket page, and the QR code comes from there. We will show your QR codes here once we decide how to store them.</string>
+    <string name="btn_comprar_entradas">Buy tickets on the website</string>
+    <string name="perfil_titulo">Profile</string>
+    <string name="perfil_guardadas">%1$d films on your list</string>
+    <string name="perfil_membresia">Membership: not set up yet</string>
+    <string name="perfil_favorita">Your favorite film will show here once the cinema\'s membership data is connected.</string>
 </resources>

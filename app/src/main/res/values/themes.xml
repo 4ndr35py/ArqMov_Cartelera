@@ -7,6 +7,7 @@
         <item name="colorOnPrimaryContainer">@color/negro</item>
         <item name="colorSecondary">@color/lima</item>
         <item name="colorOnSecondary">@color/negro</item>
+        <item name="colorSecondaryContainer">@color/lima</item>
         <item name="android:colorBackground">@color/gris_fondo</item>
         <item name="colorSurface">@color/papel</item>
         <item name="colorOnSurface">@color/grafito</item>
@@ -61,6 +62,12 @@
     <style name="TextAppearance.Cartelera.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- Afiche redondeado (tarjeta de la cartelera). -->
+    <style name="CarteleraPosterOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
     </style>
 
     <style name="TextAppearance.Cartelera.LabelLarge" parent="TextAppearance.Material3.LabelLarge">

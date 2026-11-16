@@ -91,6 +91,17 @@
             android:exported="false"
             android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
+        <!-- Barra inferior: pestanas Entradas y Perfil. -->
+        <activity
+            android:name=".ui.entradas.EntradasActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
+        <activity
+            android:name=".ui.perfil.PerfilActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
         <!-- Servicio de avisos: recibe los mensajes de FCM y los tokens nuevos. -->
         <service
             android:name=".data.avisos.AvisosService"

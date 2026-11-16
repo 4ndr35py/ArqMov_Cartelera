@@ -16,6 +16,8 @@ import com.example.cartelera.data.avisos.Ruteo
 import com.example.cartelera.databinding.ActivityCarteleraBinding
 import com.example.cartelera.ui.avisos.AvisosActivity
 import com.example.cartelera.ui.donacion.DonacionActivity
+import com.example.cartelera.ui.entradas.EntradasActivity
+import com.example.cartelera.ui.perfil.PerfilActivity
 import com.example.cartelera.ui.pelicula.PeliculaActivity
 import com.example.cartelera.ui.login.LoginActivity
 import com.example.cartelera.ui.quierover.QuieroVerActivity
@@ -74,6 +76,17 @@ class CarteleraActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+
+        // Las pestanas que abren otra pantalla no cambian la seleccion: Proximas queda marcada.
+        binding.navegacion.selectedItemId = R.id.nav_proximas
+        binding.navegacion.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_entradas -> startActivity(Intent(this, EntradasActivity::class.java))
+                R.id.nav_guardadas -> startActivity(Intent(this, QuieroVerActivity::class.java))
+                R.id.nav_perfil -> startActivity(Intent(this, PerfilActivity::class.java))
+            }
+            false
         }
 
         binding.lista.adapter = adapter

@@ -127,4 +127,16 @@
     <string name="quiero_ver_quitada">Quitada de Quiero verla.</string>
     <string name="quiero_ver_aviso_titulo">Función nueva: %1$s</string>
     <string name="quiero_ver_aviso_texto">%1$s · %2$s</string>
+    <!-- Barra inferior y pestanas nuevas -->
+    <string name="nav_proximas">Próximas</string>
+    <string name="nav_entradas">Entradas</string>
+    <string name="nav_guardadas">Guardadas</string>
+    <string name="nav_perfil">Perfil</string>
+    <string name="entradas_titulo">Tus entradas</string>
+    <string name="entradas_intro">Las entradas se compran en la página de venta del cine, y el código QR sale de ahí. Lo vamos a mostrar acá cuando decidamos cómo guardarlo.</string>
+    <string name="btn_comprar_entradas">Comprar entradas en la web</string>
+    <string name="perfil_titulo">Perfil</string>
+    <string name="perfil_guardadas">%1$d películas en tu lista</string>
+    <string name="perfil_membresia">Membresía: todavía no configurada</string>
+    <string name="perfil_favorita">Tu película favorita aparecerá acá cuando esté conectada la información de membresía del cine.</string>
 </resources>

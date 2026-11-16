@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Material3.CardView.Outlined"
     android:layout_width="match_parent"
-    app:cardCornerRadius="12dp"
-    app:strokeColor="@color/gris_claro"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="10dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardBackgroundColor="@color/negro"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +18,14 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivAfiche"
-            android:layout_width="64dp"
-            android:layout_height="96dp"
-            android:background="@color/negro"
+            android:layout_width="96dp"
+            android:layout_height="144dp"
+            android:background="@color/gris_oscuro"
             android:contentDescription="@string/cd_afiche"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CarteleraPosterOverlay" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,32 +36,30 @@
 
             <TextView
                 android:id="@+id/tvTitulo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/fondo_chip"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
+                android:maxLines="3"
+                android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="@color/lima" />
 
             <TextView
                 android:id="@+id/tvFechas"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
-                android:textColor="@color/grafito" />
+                android:textColor="@color/blanco" />
 
             <TextView
                 android:id="@+id/tvDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/gris_claro" />
         </LinearLayout>
 
         <ImageView
