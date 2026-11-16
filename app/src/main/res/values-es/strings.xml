@@ -151,4 +151,5 @@
     <string name="comentario_largo">Usá menos de 500 caracteres.</string>
     <string name="comentario_error">No pudimos enviar tu comentario. Probá de nuevo.</string>
     <string name="comentarios_error">No pudimos cargar los comentarios.</string>
+    <string name="requiere_cuenta">Iniciá sesión para usar esta sección.</string>
 </resources>

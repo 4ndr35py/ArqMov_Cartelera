@@ -2,6 +2,7 @@ package com.example.cartelera.ui.pelicula
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import com.example.cartelera.ui.login.Acceso
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -82,6 +83,7 @@ class PeliculaActivity : AppCompatActivity() {
         }
         binding.btnTrailer.setOnClickListener { verTrailer() }
         binding.btnComentarios.setOnClickListener {
+            if (!Acceso.pedirCuenta(this)) return@setOnClickListener
             startActivity(
                 Intent(this, com.example.cartelera.ui.comentarios.ComentariosActivity::class.java)
                     .putExtra(
@@ -91,6 +93,7 @@ class PeliculaActivity : AppCompatActivity() {
             )
         }
         binding.btnQuieroVer.setOnClickListener {
+            if (!Acceso.pedirCuenta(this)) return@setOnClickListener
             val marcada = viewModel.alternarQuieroVer()
             Snackbar.make(
                 binding.root,
@@ -131,7 +134,7 @@ class PeliculaActivity : AppCompatActivity() {
             fila.tvFecha.text = f.fechaHora?.let { Formato.fechaLarga(it) } ?: ""
             fila.tvDetalle.text = getString(R.string.detalle_sala, f.sala, Formato.precio(f.precio))
             fila.ivInteres.visibility = if (f.id in intereses) View.VISIBLE else View.GONE
-            fila.root.setOnClickListener { comprarFuncion(f.id, f.urlEntradas) }
+            fila.root.setOnClickListener { if (Acceso.pedirCuenta(this)) comprarFuncion(f.id, f.urlEntradas) }
             contenedor.addView(fila.root)
         }
     }

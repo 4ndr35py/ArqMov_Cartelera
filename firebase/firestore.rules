@@ -30,6 +30,7 @@ service cloud.firestore {
         && request.resource.data.texto.size() > 0
         && request.resource.data.texto.size() <= 500
         && request.resource.data.uid == request.auth.uid
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && request.resource.data.fecha == request.time
         && request.resource.data.aprobado == false;
       allow update, delete: if false;

@@ -17,6 +17,7 @@ import com.example.cartelera.databinding.ActivityCarteleraBinding
 import com.example.cartelera.ui.avisos.AvisosActivity
 import com.example.cartelera.ui.donacion.DonacionActivity
 import com.example.cartelera.ui.entradas.EntradasActivity
+import com.example.cartelera.ui.login.Acceso
 import com.example.cartelera.ui.perfil.PerfilActivity
 import com.example.cartelera.ui.pelicula.PeliculaActivity
 import com.example.cartelera.ui.login.LoginActivity
@@ -59,11 +60,11 @@ class CarteleraActivity : AppCompatActivity() {
                     true
                 }
                 R.id.accion_avisos -> {
-                    startActivity(Intent(this, AvisosActivity::class.java))
+                    Acceso.requiereCuenta(this) { startActivity(Intent(this, AvisosActivity::class.java)) }
                     true
                 }
                 R.id.accion_quiero_ver -> {
-                    startActivity(Intent(this, QuieroVerActivity::class.java))
+                    Acceso.requiereCuenta(this) { startActivity(Intent(this, QuieroVerActivity::class.java)) }
                     true
                 }
                 R.id.accion_apoyar -> {
@@ -82,9 +83,9 @@ class CarteleraActivity : AppCompatActivity() {
         binding.navegacion.selectedItemId = R.id.nav_proximas
         binding.navegacion.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_entradas -> startActivity(Intent(this, EntradasActivity::class.java))
-                R.id.nav_guardadas -> startActivity(Intent(this, QuieroVerActivity::class.java))
-                R.id.nav_perfil -> startActivity(Intent(this, PerfilActivity::class.java))
+                R.id.nav_entradas -> Acceso.requiereCuenta(this) { startActivity(Intent(this, EntradasActivity::class.java)) }
+                R.id.nav_guardadas -> Acceso.requiereCuenta(this) { startActivity(Intent(this, QuieroVerActivity::class.java)) }
+                R.id.nav_perfil -> Acceso.requiereCuenta(this) { startActivity(Intent(this, PerfilActivity::class.java)) }
             }
             false
         }

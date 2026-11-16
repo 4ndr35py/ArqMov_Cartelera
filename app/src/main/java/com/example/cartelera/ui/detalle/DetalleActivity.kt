@@ -21,6 +21,7 @@ import com.example.cartelera.R
 import com.example.cartelera.data.Ficha
 import com.example.cartelera.data.Funcion
 import com.example.cartelera.databinding.ActivityDetalleBinding
+import com.example.cartelera.ui.login.Acceso
 import com.example.cartelera.ui.login.LoginActivity
 import com.example.cartelera.util.Accesibilidad
 import com.example.cartelera.util.Formato
@@ -87,7 +88,7 @@ class DetalleActivity : AppCompatActivity() {
         }
 
         binding.btnInteres.setOnClickListener { alternarInteres() }
-        binding.btnComprar.setOnClickListener { abrirVenta() }
+        binding.btnComprar.setOnClickListener { if (Acceso.pedirCuenta(this)) abrirVenta() }
     }
 
     private fun mostrarFuncion(f: Funcion) {
