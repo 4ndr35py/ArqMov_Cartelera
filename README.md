@@ -173,6 +173,26 @@ FCM no se puede probar con el Emulator Suite: necesita el proyecto real.
 (`PeliculaRepositoryTest` con MockWebServer, `FichaTest`, `TextoCompartirTest`
 y `RecordatorioTest`) y los del TP3 (`CarteleraRepositoryTest`).
 
+## TP6: estrategias de retención
+
+Rama `tp6`. Tres estrategias de retención, con el diagrama `diagramas/arquitectura_v6`.
+
+| Estrategia | Dónde está | Estado |
+|---|---|---|
+| 1. Avisos push por tema (opt-in) | `ui/avisos/`, `data/avisos/Temas.kt`, `AvisosRepository`, `Ruteo.kt`, `Notificador.kt` | Implementada |
+| 2. Contenido personalizado: "Quiero verla" | `ui/quierover/`, `QuieroVerRepository`, `QuieroVerWorker`, `util/QuieroVer.kt` | Implementada |
+| 3. Gamificación ("Mi pasaporte PCF") | Solo diseño en el informe | Pendiente de confirmación |
+
+- **Topics de FCM:** `cartelera_semanal`, `accesibilidad`, `festival` y `eventos`, cada uno en `_en` y `_es` (por ejemplo `accesibilidad_es`). El idioma lo elige el teléfono.
+- **Preferencias:** `usuarios/{uid}.temas` en Firestore. Las reglas aceptan sólo ese campo.
+- **Canales de Android:** `avisos` y uno por tema, para silenciar un tema desde los ajustes del teléfono.
+- **Enlace profundo:** el payload de datos abre `funcionId` (detalle), `peliculaClave` (ficha) o `destino=avisos`.
+- **Quiero verla:** revisa la cartelera publicada cada 12 h y una vez por día en hora de Denver, dentro de 8 a 22 h.
+- **Función de prueba con subtítulos abiertos:** `python seed/publicar_cartelera.py --incluir-pruebas` (la función `prueba-oc-hi-2026-11-24`).
+- **Campañas y informe:** en `../TP6_Retencion/` (fuera del repo): `PASO_CAMPANAS_FCM.md`, `NOTAS_Y_DECISIONES.md` y `TP6_Retencion.pdf`.
+
+Tests: `./gradlew testDebugUnitTest` corre 84 tests, incluidos los de `TemasTest`, `RuteoTest`, `QuieroVerTest` y `HorarioTest`.
+
 ## TP3: escalabilidad (plan Spark, sin cobros)
 
 La cartelera se lee desde `cartelera.json`, un archivo estático publicado en
