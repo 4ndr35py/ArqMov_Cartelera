@@ -76,16 +76,28 @@ class QuieroVerRepository(context: Context) {
         prefs.edit().putStringSet(CLAVE_AVISADAS, yaAvisadas() + ids).apply()
     }
 
+    /** Dia (hora de Denver) de la ultima revision de la cartelera. */
+    fun ultimaRevision(): String? = prefs.getString(CLAVE_ULTIMA_REVISION, null)
+
+    fun registrarRevision(fecha: String) {
+        prefs.edit().putString(CLAVE_ULTIMA_REVISION, fecha).apply()
+    }
+
     /**
-     * Revisa una vez por dia (con red) si aparecio una funcion nueva de alguna
-     * pelicula marcada. Si el telefono esta apagado o sin red, WorkManager lo
-     * reintenta despues.
+     * Revisa la cartelera (con red) para ver si aparecio una funcion nueva de
+     * alguna pelicula marcada. Corre cada 12 h: el trabajo solo descarga una vez
+     * por dia y solo dentro de la ventana de avisos (ver [Horario.debeRevisar]).
+     *
+     * Por que no cada 24 h: un trabajo de 24 h conserva la hora en que se marco
+     * la primera pelicula. Si esa hora cae de noche, o despues del cambio de
+     * horario de verano, cada ejecucion queda fuera de la ventana y nunca avisa.
+     * Con 12 h siempre hay una ejecucion dentro de la ventana.
      */
     private fun programarVigilancia() {
-        val pedido = PeriodicWorkRequestBuilder<QuieroVerWorker>(24, TimeUnit.HOURS)
+        val pedido = PeriodicWorkRequestBuilder<QuieroVerWorker>(REVISION_CADA_HORAS, TimeUnit.HOURS)
             .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .build()
-        workManager.enqueueUniquePeriodicWork(TRABAJO, ExistingPeriodicWorkPolicy.KEEP, pedido)
+        workManager.enqueueUniquePeriodicWork(TRABAJO, ExistingPeriodicWorkPolicy.UPDATE, pedido)
     }
 
     private fun detenerVigilancia() {
@@ -96,7 +108,9 @@ class QuieroVerRepository(context: Context) {
         const val PREFS = "quiero_ver"
         const val CLAVE_PELICULAS = "peliculas"
         const val CLAVE_AVISADAS = "funciones_avisadas"
+        const val CLAVE_ULTIMA_REVISION = "ultima_revision"
         const val TRABAJO = "quiero_ver_vigilancia"
+        const val REVISION_CADA_HORAS = 12L
 
         val json = Json
         val MAPA = MapSerializer(String.serializer(), String.serializer())

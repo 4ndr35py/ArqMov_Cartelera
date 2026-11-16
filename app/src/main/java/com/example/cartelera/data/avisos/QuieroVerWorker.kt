@@ -33,7 +33,9 @@ class QuieroVerWorker(context: Context, params: WorkerParameters) : Worker(conte
         val repo = QuieroVerRepository(applicationContext)
         val marcadas = repo.marcadas()
         if (marcadas.isEmpty()) return Result.success()
-        if (!Horario.dentroDeHorarioDeAvisos(Date())) return Result.success()
+        val ahora = Date()
+        // Fuera de la ventana, o ya revisado hoy: no hace nada (ver Horario.debeRevisar).
+        if (!Horario.debeRevisar(ahora, repo.ultimaRevision())) return Result.success()
 
         val funciones = try {
             descargarCartelera()
@@ -43,14 +45,13 @@ class QuieroVerWorker(context: Context, params: WorkerParameters) : Worker(conte
         if (funciones == null) return Result.success()
 
         val nuevas = QuieroVer.funcionesNuevas(marcadas, Cartelera.agrupar(funciones), repo.yaAvisadas())
-        if (nuevas.isEmpty()) return Result.success()
-
         // Un aviso por pelicula, aunque tenga varias funciones nuevas.
         nuevas.groupBy { Cartelera.clave(it) }.forEach { (clave, lista) ->
             avisar(clave, lista)
             Metricas.quieroVerAviso(clave)
         }
-        repo.registrarAvisadas(nuevas.map { it.id })
+        if (nuevas.isNotEmpty()) repo.registrarAvisadas(nuevas.map { it.id })
+        repo.registrarRevision(Horario.fechaCine(ahora))
         return Result.success()
     }
 

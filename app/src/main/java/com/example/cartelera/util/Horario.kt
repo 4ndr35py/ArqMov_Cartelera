@@ -1,7 +1,9 @@
 package com.example.cartelera.util
 
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 
 /**
@@ -22,4 +24,17 @@ object Horario {
 
     fun dentroDeHorarioDeAvisos(ahora: Date, zona: TimeZone = ZONA_CINE): Boolean =
         horaEnCine(ahora, zona) in HORA_INICIO until HORA_FIN
+
+    /** Dia calendario en la hora del cine, p. ej. "2026-11-15". */
+    fun fechaCine(ahora: Date, zona: TimeZone = ZONA_CINE): String =
+        SimpleDateFormat("yyyy-MM-dd", Locale.US).apply { timeZone = zona }.format(ahora)
+
+    /**
+     * Si el trabajo de "Quiero verla" debe revisar la cartelera ahora: dentro de
+     * la ventana de avisos y todavia no se reviso ese dia (hora de Denver).
+     * Con un trabajo cada 12 h, siempre cae una ejecucion dentro de la ventana,
+     * y la marca del dia evita descargar la cartelera mas de una vez por dia.
+     */
+    fun debeRevisar(ahora: Date, ultimaRevision: String?, zona: TimeZone = ZONA_CINE): Boolean =
+        dentroDeHorarioDeAvisos(ahora, zona) && fechaCine(ahora, zona) != ultimaRevision
 }

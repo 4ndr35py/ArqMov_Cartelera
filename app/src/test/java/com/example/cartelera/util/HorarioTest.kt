@@ -37,4 +37,22 @@ class HorarioTest {
         assertEquals(23, Horario.horaEnCine(noche, denver))
         assertFalse(Horario.dentroDeHorarioDeAvisos(noche, denver))
     }
+
+    @Test fun laFechaDelCineSigueAlDiaDeDenver() {
+        // 02:00 UTC del 16 es las 19:00 del 15 en Denver (MST, UTC-7).
+        val utc = java.time.Instant.parse("2026-11-16T02:00:00Z").toEpochMilli()
+        assertEquals("2026-11-15", Horario.fechaCine(Date(utc), denver))
+    }
+
+    @Test fun revisaUnaVezPorDiaDentroDeLaVentana() {
+        val diez = enDenver(14, 10)
+        assertTrue(Horario.debeRevisar(diez, null, denver))
+        assertTrue(Horario.debeRevisar(diez, "2026-11-13", denver))
+        assertFalse(Horario.debeRevisar(diez, Horario.fechaCine(diez, denver), denver))
+    }
+
+    @Test fun noRevisaDeNocheAunqueNoSeHayaRevisadoHoy() {
+        assertFalse(Horario.debeRevisar(enDenver(14, 23, 30), null, denver))
+        assertFalse(Horario.debeRevisar(enDenver(14, 7, 0), null, denver))
+    }
 }
