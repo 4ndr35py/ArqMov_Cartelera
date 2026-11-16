@@ -81,6 +81,15 @@ class PeliculaActivity : AppCompatActivity() {
             binding.btnQuieroVer.setIconResource(if (marcada) R.drawable.ic_estrella_llena else R.drawable.ic_estrella_vacia)
         }
         binding.btnTrailer.setOnClickListener { verTrailer() }
+        binding.btnComentarios.setOnClickListener {
+            startActivity(
+                Intent(this, com.example.cartelera.ui.comentarios.ComentariosActivity::class.java)
+                    .putExtra(
+                        com.example.cartelera.ui.comentarios.ComentariosActivity.EXTRA_CLAVE,
+                        intent.getStringExtra(EXTRA_CLAVE).orEmpty()
+                    )
+            )
+        }
         binding.btnQuieroVer.setOnClickListener {
             val marcada = viewModel.alternarQuieroVer()
             Snackbar.make(

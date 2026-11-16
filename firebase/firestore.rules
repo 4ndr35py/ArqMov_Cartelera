@@ -18,6 +18,23 @@ service cloud.firestore {
         && (!('temas' in request.resource.data) || request.resource.data.temas is map);
     }
 
+    // Comentarios (TP6): se leen solo los aprobados por el cine; cualquier sesion
+    // puede escribir uno nuevo, oculto (aprobado = false). La app no aprueba,
+    // edita ni borra: eso lo hace el cine desde la consola.
+    match /comentarios/{comentarioId} {
+      allow read: if resource.data.aprobado == true;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['clave', 'texto', 'uid', 'fecha', 'aprobado'])
+        && request.resource.data.clave is string
+        && request.resource.data.texto is string
+        && request.resource.data.texto.size() > 0
+        && request.resource.data.texto.size() <= 500
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.fecha == request.time
+        && request.resource.data.aprobado == false;
+      allow update, delete: if false;
+    }
+
     // Intereses: cada usuario lee y escribe solo los suyos.
     match /usuarios/{uid}/intereses/{funcionId} {
       allow read, write: if request.auth != null && request.auth.uid == uid;

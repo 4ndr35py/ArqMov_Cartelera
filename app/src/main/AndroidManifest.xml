@@ -91,6 +91,12 @@
             android:exported="false"
             android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
+        <!-- Comentarios por pelicula (aprobados por el cine). -->
+        <activity
+            android:name=".ui.comentarios.ComentariosActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.pelicula.PeliculaActivity" />
+
         <!-- Barra inferior: pestanas Entradas y Perfil. -->
         <activity
             android:name=".ui.entradas.EntradasActivity"
