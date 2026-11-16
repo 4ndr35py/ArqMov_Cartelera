@@ -20,7 +20,7 @@
             android:id="@+id/ivAfiche"
             android:layout_width="64dp"
             android:layout_height="96dp"
-            android:background="@color/gris_claro"
+            android:background="@color/negro"
             android:contentDescription="@string/cd_afiche"
             android:scaleType="centerCrop" />
 
@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/tvFechas"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/fondo_chip"
                 android:paddingHorizontal="8dp"
