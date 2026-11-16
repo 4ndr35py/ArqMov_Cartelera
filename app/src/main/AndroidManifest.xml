@@ -46,7 +46,7 @@
             android:resource="@drawable/ic_notificacion" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/butaca" />
+            android:resource="@color/negro" />
 
         <!-- Desde el TP7 la cartelera es la pantalla de inicio (se ve sin cuenta). -->
         <activity

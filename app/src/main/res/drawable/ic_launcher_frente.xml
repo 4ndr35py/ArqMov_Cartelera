@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tira de pelicula en verde lima sobre negro, como la marca del cine. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="@color/lima"
+        android:pathData="M30,38h48a4,4 0 0 1 4,4v24a4,4 0 0 1 -4,4h-48a4,4 0 0 1 -4,-4v-24a4,4 0 0 1 4,-4z" />
+    <path
+        android:fillColor="@color/negro"
+        android:pathData=" M31,41h4v3h-4z M31,64h4v3h-4z M39,41h4v3h-4z M39,64h4v3h-4z M47,41h4v3h-4z M47,64h4v3h-4z M55,41h4v3h-4z M55,64h4v3h-4z M63,41h4v3h-4z M63,64h4v3h-4z M71,41h4v3h-4z M71,64h4v3h-4z" />
+    <path
+        android:fillColor="@color/negro"
+        android:pathData="M54,50l10,6l-10,6z" />
+</vector>

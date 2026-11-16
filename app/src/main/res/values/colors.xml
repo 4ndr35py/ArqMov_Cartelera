@@ -1,10 +1,12 @@
 <resources>
-    <color name="tinta">#1C1B1F</color>
-    <color name="papel">#FAF7F2</color>
-    <color name="papel_osc">#ECE6DC</color>
-    <color name="butaca">#8E1B2C</color>
-    <color name="butaca_osc">#5E0F1C</color>
-    <color name="dorado">#C8963E</color>
-    <color name="gris">#6B6870</color>
+    <!-- Colores de la marca de Park City Film (parkcityfilm.org): negro, verde lima, grafito y blanco. -->
+    <color name="negro">#000000</color>
+    <color name="gris_oscuro">#1F1F1F</color>
+    <color name="lima">#BED63D</color>
+    <color name="lima_claro">#F1F6D6</color>
+    <color name="grafito">#393E4B</color>
+    <color name="gris">#555555</color>
+    <color name="gris_claro">#F2F2F2</color>
+    <color name="papel">#FFFFFF</color>
     <color name="blanco">#FFFFFF</color>
 </resources>

@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
+        style="@style/Widget.Cartelera.Toolbar"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -37,7 +38,7 @@
                     android:layout_width="110dp"
                     android:layout_height="165dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@color/papel_osc"
+                    android:background="@color/gris_claro"
                     android:contentDescription="@string/cd_afiche"
                     android:scaleType="centerCrop"
                     android:visibility="gone" />

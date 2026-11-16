@@ -45,7 +45,7 @@
             android:contentDescription="@string/cd_interes"
             android:src="@drawable/ic_estrella_llena"
             android:visibility="gone"
-            app:tint="@color/dorado" />
+            app:tint="@color/negro" />
 
         <ImageView
             android:layout_width="24dp"
