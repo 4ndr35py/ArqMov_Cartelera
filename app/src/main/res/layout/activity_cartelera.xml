@@ -27,6 +27,7 @@
                 android:id="@+id/lista"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/gris_fondo"
                 android:clipToPadding="false"
                 android:paddingHorizontal="12dp"
                 android:paddingBottom="12dp"

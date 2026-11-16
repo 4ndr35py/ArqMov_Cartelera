@@ -12,6 +12,8 @@
         <item name="colorOnSurface">@color/grafito</item>
         <item name="colorOnSurfaceVariant">@color/gris</item>
         <item name="android:windowLightStatusBar">true</item>
+        <!-- Fondo de la ventana blanco: la franja de la barra de estado coincide con la barra superior. -->
+        <item name="android:windowBackground">@color/papel</item>
 
         <!-- Tipografia de la marca: Montserrat en todos los estilos de texto. -->
         <item name="textAppearanceTitleLarge">@style/TextAppearance.Cartelera.TitleLarge</item>
@@ -58,6 +60,7 @@
 
     <style name="TextAppearance.Cartelera.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="TextAppearance.Cartelera.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
