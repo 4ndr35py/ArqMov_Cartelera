@@ -53,6 +53,40 @@ class CarteleraViewModel(app: Application) : AndroidViewModel(app) {
     private val _tieneCuenta = MutableLiveData(auth.tieneCuenta)
     val tieneCuenta: LiveData<Boolean> = _tieneCuenta
 
+    /** Filtros de Proximas y Archivo: texto (titulo o director) y subtitulos/audiodescripcion (OC, HI, VI). */
+    data class Filtros(val texto: String = "", val accesibilidad: Set<String> = emptySet())
+
+    private val _filtros = MutableLiveData(Filtros())
+    val filtros: LiveData<Filtros> = _filtros
+
+    fun buscar(texto: String) {
+        _filtros.value = (_filtros.value ?: Filtros()).copy(texto = texto.trim())
+    }
+
+    /** Toca un chip: lo agrega o lo quita del filtro de accesibilidad. */
+    fun alternarAccesibilidad(codigo: String) {
+        val actual = _filtros.value ?: Filtros()
+        val nuevo = if (codigo in actual.accesibilidad) actual.accesibilidad - codigo else actual.accesibilidad + codigo
+        _filtros.value = actual.copy(accesibilidad = nuevo)
+    }
+
+    /** Archivo: peliculas con funciones que ya pasaron (la cartelera publicada guarda unos dias pasados). */
+    private val _archivo = MutableLiveData<List<PeliculaEnCartel>>(emptyList())
+    val archivo: LiveData<List<PeliculaEnCartel>> = _archivo
+
+    fun cargarArchivo() {
+        val ahora = Date()
+        carteleraPublicada.cargar(Date(0)) { r ->
+            r.onSuccess { lista ->
+                val pasadas = lista.filter { it.fechaHora?.before(ahora) == true }
+                val peliculas = Cartelera.agrupar(pasadas).sortedByDescending { it.ultima.fechaHora }
+                _archivo.value = peliculas
+                // Las peliculas del archivo tambien necesitan su afiche.
+                cargarAfiches(peliculas)
+            }
+        }
+    }
+
     private var suscripcion: Suscripcion? = null
     private var uidEscuchado: String? = null
 

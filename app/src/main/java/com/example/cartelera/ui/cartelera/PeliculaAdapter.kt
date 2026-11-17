@@ -3,6 +3,7 @@ package com.example.cartelera.ui.cartelera
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -47,9 +48,19 @@ class PeliculaAdapter(
             b.tvFechas.text = ctx.getString(R.string.item_pelicula_fechas, rango, cantidad)
             b.tvDetalle.text = ctx.getString(R.string.item_detalle, p.primera.sala, p.duracionMin, Formato.precio(p.precioDesde))
             b.ivInteres.visibility = if (p.funciones.any { it.id in intereses }) View.VISIBLE else View.GONE
-            val afiche = p.tmdbId?.let { afiches[it] }
-            if (afiche != null) b.ivAfiche.load(afiche) { crossfade(true) }
-            else b.ivAfiche.setImageResource(R.drawable.ic_pelicula)
+            // Afiche de TMDB; si no hay, el que publica Eventive.
+            val afiche = p.tmdbId?.let { afiches[it] } ?: p.funciones.firstNotNullOfOrNull { it.afiche }
+            if (afiche != null) {
+                b.ivAfiche.setPadding(0, 0, 0, 0)
+                b.ivAfiche.scaleType = ImageView.ScaleType.CENTER_CROP
+                b.ivAfiche.load(afiche) { crossfade(true) }
+            } else {
+                // Sin afiche: el icono centrado, no un recorte estirado del dibujo.
+                val relleno = (20 * ctx.resources.displayMetrics.density).toInt()
+                b.ivAfiche.setPadding(relleno, relleno, relleno, relleno)
+                b.ivAfiche.scaleType = ImageView.ScaleType.CENTER_INSIDE
+                b.ivAfiche.setImageResource(R.drawable.ic_pelicula)
+            }
             b.root.setOnClickListener { alTocar(p) }
         }
     }

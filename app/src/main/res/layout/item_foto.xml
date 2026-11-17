@@ -12,7 +12,7 @@
         android:id="@+id/ivFoto"
         android:layout_width="240dp"
         android:layout_height="135dp"
-        android:background="@color/gris_claro"
+        android:background="@color/gris_oscuro"
         android:contentDescription="@string/cd_foto"
         android:scaleType="centerCrop" />
 </com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.example.cartelera",
+      "sha256_cert_fingerprints": [
+        "35:92:B7:B0:80:E7:E8:87:6E:C8:87:2E:5B:92:D3:9A:9E:EE:95:1F:68:60:55:63:47:33:89:FA:3F:E9:4F:BD"
+      ]
+    }
+  }
+]

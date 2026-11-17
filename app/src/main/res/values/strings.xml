@@ -28,7 +28,7 @@
     <string name="cartelera_vacia">No showtimes scheduled right now.</string>
     <string name="cartelera_error">We couldn\'t load the schedule.</string>
     <string name="btn_reintentar">Retry</string>
-    <string name="item_detalle">%1$s · %2$d min · %3$s</string>
+    <string name="item_detalle">%1$s · %2$d min · %3$s</string>
     <string name="cd_interes">Saved</string>
 
     <string name="item_pelicula_fechas">%1$s · %2$s</string>
@@ -46,7 +46,7 @@
 
     <!-- Detail -->
     <string name="detalle_titulo">Showtime</string>
-    <string name="detalle_ficha">%1$s · %2$d · %3$d min</string>
+    <string name="detalle_ficha">%1$s · %2$d · %3$d min</string>
     <string name="detalle_sala">%1$s · %2$s</string>
     <string name="btn_interesa_no">Save</string>
     <string name="btn_interesa_si">Saved</string>
@@ -134,18 +134,49 @@
     <string name="nav_guardadas">Saved</string>
     <string name="nav_perfil">Profile</string>
     <string name="entradas_titulo">Your tickets</string>
-    <string name="entradas_intro">Tickets are bought on the cinema\'s ticket page, and the QR code comes from there. We will show your QR codes here once we decide how to store them.</string>
+    <string name="entradas_intro">Buy your tickets on the cinema\'s website. Soon you\'ll see them and show your QR code here.</string>
     <string name="btn_comprar_entradas">Buy tickets on the website</string>
     <string name="perfil_titulo">Profile</string>
-    <string name="perfil_guardadas">%1$d films on your list</string>
-    <string name="perfil_membresia">Membership: not set up yet</string>
-    <string name="perfil_favorita">Your favorite film will show here once the cinema\'s membership data is connected.</string>
+    <string name="perfil_cambiar_foto">Change photo</string>
+    <string name="perfil_foto_error">We couldn\'t save your photo. Try again.</string>
+    <string name="perfil_vistas">Seen</string>
+    <string name="perfil_comentarios">Comments</string>
+    <string name="perfil_lista">Want to see</string>
+    <plurals name="n_vistas">
+        <item quantity="one">%d film seen</item>
+        <item quantity="other">%d films seen</item>
+    </plurals>
+    <string name="perfil_seccion_vistas">Films I saw</string>
+    <string name="perfil_seccion_comentarios">My comments</string>
+    <string name="perfil_vacia_vistas">No films yet. Open a movie and tap “I saw it”.</string>
+    <string name="perfil_vacia_comentarios">You haven\'t written any comments yet.</string>
+    <string name="perfil_vista_el">Seen %1$s</string>
+    <string name="perfil_comentario_en">On %1$s</string>
+    <string name="membresia_titulo">Membership</string>
+    <string name="membresia_sin_cargar">Not added yet</string>
+    <string name="membresia_vence">Ends %1$s</string>
+    <string name="membresia_vencida">Ended %1$s</string>
+    <string name="membresia_hoy">Ends today</string>
+    <plurals name="n_dias_restantes">
+        <item quantity="one">%d day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
+    <string name="membresia_editar">Add or edit</string>
+    <string name="membresia_nota">Entered by you for now. We\'ll connect it to the cinema\'s membership later.</string>
+    <string name="membresia_tipo">Membership type</string>
+    <string name="membresia_elegir_fecha">Choose end date</string>
+    <string name="membresia_guardar">Save</string>
+    <string name="btn_ya_la_vi_no">I saw it</string>
+    <string name="btn_ya_la_vi_si">Seen</string>
+    <string name="vista_marcada">Added to your films seen.</string>
+    <string name="vista_quitada">Removed from your films seen.</string>
+    <string name="funcion_pasada">Already happened</string>
 
     <!-- Comentarios por pelicula (TP6) -->
     <string name="btn_comentarios">Comments</string>
     <string name="comentarios_titulo">Comments</string>
     <string name="comentarios_vacio">No comments yet. Be the first to write one.</string>
-    <string name="comentarios_escribir">Write a comment (500 characters max)</string>
+    <string name="comentarios_escribir">Write a comment</string>
     <string name="btn_enviar_comentario">Send</string>
     <string name="comentario_enviado">Thanks! Your comment is posted.</string>
     <string name="comentario_vacio">Write something first.</string>
@@ -153,4 +184,76 @@
     <string name="comentario_error">We couldn\'t send your comment. Try again.</string>
     <string name="comentarios_error">We couldn\'t load the comments.</string>
     <string name="requiere_cuenta">Sign in to use this section.</string>
+
+    <!-- Rediseno: barra flotante, archivo, perfil con foto, vistas y membresia -->
+    <string name="nav_archivo">Archive</string>
+    <string name="archivo_titulo">Archive</string>
+    <string name="archivo_vacia">No past screenings yet.</string>
+    <string name="seccion_sinopsis">Synopsis</string>
+    <string name="btn_cancelar">Cancel</string>
+    <string name="perfil_elegir_alias">Choose alias</string>
+    <string name="perfil_nacimiento">Birth date</string>
+    <string name="perfil_sin_alias">Choose an alias</string>
+    <string name="perfil_nacimiento_con">Born %1$s · %2$d years old</string>
+    <string name="tipos_titulo">Choose your ticket</string>
+    <string name="btn_comprar_tipo">Buy · %1$s</string>
+    <string name="entradas_pases">Memberships and passes</string>
+    <string name="pase_membresia">Membership</string>
+    <string name="pase_pase">Pass</string>
+    <string name="entradas_precios_error">We couldn\'t load the prices.</string>
+    <string name="entradas_nota">Prices from the cinema\'s ticket system. Memberships are bought on the cinema\'s website.</string>
+    <string name="alias_hint">Alias (20 characters max)</string>
+    <string name="comentarios_sin_cuenta">Sign in to read and write comments.</string>
+    <string name="btn_ingresar_comentarios">Sign in</string>
+    <string name="perfil_editar">Edit profile</string>
+    <string name="perfil_descripcion">Description (optional)</string>
+    <string name="perfil_favorita">Favorite film</string>
+    <string name="perfil_elegir_favorita">Choose favorite film</string>
+    <string name="perfil_sin_favorita">Not chosen yet</string>
+    <string name="perfil_ninguna">None</string>
+    <string name="perfil_guardar">Save</string>
+    <string name="btn_me_gusta">Liked it</string>
+    <string name="qr_prueba">Test QR · not valid</string>
+    <string name="btn_como_llegar">How to get there</string>
+    <string name="btn_no_me_gusta">Didn\'t like it</string>
+    <string name="cine_nombre">Park City Film</string>
+    <string name="cd_calendario">Add to calendar</string>
+    <string name="btn_recomendar">Recommend to a friend</string>
+    <string name="recomendar_titulo">Recommend to a friend</string>
+    <string name="recomendar_texto">I recommend %1$s at Park City Film: %2$s</string>
+    <string name="accion_idioma">Language</string>
+    <string name="idioma_sistema">Phone language</string>
+    <string name="accion_buscar">Search</string>
+    <string name="buscar_titulo">Search a film</string>
+    <string name="buscar_hint">Title or director</string>
+    <string name="buscar_aplicar">Search</string>
+    <string name="sin_resultados">No films match these filters.</string>
+    <string name="widget_titulo">Upcoming</string>
+    <string name="widget_descripcion">Next showtimes</string>
+    <string name="widget_vacio">Open the app to see the schedule</string>
+    <string name="accesibilidad_vacia">No showings with captions or audio description yet.</string>
+    <string name="qr_entrada">Ticket %1$d of %2$d</string>
+    <string name="qr_enviar">Send to someone</string>
+    <string name="qr_mensaje">Here is my ticket for %1$s</string>
+    <string name="hazte_socio">Become a member</string>
+    <string name="btn_hazte_socio">Become a member</string>
+    <string name="membresias_intro">Memberships and passes. They are bought on the cinema\'s website.</string>
+    <string name="membresia_entradas">Up to %1$d tickets per showtime</string>
+    <string name="membresia_cancelable">Can be cancelled</string>
+    <string name="membresia_no_cancelable">Cannot be cancelled</string>
+    <string name="membresia_renueva">Renews automatically</string>
+    <string name="membresia_unico">One-time payment</string>
+    <string name="btn_comprar_web">Buy on the website</string>
+    <string name="qr_hoy">Today</string>
+    <string name="qr_deslizar">Swipe for more tickets</string>
+    <string name="entradas_vacias">You have no tickets yet. Buy them on the cinema\'s website.</string>
+    <plurals name="n_entradas_funcion">
+        <item quantity="one">Up to %d ticket per showtime</item>
+        <item quantity="other">Up to %d tickets per showtime</item>
+    </plurals>
+    <string name="cd_entrada_anterior">Previous ticket</string>
+    <string name="cd_entrada_siguiente">Next ticket</string>
+    <string name="qr_confirmar_titulo">Before you share</string>
+    <string name="qr_confirmar_texto">Only share a ticket you bought for the person who will use it. Once used, it is no longer yours.</string>
+    <string name="qr_confirmar_si">Share</string>
 </resources>

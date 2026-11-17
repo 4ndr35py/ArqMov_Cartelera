@@ -1,74 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Pantalla principal: la barra superior, la pestana actual y una barra inferior flotante tipo vidrio. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        style="@style/Widget.Cartelera.Toolbar"
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:menu="@menu/menu_cartelera"
-        app:title="@string/cartelera_titulo"
-        app:titleTextColor="?attr/colorPrimary" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <FrameLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.Cartelera.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/menu_cartelera"
+            app:title="@string/cartelera_titulo"
+            app:titleTextColor="@color/blanco" />
+
+        <!-- Cada pestana es un fragmento: la barra inferior no desaparece al cambiar de pestana. -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/contenido"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- Desvanecido detras de la barra: el contenido se apaga al llegar abajo. -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/scrim_isla" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/lista"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/gris_fondo"
-                android:clipToPadding="false"
-                android:paddingHorizontal="12dp"
-                android:paddingBottom="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <LinearLayout
-            android:id="@+id/grupoMensaje"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tvMensaje"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAppearance="?attr/textAppearanceBodyLarge" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnReintentar"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/btn_reintentar" />
-        </LinearLayout>
-    </FrameLayout>
-
+    <!-- Barra flotante solo con iconos: flota centrada sobre el contenido. -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navegacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/negro"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/fondo_isla"
+        app:elevation="8dp"
         app:itemIconTint="@color/nav_icono"
         app:itemTextColor="@color/nav_item"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/menu_navegacion" />
-</LinearLayout>
+</FrameLayout>

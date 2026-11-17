@@ -28,7 +28,7 @@
     <string name="cartelera_vacia">No hay funciones programadas por ahora.</string>
     <string name="cartelera_error">No pudimos cargar la cartelera.</string>
     <string name="btn_reintentar">Reintentar</string>
-    <string name="item_detalle">%1$s · %2$d min · %3$s</string>
+    <string name="item_detalle">%1$s · %2$d min · %3$s</string>
     <string name="cd_interes">Marcada como me interesa</string>
 
     <string name="item_pelicula_fechas">%1$s · %2$s</string>
@@ -46,7 +46,7 @@
 
     <!-- Detalle -->
     <string name="detalle_titulo">Función</string>
-    <string name="detalle_ficha">%1$s · %2$d · %3$d min</string>
+    <string name="detalle_ficha">%1$s · %2$d · %3$d min</string>
     <string name="detalle_sala">%1$s · %2$s</string>
     <string name="btn_interesa_no">Me interesa</string>
     <string name="btn_interesa_si">Te interesa</string>
@@ -133,18 +133,49 @@
     <string name="nav_guardadas">Guardadas</string>
     <string name="nav_perfil">Perfil</string>
     <string name="entradas_titulo">Tus entradas</string>
-    <string name="entradas_intro">Las entradas se compran en la página de venta del cine, y el código QR sale de ahí. Lo vamos a mostrar acá cuando decidamos cómo guardarlo.</string>
+    <string name="entradas_intro">Comprá tus entradas en la web del cine. Pronto vas a poder verlas y mostrar el código QR desde acá.</string>
     <string name="btn_comprar_entradas">Comprar entradas en la web</string>
     <string name="perfil_titulo">Perfil</string>
-    <string name="perfil_guardadas">%1$d películas en tu lista</string>
-    <string name="perfil_membresia">Membresía: todavía no configurada</string>
-    <string name="perfil_favorita">Tu película favorita aparecerá acá cuando esté conectada la información de membresía del cine.</string>
+    <string name="perfil_cambiar_foto">Cambiar foto</string>
+    <string name="perfil_foto_error">No pudimos guardar la foto. Probá de nuevo.</string>
+    <string name="perfil_vistas">Vistas</string>
+    <string name="perfil_comentarios">Comentarios</string>
+    <string name="perfil_lista">Quiero ver</string>
+    <plurals name="n_vistas">
+        <item quantity="one">%d película vista</item>
+        <item quantity="other">%d películas vistas</item>
+    </plurals>
+    <string name="perfil_seccion_vistas">Películas que vi</string>
+    <string name="perfil_seccion_comentarios">Mis comentarios</string>
+    <string name="perfil_vacia_vistas">Todavía no marcaste películas. Abrí una y tocá «Ya la vi».</string>
+    <string name="perfil_vacia_comentarios">Todavía no escribiste comentarios.</string>
+    <string name="perfil_vista_el">Vista el %1$s</string>
+    <string name="perfil_comentario_en">En %1$s</string>
+    <string name="membresia_titulo">Membresía</string>
+    <string name="membresia_sin_cargar">Todavía no cargada</string>
+    <string name="membresia_vence">Vence el %1$s</string>
+    <string name="membresia_vencida">Venció el %1$s</string>
+    <string name="membresia_hoy">Vence hoy</string>
+    <plurals name="n_dias_restantes">
+        <item quantity="one">Falta %d día</item>
+        <item quantity="other">Faltan %d días</item>
+    </plurals>
+    <string name="membresia_editar">Cargar o editar</string>
+    <string name="membresia_nota">La cargás vos por ahora. La vamos a conectar con la membresía del cine más adelante.</string>
+    <string name="membresia_tipo">Tipo de membresía</string>
+    <string name="membresia_elegir_fecha">Elegir fecha de vencimiento</string>
+    <string name="membresia_guardar">Guardar</string>
+    <string name="btn_ya_la_vi_no">Ya la vi</string>
+    <string name="btn_ya_la_vi_si">Vista</string>
+    <string name="vista_marcada">Agregada a tus películas vistas.</string>
+    <string name="vista_quitada">Quitada de tus películas vistas.</string>
+    <string name="funcion_pasada">Ya pasó</string>
 
     <!-- Comentarios por pelicula (TP6) -->
     <string name="btn_comentarios">Comentarios</string>
     <string name="comentarios_titulo">Comentarios</string>
     <string name="comentarios_vacio">Todavía no hay comentarios. Sé el primero en escribir uno.</string>
-    <string name="comentarios_escribir">Escribí un comentario (máximo 500 caracteres)</string>
+    <string name="comentarios_escribir">Escribí un comentario</string>
     <string name="btn_enviar_comentario">Enviar</string>
     <string name="comentario_enviado">¡Gracias! Tu comentario ya está publicado.</string>
     <string name="comentario_vacio">Escribí algo primero.</string>
@@ -152,4 +183,76 @@
     <string name="comentario_error">No pudimos enviar tu comentario. Probá de nuevo.</string>
     <string name="comentarios_error">No pudimos cargar los comentarios.</string>
     <string name="requiere_cuenta">Iniciá sesión para usar esta sección.</string>
+
+    <!-- Rediseno: barra flotante, archivo, perfil con foto, vistas y membresía -->
+    <string name="nav_archivo">Archivo</string>
+    <string name="archivo_titulo">Archivo</string>
+    <string name="archivo_vacia">Todavía no hay funciones pasadas.</string>
+    <string name="seccion_sinopsis">Sinopsis</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="perfil_elegir_alias">Elegir alias</string>
+    <string name="perfil_nacimiento">Fecha de nacimiento</string>
+    <string name="perfil_sin_alias">Elegí un alias</string>
+    <string name="perfil_nacimiento_con">Nacido el %1$s · %2$d años</string>
+    <string name="tipos_titulo">Elegí tu entrada</string>
+    <string name="btn_comprar_tipo">Comprar · %1$s</string>
+    <string name="entradas_pases">Membresías y pases</string>
+    <string name="pase_membresia">Membresía</string>
+    <string name="pase_pase">Pase</string>
+    <string name="entradas_precios_error">No pudimos cargar los precios.</string>
+    <string name="entradas_nota">Precios de la venta del cine. Las membresías se compran en la web del cine.</string>
+    <string name="alias_hint">Alias (máximo 20 caracteres)</string>
+    <string name="comentarios_sin_cuenta">Iniciá sesión para leer y escribir comentarios.</string>
+    <string name="btn_ingresar_comentarios">Ingresar</string>
+    <string name="perfil_editar">Editar perfil</string>
+    <string name="perfil_descripcion">Descripción (opcional)</string>
+    <string name="perfil_favorita">Película favorita</string>
+    <string name="perfil_elegir_favorita">Elegir película favorita</string>
+    <string name="perfil_sin_favorita">Todavía no elegiste</string>
+    <string name="perfil_ninguna">Ninguna</string>
+    <string name="perfil_guardar">Guardar</string>
+    <string name="btn_me_gusta">Me gusta</string>
+    <string name="qr_prueba">QR de prueba · no válido</string>
+    <string name="btn_como_llegar">Cómo llegar</string>
+    <string name="btn_no_me_gusta">No me gusta</string>
+    <string name="cine_nombre">Park City Film</string>
+    <string name="cd_calendario">Agregar al calendario</string>
+    <string name="btn_recomendar">Recomendar a un amigo</string>
+    <string name="recomendar_titulo">Recomendar a un amigo</string>
+    <string name="recomendar_texto">Te recomiendo %1$s en Park City Film: %2$s</string>
+    <string name="accion_idioma">Idioma</string>
+    <string name="idioma_sistema">Idioma del teléfono</string>
+    <string name="accion_buscar">Buscar</string>
+    <string name="buscar_titulo">Buscar película</string>
+    <string name="buscar_hint">Título o director</string>
+    <string name="buscar_aplicar">Buscar</string>
+    <string name="sin_resultados">No hay películas con esos filtros.</string>
+    <string name="widget_titulo">Próximas</string>
+    <string name="widget_descripcion">Próximas funciones</string>
+    <string name="widget_vacio">Abrí la app para ver la cartelera</string>
+    <string name="accesibilidad_vacia">Todavía no hay funciones con subtítulos o audiodescripción.</string>
+    <string name="qr_entrada">Entrada %1$d de %2$d</string>
+    <string name="qr_enviar">Enviar a otra persona</string>
+    <string name="qr_mensaje">Te mando mi entrada para %1$s</string>
+    <string name="hazte_socio">Hazte socio</string>
+    <string name="btn_hazte_socio">Hazte socio</string>
+    <string name="membresias_intro">Membresías y pases. Se compran en la web del cine.</string>
+    <string name="membresia_entradas">Hasta %1$d entradas por función</string>
+    <string name="membresia_cancelable">Se puede cancelar</string>
+    <string name="membresia_no_cancelable">No se puede cancelar</string>
+    <string name="membresia_renueva">Se renueva sola</string>
+    <string name="membresia_unico">Pago único</string>
+    <string name="btn_comprar_web">Comprar en la web</string>
+    <string name="qr_hoy">Hoy</string>
+    <string name="qr_deslizar">Deslizá para ver más entradas</string>
+    <string name="entradas_vacias">Todavía no tenés entradas. Comprá en la web del cine.</string>
+    <plurals name="n_entradas_funcion">
+        <item quantity="one">Hasta %d entrada por función</item>
+        <item quantity="other">Hasta %d entradas por función</item>
+    </plurals>
+    <string name="cd_entrada_anterior">Entrada anterior</string>
+    <string name="cd_entrada_siguiente">Entrada siguiente</string>
+    <string name="qr_confirmar_titulo">Antes de compartir</string>
+    <string name="qr_confirmar_texto">Compartí solo una entrada que compraste para la persona que la va a usar. Una vez usada, ya no es tuya.</string>
+    <string name="qr_confirmar_si">Compartir</string>
 </resources>

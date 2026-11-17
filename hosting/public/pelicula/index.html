@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Park City Film</title>
+<style>
+body{margin:0;background:#000;color:#fff;font-family:system-ui,sans-serif;padding:24px}
+h1{color:#BED63D;font-size:22px;text-transform:uppercase;margin-top:8px}
+p{color:#B3B3B3}
+ul{padding:0;list-style:none}
+li{padding:10px 0;border-bottom:1px solid #1F1F1F}
+</style>
+</head>
+<body>
+<h1 id="titulo">Park City Film</h1>
+<p id="mensaje">Cargando...</p>
+<ul id="lista"></ul>
+<p>Si tenés la app de Park City Film, este link la abre directamente.</p>
+<script>
+const clave = new URLSearchParams(location.search).get('c') || '';
+fetch('/cartelera.json')
+  .then(r => r.json())
+  .then(datos => {
+    const funciones = datos.funciones.filter(x =>
+      (x.tmdbId && 'tmdb:' + x.tmdbId === clave) ||
+      ('titulo:' + x.titulo.trim().toLowerCase()) === clave);
+    if (funciones.length === 0) {
+      document.getElementById('mensaje').textContent = 'Esta película no tiene funciones programadas.';
+      return;
+    }
+    document.getElementById('titulo').textContent = funciones[0].titulo;
+    document.getElementById('mensaje').textContent = funciones[0].sala + ' · ' + funciones.length + ' funciones';
+    document.getElementById('lista').innerHTML = funciones
+      .map(x => '<li>' + new Date(x.fechaHora).toLocaleString('es') + '</li>').join('');
+  })
+  .catch(() => { document.getElementById('mensaje').textContent = 'No pudimos cargar la cartelera.'; });
+</script>
+</body>
+</html>

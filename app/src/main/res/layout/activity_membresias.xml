@@ -6,48 +6,54 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
-        style="@style/Widget.Cartelera.Toolbar"
         android:id="@+id/toolbar"
+        style="@style/Widget.Cartelera.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationContentDescription="@string/cd_volver"
         app:navigationIcon="@drawable/ic_volver"
-        app:title="@string/quiero_ver_titulo"
-        app:titleTextColor="?attr/colorPrimary" />
+        app:title="@string/hazte_socio" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/quiero_ver_intro"
+                android:text="@string/membresias_intro"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
-                android:id="@+id/tvVacia"
+                android:id="@+id/tvError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:text="@string/quiero_ver_vacia"
+                android:layout_marginTop="12dp"
+                android:text="@string/entradas_precios_error"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:visibility="gone" />
 
             <LinearLayout
-                android:id="@+id/contenedorFilas"
+                android:id="@+id/contenedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnComprarWeb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/btn_comprar_web" />
 </LinearLayout>

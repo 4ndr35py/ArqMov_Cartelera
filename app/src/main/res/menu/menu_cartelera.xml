@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Barra superior: buscar en Proximas y Archivo; el menu de tres puntos solo en Perfil (grupo_config). -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/accion_cuenta"
-        android:title="@string/accion_cuenta"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/accion_salir"
-        android:title="@string/accion_salir"
-        android:visible="false"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/accion_quiero_ver"
-        android:title="@string/accion_quiero_ver"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/accion_avisos"
-        android:title="@string/accion_avisos"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/accion_apoyar"
-        android:title="@string/accion_apoyar"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/accion_acerca"
-        android:title="@string/accion_acerca"
-        app:showAsAction="never" />
+        android:id="@+id/accion_buscar"
+        android:icon="@drawable/ic_buscar"
+        android:title="@string/accion_buscar"
+        app:showAsAction="always" />
+    <group android:id="@+id/grupo_config">
+        <item
+            android:id="@+id/accion_cuenta"
+            android:title="@string/accion_cuenta"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/accion_salir"
+            android:title="@string/accion_salir"
+            android:visible="false"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/accion_idioma"
+            android:title="@string/accion_idioma"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/accion_avisos"
+            android:title="@string/accion_avisos"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/accion_apoyar"
+            android:title="@string/accion_apoyar"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/accion_acerca"
+            android:title="@string/accion_acerca"
+            app:showAsAction="never" />
+    </group>
 </menu>

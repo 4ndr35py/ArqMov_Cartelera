@@ -14,7 +14,10 @@ import com.example.cartelera.data.PeliculaEnCartel
 import com.example.cartelera.data.PeliculaRepository
 import com.example.cartelera.data.QuieroVerRepository
 import com.example.cartelera.data.Suscripcion
+import com.example.cartelera.data.Vista
+import com.example.cartelera.data.VistasRepository
 import com.example.cartelera.util.Cartelera
+import com.example.cartelera.util.FechaDia
 import java.util.Date
 
 /**
@@ -53,12 +56,14 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
         if (clave == claveCargada) return
         claveCargada = clave
         Metricas.verPelicula(clave)
-        carteleraPublicada.cargar(Date()) { r ->
+        // Desde el inicio de los datos publicados: el archivo tambien abre peliculas que ya pasaron.
+        carteleraPublicada.cargar(Date(0)) { r ->
             r.onSuccess { lista ->
                 val cartel = Cartelera.agrupar(lista).firstOrNull { it.clave == clave }
                 _cartel.value = cartel
                 if (cartel != null) {
                     _quieroVer.value = quieroVer.estaMarcada(clave)
+                    cargarVista(clave)
                     _ficha.value = Ficha.de(cartel.primera, null)
                     cartel.tmdbId?.let { id ->
                         peliculas.cargar(id) { rp ->
@@ -98,6 +103,46 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
         Metricas.propiedadQuieroVer(quieroVer.marcadas().isNotEmpty())
         _quieroVer.value = marcar
         return marcar
+    }
+
+    /** Me gusta (true), no me gusta (false) o sin opinion (null) de una pelicula ya vista. */
+    private val _gusto = MutableLiveData<Boolean?>(null)
+    val gusto: LiveData<Boolean?> = _gusto
+
+    /** Tocar el mismo boton otra vez quita la opinion. */
+    fun opinar(meGusta: Boolean) {
+        val cartel = _cartel.value ?: return
+        val uid = auth.usuarioActual?.uid ?: return
+        val nuevo = if (_gusto.value == meGusta) null else meGusta
+        vistas.opinar(uid, cartel.clave, nuevo)
+        _gusto.value = nuevo
+    }
+
+    /** "Ya la vi": la pelicula queda en las vistas de esta cuenta, con el dia de hoy. */
+    private val vistas = VistasRepository(app)
+    private val _vista = MutableLiveData(false)
+    val vista: LiveData<Boolean> = _vista
+
+    fun alternarVista(): Boolean {
+        val cartel = _cartel.value ?: return false
+        val uid = auth.usuarioActual?.uid ?: return false
+        val marcar = _vista.value != true
+        if (marcar) {
+            vistas.marcar(uid, Vista(cartel.clave, cartel.titulo, FechaDia.hoy()))
+        } else {
+            vistas.quitar(uid, cartel.clave)
+        }
+        _vista.value = marcar
+        if (!marcar) _gusto.value = null
+        return marcar
+    }
+
+    /** Al abrir la pelicula: si ya estaba marcada como vista en esta cuenta. */
+    private fun cargarVista(clave: String) {
+        val uid = auth.usuarioActual?.uid ?: return
+        val vista = vistas.vista(uid, clave)
+        _vista.value = vista != null
+        _gusto.value = vista?.gusto
     }
 
     /** URL del trailer en YouTube; se abre con la app de YouTube o el navegador. */

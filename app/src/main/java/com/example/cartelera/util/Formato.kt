@@ -55,13 +55,23 @@ object Formato {
         }
     }
 
-    /** "Gratis" / "Free"; si no, el precio en dolares ("US$ 12" / "$12"). */
+    /** Dia de solo fecha, como "14/12/2026" o "Dec 14, 2026" (sin hora ni zona). */
+    fun fechaDia(fecha: Date, idioma: Locale = Locale.getDefault()): String {
+        val patron = if (esCastellano(idioma)) "dd/MM/yyyy" else "MMM d, yyyy"
+        return SimpleDateFormat(patron, idioma).apply { timeZone = TimeZone.getTimeZone("UTC") }
+            .format(fecha).replace(".", "")
+    }
+
+    /**
+     * "Gratis" / "Free"; si no, el precio en dolares ("US$ 12" / "$12").
+     * El espacio se cambia por uno que no corta linea: "US$" y "8" no se separan al ajustar el texto.
+     */
     fun precio(valor: Double, idioma: Locale = Locale.getDefault()): String {
         if (valor <= 0.0) return if (esCastellano(idioma)) "Gratis" else "Free"
         val f = NumberFormat.getCurrencyInstance(idioma).apply {
             currency = MONEDA
             maximumFractionDigits = if (valor % 1.0 == 0.0) 0 else 2
         }
-        return f.format(valor).replace(' ', ' ')
+        return f.format(valor).replace(' ', ' ').replace(' ', ' ')
     }
 }

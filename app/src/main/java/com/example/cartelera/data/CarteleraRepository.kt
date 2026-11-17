@@ -52,6 +52,27 @@ class CarteleraRepository internal constructor(
         entregar = { accion -> Handler(Looper.getMainLooper()).post(accion) }
     )
 
+    /** Membresias y pases a la venta, publicados junto con la cartelera. */
+    fun cargarPases(alTerminar: (Result<List<Pase>>) -> Unit) {
+        val pedido = Request.Builder().url(url).build()
+        cliente.newCall(pedido).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                val cuerpo = response.use { if (it.isSuccessful) it.body.string() else null }
+                val pases = cuerpo?.let { parsearPases(it) }
+                entregar {
+                    alTerminar(
+                        if (pases != null) Result.success(pases)
+                        else Result.failure(IOException("La cartelera no trae pases"))
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                entregar { alTerminar(Result.failure(e)) }
+            }
+        })
+    }
+
     /** Funciones desde [desde] en adelante, ordenadas por fecha. */
     fun cargar(desde: Date, alTerminar: (Result<List<Funcion>>) -> Unit) {
         val pedido = Request.Builder().url(url).build()
@@ -111,6 +132,14 @@ class CarteleraRepository internal constructor(
 
         private val json = Json { ignoreUnknownKeys = true }
 
+        /** Pases y membresias del JSON publicado; null si el archivo no tiene esa forma. */
+        internal fun parsearPases(texto: String): List<Pase>? = try {
+            json.decodeFromString(CarteleraPublicada.serializer(), texto)
+                .pases.map { Pase(it.nombre, it.precio, it.membresia, it.entradasPorFuncion, it.cancelable, it.renovacion) }
+        } catch (e: Exception) {
+            null
+        }
+
         /**
          * Convierte el JSON publicado en funciones. Devuelve null si el archivo
          * no tiene la forma esperada (por ejemplo, una pagina de error HTML).
@@ -131,7 +160,24 @@ internal data class CarteleraPublicada(
     val cine: String = "",
     val zona: String = "",
     val generado: String = "",
-    val funciones: List<FuncionPublicada> = emptyList()
+    val funciones: List<FuncionPublicada> = emptyList(),
+    val pases: List<PasePublicado> = emptyList()
+)
+
+@Serializable
+internal data class PasePublicado(
+    val nombre: String = "",
+    val precio: Double = 0.0,
+    val membresia: Boolean = false,
+    val entradasPorFuncion: Int? = null,
+    val cancelable: Boolean = false,
+    val renovacion: Boolean = false
+)
+
+@Serializable
+internal data class TipoPublicado(
+    val nombre: String = "",
+    val precio: Double = 0.0
 )
 
 @Serializable
@@ -149,7 +195,11 @@ internal data class FuncionPublicada(
     val urlEntradas: String = "",
     val tmdbId: Int? = null,
     /** TP6: OC, HI, VI. Ausente en las cargas anteriores: lista vacia. */
-    val accesibilidad: List<String> = emptyList()
+    val accesibilidad: List<String> = emptyList(),
+    /** Tipos de entrada con precio (publicados desde Eventive). Ausente en cargas viejas: lista vacia. */
+    val tipos: List<TipoPublicado> = emptyList(),
+    /** Afiche de Eventive (URL https). Ausente en cargas viejas: null. */
+    val afiche: String? = null
 ) {
     fun aFuncion() = Funcion(
         id = id,
@@ -163,7 +213,9 @@ internal data class FuncionPublicada(
         precio = precio,
         urlEntradas = urlEntradas,
         tmdbId = tmdbId,
-        accesibilidad = Accesibilidad.normalizar(accesibilidad)
+        accesibilidad = Accesibilidad.normalizar(accesibilidad),
+        tipos = tipos.map { TipoEntrada(it.nombre, it.precio) },
+        afiche = afiche?.takeIf { it.startsWith("https://") }
     )
 
     private fun parsearFecha(texto: String): Date =

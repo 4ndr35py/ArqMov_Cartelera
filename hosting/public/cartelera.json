@@ -2,276 +2,704 @@
   "version": 1,
   "cine": "Park City Film",
   "zona": "America/Denver",
-  "generado": "2026-11-13T06:35:31+00:00",
+  "generado": "2026-11-17T02:34:29+00:00",
   "funciones": [
     {
-      "id": "the-way-out-2026-11-13",
+      "id": "6abe690d270d939d17ae6108-6abe67a3cd1a507fbad574bf",
+      "titulo": "Wicker",
+      "director": "Alex Huston Fischer, Eleanor Wilson",
+      "anio": 2026,
+      "duracionMin": 105,
+      "sinopsis": "On the outskirts of a village by the sea, lives a Fisherwoman; smelly, single and perpetually ridiculed. One day, fed up with her stuffy, small-minded neighbours, she commissions herself a husband to be made from wicker. In an otherwise conservative town, this unconventional romance sparks outrage, jealousy and chaos.",
+      "sala": "Jim Santy Auditorium",
+      "fechaHora": "2026-11-05T19:00:00-07:00",
+      "precio": 8.0,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/8318e44aec427521e4034ccd76c7dbf1.jpg?w=300"
+    },
+    {
+      "id": "6abe6954a32a14c5a23ac6cb-6abe67a3cd1a507fbad574bf",
+      "titulo": "Wicker",
+      "director": "Alex Huston Fischer, Eleanor Wilson",
+      "anio": 2026,
+      "duracionMin": 105,
+      "sinopsis": "On the outskirts of a village by the sea, lives a Fisherwoman; smelly, single and perpetually ridiculed. One day, fed up with her stuffy, small-minded neighbours, she commissions herself a husband to be made from wicker. In an otherwise conservative town, this unconventional romance sparks outrage, jealousy and chaos.",
+      "sala": "Jim Santy Auditorium",
+      "fechaHora": "2026-11-06T19:00:00-07:00",
+      "precio": 8.0,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/8318e44aec427521e4034ccd76c7dbf1.jpg?w=300"
+    },
+    {
+      "id": "6abe6954a32a14c5a23ac6d0-6abe67a3cd1a507fbad574bf",
+      "titulo": "Wicker",
+      "director": "Alex Huston Fischer, Eleanor Wilson",
+      "anio": 2026,
+      "duracionMin": 105,
+      "sinopsis": "On the outskirts of a village by the sea, lives a Fisherwoman; smelly, single and perpetually ridiculed. One day, fed up with her stuffy, small-minded neighbours, she commissions herself a husband to be made from wicker. In an otherwise conservative town, this unconventional romance sparks outrage, jealousy and chaos.",
+      "sala": "Jim Santy Auditorium",
+      "fechaHora": "2026-11-07T19:00:00-07:00",
+      "precio": 8.0,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/8318e44aec427521e4034ccd76c7dbf1.jpg?w=300"
+    },
+    {
+      "id": "6aa4c246a03a7ae824b0a797-6aa4bc70a24907315bcd358a",
+      "titulo": "Warren Miller's Days Off",
+      "director": "",
+      "anio": 2026,
+      "duracionMin": 90,
+      "sinopsis": "Warren Miller’s 77th annual film returns this fall with the ultimate pre-season party. Join host Katie Burrell to explore what the world’s best do on their day off—from Deer Valley to Canada, the deep powder of Japan, the spines of Alaska, and the steeps of Chamonix—in Warren Miller’s Days Off. Two screenings on Sunday, November 8th - 3pm and 6pm. Beer and Wine available for purchase.",
+      "sala": "Jim Santy Auditorium",
+      "fechaHora": "2026-11-08T15:00:00-07:00",
+      "precio": 0.0,
+      "urlEntradas": "https://events.humanitix.com/warren-miller-s-days-off-park-city-ut-3-00-pm",
+      "tipos": [],
+      "afiche": "https://static-a.eventive.org/1789182522200temp-1789182521843-poster.jpg"
+    },
+    {
+      "id": "6aa4c36d7d67b09ba09b1d62-6aa4bc70a24907315bcd358a",
+      "titulo": "Warren Miller's Days Off",
+      "director": "",
+      "anio": 2026,
+      "duracionMin": 90,
+      "sinopsis": "Warren Miller’s 77th annual film returns this fall with the ultimate pre-season party. Join host Katie Burrell to explore what the world’s best do on their day off—from Deer Valley to Canada, the deep powder of Japan, the spines of Alaska, and the steeps of Chamonix—in Warren Miller’s Days Off. Two screenings on Sunday, November 8th - 3pm and 6pm. Beer and Wine available for purchase.",
+      "sala": "Jim Santy Auditorium",
+      "fechaHora": "2026-11-08T18:00:00-07:00",
+      "precio": 0.0,
+      "urlEntradas": "https://events.humanitix.com/warren-miller-s-days-off-park-city-ut-6-00-pm",
+      "tipos": [],
+      "afiche": "https://static-a.eventive.org/1789182522200temp-1789182521843-poster.jpg"
+    },
+    {
+      "id": "6a7ff4b9aa9d3d0631af1575-6a7ff40d002f1a6952bdad70",
       "titulo": "Matchstick Productions Presents: The Way Out",
       "director": "Matchstick Productions",
       "anio": 2026,
-      "duracionMin": 60,
-      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, \"The Way Out,\" a raw tribute to the timeless culture and lifestyle of skiing.",
+      "duracionMin": 0,
+      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, The Way Out , a raw tribute to the timeless culture and lifestyle of skiing. Dropping you straight into heavy Alaskan spine lines, deep Japanese powder, and iconic Swiss villages. This film shows skiing as far more than a sport; it’s a path toward total freedom. From legendary veterans to rising breakout talent, the message is simple: the soul of skiing isn’t dead; it's waiting wherever snow falls. Friday night premiere with SWAG and VIP seating at 7:30pm! Encore screenings: Saturday at 7pm, Sunday at 6pm. Beer and wine available to purchase all three nights.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-13T19:30:00-07:00",
-      "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/schedule/6a7ff4b9aa9d3d0631af1575"
+      "precio": 22.5,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "General Admission",
+          "precio": 22.5
+        },
+        {
+          "nombre": "VIP Tickets",
+          "precio": 42.5
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/1786770611425temp-1786770611344-poster.jpg"
     },
     {
-      "id": "nocturna-2026-11-14",
+      "id": "6aca6fa3d2f4afec3ac72baf-6aca6f7316d5b676f4750fed",
       "titulo": "Nocturna",
       "director": "Adrià García, Víctor Maldonado",
       "anio": 2007,
       "duracionMin": 83,
-      "sinopsis": "An orphan boy named Tim is afraid of the dark. However, when the stars start going out in the sky, he finds himself exploring the world of the night, alongside his new friend, the Cat Shepherd.",
+      "sinopsis": "An orphan boy named Tim is afraid of the dark. However, when the stars start going out in the sky, he finds himself exploring the world of the night, alongside his new friend, the Cat Shepherd. Free screening as part of Foreign Cinema...For Kids!",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-14T16:00:00-07:00",
       "precio": 0.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/Film_schedule/-6aece9bc466d747c316e4c9b",
+      "urlEntradas": "",
+      "tipos": [],
+      "afiche": "https://static-a.eventive.org/9decc1cfe5bfcff31fba132eb7e215e5.jpg?w=300",
       "tmdbId": 26700
     },
     {
-      "id": "the-way-out-2026-11-14",
+      "id": "6a7ff5cadce8c20f22c488c5-6a7ff40d002f1a6952bdad70",
       "titulo": "Matchstick Productions Presents: The Way Out",
       "director": "Matchstick Productions",
       "anio": 2026,
-      "duracionMin": 60,
-      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, \"The Way Out,\" a raw tribute to the timeless culture and lifestyle of skiing.",
+      "duracionMin": 0,
+      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, The Way Out , a raw tribute to the timeless culture and lifestyle of skiing. Dropping you straight into heavy Alaskan spine lines, deep Japanese powder, and iconic Swiss villages. This film shows skiing as far more than a sport; it’s a path toward total freedom. From legendary veterans to rising breakout talent, the message is simple: the soul of skiing isn’t dead; it's waiting wherever snow falls. Friday night premiere with SWAG and VIP seating at 7:30pm! Encore screenings: Saturday at 7pm, Sunday at 6pm. Beer and wine available to purchase all three nights.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-14T19:00:00-07:00",
-      "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/schedule/6a7ff4b9aa9d3d0631af1575"
+      "precio": 22.5,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "General Admission",
+          "precio": 22.5
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/1786770611425temp-1786770611344-poster.jpg"
     },
     {
-      "id": "the-way-out-2026-11-15",
+      "id": "6a7ff5ec83ace18b2c6f8e06-6a7ff40d002f1a6952bdad70",
       "titulo": "Matchstick Productions Presents: The Way Out",
       "director": "Matchstick Productions",
       "anio": 2026,
-      "duracionMin": 60,
-      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, \"The Way Out,\" a raw tribute to the timeless culture and lifestyle of skiing.",
+      "duracionMin": 0,
+      "sinopsis": "Matchstick Productions returns with their 34th annual ski film, The Way Out , a raw tribute to the timeless culture and lifestyle of skiing. Dropping you straight into heavy Alaskan spine lines, deep Japanese powder, and iconic Swiss villages. This film shows skiing as far more than a sport; it’s a path toward total freedom. From legendary veterans to rising breakout talent, the message is simple: the soul of skiing isn’t dead; it's waiting wherever snow falls. Friday night premiere with SWAG and VIP seating at 7:30pm! Encore screenings: Saturday at 7pm, Sunday at 6pm. Beer and wine available to purchase all three nights.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-15T18:00:00-07:00",
-      "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/schedule/6a7ff4b9aa9d3d0631af1575"
+      "precio": 22.5,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "General Admission",
+          "precio": 22.5
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/1786770611425temp-1786770611344-poster.jpg"
     },
     {
-      "id": "girl-winter-film-tour-2026-2026-11-19",
+      "id": "6aa4caf71889538450eb0592-6a9241b8603ddb737938cbd5",
       "titulo": "Girl Winter Film Tour 2026",
       "director": "Various",
       "anio": 2026,
-      "duracionMin": 90,
-      "sinopsis": "Five short films with range, from big mountain skiing and storytelling to humor, followed by a Q+A and poster signing with the athletes and filmmakers.",
+      "duracionMin": 120,
+      "sinopsis": "Join us for a night of women-centric short ski films! You’ve heard of “Girl Dinner” – the perfectly chaotic spread of favorite snacks, little treats, and whatever sounds good at the moment. We wanted this film tour to carry that same energy: a lineup of short films with range. From big mountain skiing and storytelling to humor and human experiences, each film brings something different to the table–the kind of mix that leaves you fully satisfied by the end of the night. Each event will showcase 5 films followed by a Q+A and poster signing with the athletes and filmmakers who brought the films to life. The event will run approximately two hours. Film Line-Up: * VIVID - feat. Devin Logan, Jenna Dramise, Nicole Cordingley and Sierra Schlag * Biscuits - feat. Erin Spong and Nat Segal * Rapid Fire - feat. Mali Noyes * Theory of Butter - feat. Analise Gates and Maddie Gerritsen * Winter Elements - presented by Moonrise We hope these screenings will provide a space to continue the celebration of women in snow sports. All are welcome!",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-19T19:00:00-07:00",
-      "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/Film_schedule/-6aa4caf71889538450eb0592"
+      "precio": 25.0,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "General Admission",
+          "precio": 25.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/1787970209825temp-1787970209661-poster.jpg"
     },
     {
-      "id": "everest-the-other-side-2026-11-20",
+      "id": "6abe6975aa94ed2cc1f1edb1-6abe67f09b68e6a9d1843fde",
       "titulo": "Everest: The Other Side",
       "director": "Jimmy Chin, Elizabeth Chai Vasarhelyi",
       "anio": 2026,
       "duracionMin": 115,
-      "sinopsis": "Jim Morrison and Hilaree Nelson became extreme sports stars in 2018 when they were the first to ski down Lhotse, the fourth tallest mountain in the world. For their next challenge, the couple intended to scale Everest's rarely attempted north face and then ski down from the summit.",
+      "sinopsis": "An intimate portrait of two people bound by love, ambition, and the pursuit of the impossible. Elite ski mountaineers Jim Morrison and Hilaree Nelson fell deeply in love while reaching the pinnacle of their sport. Their drive sharpened into a shared dream: to climb and ski the direct North Face of Mount Everest—the most difficult and dangerous climb on the mountain and the most coveted ski line on Earth—something only a handful have ever achieved, and no one has successfully skied down.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-20T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6abe67f09b68e6a9d1843fde",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/04a742ddddb3b3d51bb975f3396eceaf.jpg?w=300",
       "tmdbId": 1603262
     },
     {
-      "id": "everest-the-other-side-2026-11-21",
+      "id": "6abe6991686325ea68712b28-6abe67f09b68e6a9d1843fde",
       "titulo": "Everest: The Other Side",
       "director": "Jimmy Chin, Elizabeth Chai Vasarhelyi",
       "anio": 2026,
       "duracionMin": 115,
-      "sinopsis": "Jim Morrison and Hilaree Nelson became extreme sports stars in 2018 when they were the first to ski down Lhotse, the fourth tallest mountain in the world. For their next challenge, the couple intended to scale Everest's rarely attempted north face and then ski down from the summit.",
+      "sinopsis": "An intimate portrait of two people bound by love, ambition, and the pursuit of the impossible. Elite ski mountaineers Jim Morrison and Hilaree Nelson fell deeply in love while reaching the pinnacle of their sport. Their drive sharpened into a shared dream: to climb and ski the direct North Face of Mount Everest—the most difficult and dangerous climb on the mountain and the most coveted ski line on Earth—something only a handful have ever achieved, and no one has successfully skied down.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-21T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6abe67f09b68e6a9d1843fde",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/04a742ddddb3b3d51bb975f3396eceaf.jpg?w=300",
       "tmdbId": 1603262
     },
     {
-      "id": "everest-the-other-side-2026-11-22",
+      "id": "6abe6991686325ea68712b2d-6abe67f09b68e6a9d1843fde",
       "titulo": "Everest: The Other Side",
       "director": "Jimmy Chin, Elizabeth Chai Vasarhelyi",
       "anio": 2026,
       "duracionMin": 115,
-      "sinopsis": "Jim Morrison and Hilaree Nelson became extreme sports stars in 2018 when they were the first to ski down Lhotse, the fourth tallest mountain in the world. For their next challenge, the couple intended to scale Everest's rarely attempted north face and then ski down from the summit.",
+      "sinopsis": "An intimate portrait of two people bound by love, ambition, and the pursuit of the impossible. Elite ski mountaineers Jim Morrison and Hilaree Nelson fell deeply in love while reaching the pinnacle of their sport. Their drive sharpened into a shared dream: to climb and ski the direct North Face of Mount Everest—the most difficult and dangerous climb on the mountain and the most coveted ski line on Earth—something only a handful have ever achieved, and no one has successfully skied down.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-22T18:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6abe67f09b68e6a9d1843fde",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/04a742ddddb3b3d51bb975f3396eceaf.jpg?w=300",
       "tmdbId": 1603262
     },
     {
-      "id": "the-only-living-pickpocket-in-new-york-2026-11-27",
+      "id": "6aeb3cd7eeacd3bc4d221ef3-6ae2b30513365937268ee532",
       "titulo": "The Only Living Pickpocket in New York",
       "director": "Noah Segan",
       "anio": 2026,
       "duracionMin": 88,
-      "sinopsis": "When a theft goes awry, a veteran pickpocket is sent on a mission through New York to reclaim it.",
+      "sinopsis": "Harry Lehman is an aging pickpocket who plies his trade with ever-diminishing returns in a drastically changed New York. Wallets stuffed with cash have been replaced by easily cancelled credit cards, and Harry struggles to make ends meet as he cares for his disabled wife, Rosie. When he unwittingly purloins and fences a valuable USB stick, Harry finds himself in a race against time to return the loot or face the rage of a vengeful crime family.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-27T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b30513365937268ee532",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/99f811885183765bd50e855f10be147a.jpg?w=300",
       "tmdbId": 1458099
     },
     {
-      "id": "the-only-living-pickpocket-in-new-york-2026-11-28",
+      "id": "6aeb3cf68a6300a2c4bd9a2c-6ae2b30513365937268ee532",
       "titulo": "The Only Living Pickpocket in New York",
       "director": "Noah Segan",
       "anio": 2026,
       "duracionMin": 88,
-      "sinopsis": "When a theft goes awry, a veteran pickpocket is sent on a mission through New York to reclaim it.",
+      "sinopsis": "Harry Lehman is an aging pickpocket who plies his trade with ever-diminishing returns in a drastically changed New York. Wallets stuffed with cash have been replaced by easily cancelled credit cards, and Harry struggles to make ends meet as he cares for his disabled wife, Rosie. When he unwittingly purloins and fences a valuable USB stick, Harry finds himself in a race against time to return the loot or face the rage of a vengeful crime family.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-28T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b30513365937268ee532",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/99f811885183765bd50e855f10be147a.jpg?w=300",
       "tmdbId": 1458099
     },
     {
-      "id": "the-only-living-pickpocket-in-new-york-2026-11-29",
+      "id": "6aeb3cf68a6300a2c4bd9a36-6ae2b30513365937268ee532",
       "titulo": "The Only Living Pickpocket in New York",
       "director": "Noah Segan",
       "anio": 2026,
       "duracionMin": 88,
-      "sinopsis": "When a theft goes awry, a veteran pickpocket is sent on a mission through New York to reclaim it.",
+      "sinopsis": "Harry Lehman is an aging pickpocket who plies his trade with ever-diminishing returns in a drastically changed New York. Wallets stuffed with cash have been replaced by easily cancelled credit cards, and Harry struggles to make ends meet as he cares for his disabled wife, Rosie. When he unwittingly purloins and fences a valuable USB stick, Harry finds himself in a race against time to return the loot or face the rage of a vengeful crime family.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-11-29T18:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b30513365937268ee532",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/99f811885183765bd50e855f10be147a.jpg?w=300",
       "tmdbId": 1458099
     },
     {
-      "id": "wild-horse-nine-2026-12-04",
+      "id": "6aeb3dd9af0a02f0b74a3616-6ae2b323e8d7b9e505209294",
       "titulo": "Wild Horse Nine",
       "director": "Martin McDonagh",
       "anio": 2026,
       "duracionMin": 117,
-      "sinopsis": "CIA agents Chris and Lee face a trust-testing mission from Santiago to Easter Island during 1973 in Chile.",
+      "sinopsis": "Shortly before the 1973 Chilean coup, CIA agents Chris and Lee are dispatched from Santiago to Easter Island by their bureau chief, MJ. Amongst the Island's iconic statues, and as the longtime partners wrestle with their dark pasts and present conspiracies, Chris's newfound bond with a pair of rebellious students threatens to send everyone’s trip to this remote paradise sideways.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-04T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b323e8d7b9e505209294",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/17a23420c51f55da3884d688a101d844.jpg?w=300",
       "tmdbId": 891621
     },
     {
-      "id": "wild-horse-nine-2026-12-05",
+      "id": "6aeb3e042f5f2b010a11130b-6ae2b323e8d7b9e505209294",
       "titulo": "Wild Horse Nine",
       "director": "Martin McDonagh",
       "anio": 2026,
       "duracionMin": 117,
-      "sinopsis": "CIA agents Chris and Lee face a trust-testing mission from Santiago to Easter Island during 1973 in Chile.",
+      "sinopsis": "Shortly before the 1973 Chilean coup, CIA agents Chris and Lee are dispatched from Santiago to Easter Island by their bureau chief, MJ. Amongst the Island's iconic statues, and as the longtime partners wrestle with their dark pasts and present conspiracies, Chris's newfound bond with a pair of rebellious students threatens to send everyone’s trip to this remote paradise sideways.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-05T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b323e8d7b9e505209294",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/17a23420c51f55da3884d688a101d844.jpg?w=300",
       "tmdbId": 891621
     },
     {
-      "id": "wild-horse-nine-2026-12-06",
+      "id": "6aeb3e042f5f2b010a111310-6ae2b323e8d7b9e505209294",
       "titulo": "Wild Horse Nine",
       "director": "Martin McDonagh",
       "anio": 2026,
       "duracionMin": 117,
-      "sinopsis": "CIA agents Chris and Lee face a trust-testing mission from Santiago to Easter Island during 1973 in Chile.",
+      "sinopsis": "Shortly before the 1973 Chilean coup, CIA agents Chris and Lee are dispatched from Santiago to Easter Island by their bureau chief, MJ. Amongst the Island's iconic statues, and as the longtime partners wrestle with their dark pasts and present conspiracies, Chris's newfound bond with a pair of rebellious students threatens to send everyone’s trip to this remote paradise sideways.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-06T18:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b323e8d7b9e505209294",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/17a23420c51f55da3884d688a101d844.jpg?w=300",
       "tmdbId": 891621
     },
     {
-      "id": "la-bola-negra-2026-12-11",
+      "id": "6ae2b45402f3059aef539329-6ae2b229fc5dccb99b114c22",
       "titulo": "La Bola Negra",
       "director": "Javier Ambrossi, Javier Calvo",
       "anio": 2026,
-      "duracionMin": 160,
-      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy.",
+      "duracionMin": 159,
+      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy. Winner of Best Director at the 2026 Cannes Film Festival and the People’s Choice Award at the 2026 Toronto International Film Festival.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-11T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b229fc5dccb99b114c22",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/c791c24846d69ae43aff8e5473e1239f.jpg?w=300",
       "tmdbId": 1422041
     },
     {
-      "id": "wallace-and-gromit-2026-12-12",
+      "id": "6aece9bc466d747c316e4c9b-6ae2b38bbc41bd914a5dbbb0",
       "titulo": "Wallace & Gromit: The Curse of the Were-Rabbit",
       "director": "Steve Box, Nick Park",
       "anio": 2005,
       "duracionMin": 85,
-      "sinopsis": "Wallace and his loyal dog, Gromit, set out to discover the mystery behind the garden sabotage that plagues their village and threatens the annual giant vegetable growing contest.",
+      "sinopsis": "Cheese-loving eccentric Wallace and his cunning canine pal Gromit run a business ridding the town of garden pests. Using only humane methods, which turns their home into a halfway house for evicted vermin, the pair stumble upon a mystery involving a voracious vegetarian monster that threatens to ruin the annual veggie-growing contest.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-12T16:00:00-07:00",
       "precio": 0.0,
       "urlEntradas": "",
+      "tipos": [],
+      "afiche": "https://static-a.eventive.org/6b0ef244f026f09ba680fd36b88ff96b.jpg?w=300",
       "tmdbId": 533
     },
     {
-      "id": "la-bola-negra-2026-12-12",
+      "id": "6ae2b47b4322974fa4aeefb1-6ae2b229fc5dccb99b114c22",
       "titulo": "La Bola Negra",
       "director": "Javier Ambrossi, Javier Calvo",
       "anio": 2026,
-      "duracionMin": 160,
-      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy.",
+      "duracionMin": 159,
+      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy. Winner of Best Director at the 2026 Cannes Film Festival and the People’s Choice Award at the 2026 Toronto International Film Festival.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-12T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b229fc5dccb99b114c22",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/c791c24846d69ae43aff8e5473e1239f.jpg?w=300",
       "tmdbId": 1422041
     },
     {
-      "id": "la-bola-negra-2026-12-13",
+      "id": "6ae2b47b4322974fa4aeefb6-6ae2b229fc5dccb99b114c22",
       "titulo": "La Bola Negra",
       "director": "Javier Ambrossi, Javier Calvo",
       "anio": 2026,
-      "duracionMin": 160,
-      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy.",
+      "duracionMin": 159,
+      "sinopsis": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy. Winner of Best Director at the 2026 Cannes Film Festival and the People’s Choice Award at the 2026 Toronto International Film Festival.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-13T18:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b229fc5dccb99b114c22",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/c791c24846d69ae43aff8e5473e1239f.jpg?w=300",
       "tmdbId": 1422041
     },
     {
-      "id": "a-talent-for-murder-2026-12-18",
+      "id": "6af48b4e9d7e26a41caa36b2-6ae2b3f114e7812d23eaf4a8",
       "titulo": "A Talent for Murder",
       "director": "Anton Corbijn",
       "anio": 2026,
       "duracionMin": 106,
-      "sinopsis": "A mysterious young man from a New York publisher is sent to Switzerland to persuade the renowned writer Patricia Highsmith to write one final installment of the Ripley anthology.",
+      "sinopsis": "A young man travels from New York to Switzerland to try to persuade acclaimed thriller writer Patricia Highsmith to write one final installment of her Tom Ripley series, with his efforts gradually turning more sinister.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-18T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b3f114e7812d23eaf4a8",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/04f86ff0ceae5c1c84bd11c892efb69b.jpg?w=300",
       "tmdbId": 1084409
     },
     {
-      "id": "a-talent-for-murder-2026-12-19",
+      "id": "6af48b67748997c51c123576-6ae2b3f114e7812d23eaf4a8",
       "titulo": "A Talent for Murder",
       "director": "Anton Corbijn",
       "anio": 2026,
       "duracionMin": 106,
-      "sinopsis": "A mysterious young man from a New York publisher is sent to Switzerland to persuade the renowned writer Patricia Highsmith to write one final installment of the Ripley anthology.",
+      "sinopsis": "A young man travels from New York to Switzerland to try to persuade acclaimed thriller writer Patricia Highsmith to write one final installment of her Tom Ripley series, with his efforts gradually turning more sinister.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-19T19:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b3f114e7812d23eaf4a8",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/04f86ff0ceae5c1c84bd11c892efb69b.jpg?w=300",
       "tmdbId": 1084409
     },
     {
-      "id": "a-talent-for-murder-2026-12-20",
+      "id": "6af48b67748997c51c123580-6ae2b3f114e7812d23eaf4a8",
       "titulo": "A Talent for Murder",
       "director": "Anton Corbijn",
       "anio": 2026,
       "duracionMin": 106,
-      "sinopsis": "A mysterious young man from a New York publisher is sent to Switzerland to persuade the renowned writer Patricia Highsmith to write one final installment of the Ripley anthology.",
+      "sinopsis": "A young man travels from New York to Switzerland to try to persuade acclaimed thriller writer Patricia Highsmith to write one final installment of her Tom Ripley series, with his efforts gradually turning more sinister.",
       "sala": "Jim Santy Auditorium",
       "fechaHora": "2026-12-20T18:00:00-07:00",
       "precio": 8.0,
-      "urlEntradas": "https://parkcityfilm.eventive.org/films/6ae2b3f114e7812d23eaf4a8",
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/04f86ff0ceae5c1c84bd11c892efb69b.jpg?w=300",
       "tmdbId": 1084409
+    }
+  ],
+  "pases": [
+    {
+      "nombre": "Student/ Military",
+      "precio": 30.0,
+      "membresia": true,
+      "entradasPorFuncion": 1,
+      "cancelable": true,
+      "renovacion": true
+    },
+    {
+      "nombre": "Individual",
+      "precio": 55.0,
+      "membresia": true,
+      "entradasPorFuncion": 1,
+      "cancelable": true,
+      "renovacion": true
+    },
+    {
+      "nombre": "Dual",
+      "precio": 100.0,
+      "membresia": true,
+      "entradasPorFuncion": 2,
+      "cancelable": true,
+      "renovacion": true
+    },
+    {
+      "nombre": "Premium",
+      "precio": 300.0,
+      "membresia": true,
+      "entradasPorFuncion": 2,
+      "cancelable": true,
+      "renovacion": true
+    },
+    {
+      "nombre": "Film Lover",
+      "precio": 500.0,
+      "membresia": true,
+      "entradasPorFuncion": 1,
+      "cancelable": true,
+      "renovacion": true
+    },
+    {
+      "nombre": "Director's Circle",
+      "precio": 1000.0,
+      "membresia": true,
+      "entradasPorFuncion": 2,
+      "cancelable": true,
+      "renovacion": true
+    },
+    {
+      "nombre": "Silver Screen Circle",
+      "precio": 2500.0,
+      "membresia": true,
+      "entradasPorFuncion": 2,
+      "cancelable": true,
+      "renovacion": true
     }
   ]
 }

@@ -23,5 +23,12 @@ data class Funcion(
     val urlEntradas: String = "",
     val tmdbId: Int? = null,
     /** Codigos de accesibilidad: OC, HI, VI (ver util/Accesibilidad). Vacio si no tiene. */
-    val accesibilidad: List<String> = emptyList()
+    val accesibilidad: List<String> = emptyList(),
+    /** Tipos de entrada a la venta con su precio (General, Student/Senior, Miembro...). Vacio si no hay. */
+    val tipos: List<TipoEntrada> = emptyList(),
+    /** Afiche de Eventive (URL), para cuando TMDB no tiene la pelicula. Null si no hay. */
+    val afiche: String? = null
 )
+
+/** Un tipo de entrada de una funcion: nombre tal como lo muestra la venta y precio en dolares. */
+data class TipoEntrada(val nombre: String, val precio: Double)

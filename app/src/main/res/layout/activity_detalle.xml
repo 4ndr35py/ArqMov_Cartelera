@@ -35,7 +35,7 @@
                 android:layout_height="240dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="16dp"
-                android:background="@color/gris_claro"
+                android:background="@color/grafito"
                 android:contentDescription="@string/cd_afiche"
                 android:scaleType="centerCrop"
                 android:visibility="gone" />

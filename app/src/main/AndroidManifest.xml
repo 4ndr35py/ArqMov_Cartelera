@@ -71,8 +71,19 @@
         <!-- TP7: una pelicula con sus fotos, su trailer y sus funciones. -->
         <activity
             android:name=".ui.pelicula.PeliculaActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+            android:exported="true"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity">
+            <!-- App Link: https://cartelera-tp2.web.app/pelicula/?c=... abre la pelicula en la app. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="cartelera-tp2.web.app"
+                    android:pathPrefix="/pelicula/" />
+            </intent-filter>
+        </activity>
 
         <!-- TP4: donaciones in-app (Google Play Billing). -->
         <activity
@@ -86,27 +97,8 @@
             android:exported="false"
             android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
-        <activity
-            android:name=".ui.quierover.QuieroVerActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
-        <!-- Comentarios por pelicula (aprobados por el cine). -->
-        <activity
-            android:name=".ui.comentarios.ComentariosActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.pelicula.PeliculaActivity" />
 
-        <!-- Barra inferior: pestanas Entradas y Perfil. -->
-        <activity
-            android:name=".ui.entradas.EntradasActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
-
-        <activity
-            android:name=".ui.perfil.PerfilActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
 
         <!-- Servicio de avisos: recibe los mensajes de FCM y los tokens nuevos. -->
         <service
@@ -116,5 +108,40 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+            <!-- Editar perfil: foto, alias, descripcion, nacimiento y pelicula favorita. -->
+        <activity
+            android:name=".ui.perfil.EditarPerfilActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
+            <!-- Widget de la pantalla de inicio: las proximas funciones. -->
+        <receiver
+            android:name=".ui.widget.ProximasWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_proximas_info" />
+        </receiver>
+
+            <!-- Comparte la imagen del QR de prueba (solo debug) por la hoja de compartir. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.qrprueba"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rutas_qr" />
+        </provider>
+
+            <!-- Hazte socio: membresias y pases con lo que da cada uno. -->
+        <activity
+            android:name=".ui.entradas.MembresiasActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.cartelera.CarteleraActivity" />
+
     </application>
 </manifest>

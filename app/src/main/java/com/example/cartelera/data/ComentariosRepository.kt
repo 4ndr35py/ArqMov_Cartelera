@@ -7,6 +7,9 @@ import java.util.Date
 /** Un comentario que el cine ya aprobo. */
 data class Comentario(val texto: String, val fecha: Date?)
 
+/** Un comentario propio: la pelicula (clave), el texto y cuando se publico. */
+data class ComentarioPropio(val clave: String, val texto: String, val fecha: Date?)
+
 /**
  * Comentarios por pelicula en Cloud Firestore.
  *
@@ -30,6 +33,25 @@ class ComentariosRepository(
                     .mapNotNull { d ->
                         val texto = d.getString("texto") ?: return@mapNotNull null
                         Comentario(texto, d.getTimestamp("fecha")?.toDate())
+                    }
+                    .sortedByDescending { it.fecha?.time ?: 0L }
+                alTerminar(Result.success(lista))
+            }
+            .addOnFailureListener { alTerminar(Result.failure(it)) }
+    }
+
+    /** Los comentarios publicados que escribio esta cuenta, del mas nuevo al mas viejo. */
+    fun misComentarios(uid: String, alTerminar: (Result<List<ComentarioPropio>>) -> Unit) {
+        db.collection(COMENTARIOS)
+            .whereEqualTo("uid", uid)
+            .whereEqualTo("aprobado", true)
+            .get()
+            .addOnSuccessListener { snap ->
+                val lista = snap.documents
+                    .mapNotNull { d ->
+                        val clave = d.getString("clave") ?: return@mapNotNull null
+                        val texto = d.getString("texto") ?: return@mapNotNull null
+                        ComentarioPropio(clave, texto, d.getTimestamp("fecha")?.toDate())
                     }
                     .sortedByDescending { it.fecha?.time ?: 0L }
                 alTerminar(Result.success(lista))

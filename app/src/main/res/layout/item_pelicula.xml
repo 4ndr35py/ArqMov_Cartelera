@@ -6,7 +6,7 @@
     android:layout_marginTop="10dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="@color/negro"
+    app:cardBackgroundColor="@color/gris_oscuro"
     app:cardCornerRadius="18dp"
     app:cardElevation="0dp"
     app:strokeWidth="0dp">
@@ -22,7 +22,7 @@
             android:id="@+id/ivAfiche"
             android:layout_width="96dp"
             android:layout_height="144dp"
-            android:background="@color/gris_oscuro"
+            android:background="@color/grafito"
             android:contentDescription="@string/cd_afiche"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/CarteleraPosterOverlay" />

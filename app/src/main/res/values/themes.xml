@@ -1,20 +1,25 @@
 <resources>
-    <style name="Theme.Cartelera" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Botones: fondo negro con texto lima, como el boton de la pagina del cine. -->
-        <item name="colorPrimary">@color/negro</item>
-        <item name="colorOnPrimary">@color/lima</item>
-        <item name="colorPrimaryContainer">@color/lima_claro</item>
-        <item name="colorOnPrimaryContainer">@color/negro</item>
+    <!-- Tema oscuro de la marca: fondo negro, tarjetas grafito, texto blanco y botones lima. -->
+    <style name="Theme.Cartelera" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/lima</item>
+        <item name="colorOnPrimary">@color/negro</item>
+        <item name="colorPrimaryContainer">@color/grafito</item>
+        <item name="colorOnPrimaryContainer">@color/lima</item>
         <item name="colorSecondary">@color/lima</item>
         <item name="colorOnSecondary">@color/negro</item>
         <item name="colorSecondaryContainer">@color/lima</item>
-        <item name="android:colorBackground">@color/gris_fondo</item>
-        <item name="colorSurface">@color/papel</item>
-        <item name="colorOnSurface">@color/grafito</item>
-        <item name="colorOnSurfaceVariant">@color/gris</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <!-- Fondo de la ventana blanco: la franja de la barra de estado coincide con la barra superior. -->
-        <item name="android:windowBackground">@color/papel</item>
+        <item name="colorOnSecondaryContainer">@color/negro</item>
+        <item name="android:colorBackground">@color/negro</item>
+        <item name="colorSurface">@color/gris_oscuro</item>
+        <item name="colorSurfaceContainer">@color/gris_oscuro</item>
+        <item name="colorSurfaceContainerHigh">@color/grafito</item>
+        <item name="colorOnSurface">@color/blanco</item>
+        <item name="colorOnSurfaceVariant">@color/gris_texto</item>
+        <item name="colorOutline">@color/gris</item>
+        <!-- Barra de estado oscura: iconos claros, sobre el mismo negro de la app. -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/negro</item>
+        <item name="android:windowBackground">@color/negro</item>
 
         <!-- Tipografia de la marca: Montserrat en todos los estilos de texto. -->
         <item name="textAppearanceTitleLarge">@style/TextAppearance.Cartelera.TitleLarge</item>
@@ -25,19 +30,22 @@
         <item name="textAppearanceLabelLarge">@style/TextAppearance.Cartelera.LabelLarge</item>
     </style>
 
-    <!-- Barra superior: blanca con una linea lima abajo (drawable fondo_barra) y titulo en mayusculas. -->
+    <!-- Barra superior: negra con una linea lima abajo (drawable fondo_barra) y titulo en mayusculas. -->
     <style name="Widget.Cartelera.Toolbar" parent="Widget.Material3.Toolbar.Surface">
         <item name="android:background">@drawable/fondo_barra</item>
         <item name="titleTextAppearance">@style/TextAppearance.Cartelera.Marca</item>
-        <item name="titleTextColor">@color/negro</item>
-        <item name="navigationIconTint">@color/negro</item>
+        <item name="titleTextColor">@color/blanco</item>
+        <item name="navigationIconTint">@color/blanco</item>
+        <!-- Titulo centrado: la barra queda limpia y el nombre de la pantalla se lee de un vistazo. -->
+        <item name="titleCentered">true</item>
     </style>
 
     <style name="TextAppearance.Cartelera.Marca" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="TextAppearance.Cartelera.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
@@ -68,6 +76,12 @@
     <style name="CarteleraPosterOverlay">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">14dp</item>
+    </style>
+
+    <!-- Foto de perfil circular. -->
+    <style name="CarteleraAvatarOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="TextAppearance.Cartelera.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
