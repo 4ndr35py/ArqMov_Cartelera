@@ -114,8 +114,8 @@
 
     <!-- TP6 · estrategia 2: "Quiero verla" (guardado en el telefono) -->
     <string name="accion_quiero_ver">My list: Want to see</string>
-    <string name="btn_quiero_no">Want to see</string>
-    <string name="btn_quiero_si">On your list</string>
+    <string name="btn_quiero_no">Watchlist</string>
+    <string name="btn_quiero_si">Watchlist</string>
     <string name="btn_quitar">Remove</string>
     <string name="quiero_ver_titulo">Want to see</string>
     <string name="quiero_ver_intro">Films you want to see. We let you know when a new showtime is scheduled.</string>
@@ -166,8 +166,8 @@
     <string name="membresia_tipo">Membership type</string>
     <string name="membresia_elegir_fecha">Choose end date</string>
     <string name="membresia_guardar">Save</string>
-    <string name="btn_ya_la_vi_no">I saw it</string>
-    <string name="btn_ya_la_vi_si">Seen</string>
+    <string name="btn_ya_la_vi_no">Watched</string>
+    <string name="btn_ya_la_vi_si">Watched</string>
     <string name="vista_marcada">Added to your films seen.</string>
     <string name="vista_quitada">Removed from your films seen.</string>
     <string name="funcion_pasada">Already happened</string>
@@ -256,4 +256,5 @@
     <string name="qr_confirmar_titulo">Before you share</string>
     <string name="qr_confirmar_texto">Only share a ticket you bought for the person who will use it. Once used, it is no longer yours.</string>
     <string name="qr_confirmar_si">Share</string>
+    <string name="btn_favorita">Favorite</string>
 </resources>

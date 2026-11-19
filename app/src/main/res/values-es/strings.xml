@@ -114,8 +114,8 @@
 
     <!-- TP6 · estrategia 2: "Quiero verla" (guardado en el teléfono) -->
     <string name="accion_quiero_ver">Mi lista: Quiero verla</string>
-    <string name="btn_quiero_no">Quiero verla</string>
-    <string name="btn_quiero_si">En tu lista</string>
+    <string name="btn_quiero_no">Watchlist</string>
+    <string name="btn_quiero_si">Watchlist</string>
     <string name="btn_quitar">Quitar</string>
     <string name="quiero_ver_titulo">Quiero verla</string>
     <string name="quiero_ver_intro">Películas que querés ver. Te avisamos cuando se programe una función nueva.</string>
@@ -255,4 +255,5 @@
     <string name="qr_confirmar_titulo">Antes de compartir</string>
     <string name="qr_confirmar_texto">Compartí solo una entrada que compraste para la persona que la va a usar. Una vez usada, ya no es tuya.</string>
     <string name="qr_confirmar_si">Compartir</string>
+    <string name="btn_favorita">Favorita</string>
 </resources>

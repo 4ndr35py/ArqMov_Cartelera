@@ -95,11 +95,17 @@ class PeliculaActivity : AppCompatActivity() {
         viewModel.cartel.observe(this) {
             binding.btnQuieroVer.isEnabled = it != null
             binding.btnYaLaVi.isEnabled = it != null
+            binding.btnFavorita.isEnabled = it != null
         }
         viewModel.vista.observe(this) { vista ->
             binding.btnYaLaVi.setText(if (vista) R.string.btn_ya_la_vi_si else R.string.btn_ya_la_vi_no)
-            binding.btnYaLaVi.setIconResource(if (vista) R.drawable.ic_estrella_llena else 0)
+            binding.btnYaLaVi.isChecked = vista
             binding.grupoGusto.visibility = if (vista) View.VISIBLE else View.GONE
+        }
+        viewModel.favorita.observe(this) { binding.btnFavorita.isChecked = it }
+        binding.btnFavorita.setOnClickListener {
+            if (!Acceso.pedirCuenta(this)) return@setOnClickListener
+            viewModel.alternarFavorita()
         }
         viewModel.gusto.observe(this) { gusto ->
             binding.btnMeGusta.isChecked = gusto == true
@@ -117,8 +123,7 @@ class PeliculaActivity : AppCompatActivity() {
             ).setAnchorView(binding.btnYaLaVi).show()
         }
         viewModel.marcadaQuieroVer.observe(this) { marcada ->
-            binding.btnQuieroVer.setText(if (marcada) R.string.btn_quiero_si else R.string.btn_quiero_no)
-            binding.btnQuieroVer.setIconResource(if (marcada) R.drawable.ic_estrella_llena else R.drawable.ic_estrella_vacia)
+            binding.btnQuieroVer.isChecked = marcada
         }
         binding.btnTrailer.setOnClickListener { verTrailer() }
         binding.btnRecomendar.setOnClickListener { recomendar() }

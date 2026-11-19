@@ -2,7 +2,7 @@
   "version": 1,
   "cine": "Park City Film",
   "zona": "America/Denver",
-  "generado": "2026-11-17T02:34:29+00:00",
+  "generado": "2026-11-19T01:16:05+00:00",
   "funciones": [
     {
       "id": "6abe690d270d939d17ae6108-6abe67a3cd1a507fbad574bf",
@@ -459,6 +459,33 @@
       ],
       "afiche": "https://static-a.eventive.org/17a23420c51f55da3884d688a101d844.jpg?w=300",
       "tmdbId": 891621
+    },
+    {
+      "id": "6afc7990c43f42e85de4c64d-6afc7975632cb3d9a27ddc47",
+      "titulo": "The Glorias",
+      "director": "Julie Taymor",
+      "anio": 2020,
+      "duracionMin": 147,
+      "sinopsis": "An equal rights crusader, journalist and activist: Gloria Steinem embodies these and more. From her role in the revolutionary women's rights movement to her travels throughout the U.S. and around the world, Steinem has made an everlasting mark on modern history. A nontraditional chronicle of a trailblazing life.",
+      "sala": "Jim Santy Auditorium",
+      "fechaHora": "2026-12-10T19:00:00-07:00",
+      "precio": 8.0,
+      "urlEntradas": "",
+      "tipos": [
+        {
+          "nombre": "Park City Film Member",
+          "precio": 6.0
+        },
+        {
+          "nombre": "Student/Senior",
+          "precio": 7.0
+        },
+        {
+          "nombre": "General Admission",
+          "precio": 8.0
+        }
+      ],
+      "afiche": "https://static-a.eventive.org/f81d0d9d461624e27db77bcfd7e2eae4.jpg?w=300"
     },
     {
       "id": "6ae2b45402f3059aef539329-6ae2b229fc5dccb99b114c22",

@@ -1,0 +1,180 @@
+// Figura del TP6 (v7): arquitectura con mecanismos de retencion y la ampliacion posterior (seccion 8 del informe).
+// Plan Spark, sin Cloud Functions. Parte de arquitectura_v6.dot.
+// Verde: ya implementado (TP2/TP3/TP4/TP7).  Azul: nuevo o modificado en el TP6.
+// Ambar punteado: previsto, no desplegado (requiere Blaze).
+// Gris punteado: evaluado y descartado (publicidad, Premium).
+digraph G {
+  graph [rankdir=TB, fontname="Calibri", fontsize=15, nodesep=0.22, ranksep=0.42, pad=0.2, compound=true, newrank=true, bgcolor="white", labelloc=b, labeljust=r,
+         label=<<table border="0" cellspacing="6" cellpadding="2">
+           <tr>
+             <td bgcolor="#E3F2E5" border="1" color="#2E7D32" width="18"> </td><td align="left"><font point-size="14">Verde: ya implementado (TP2 / TP3 / TP4 / TP7)</font></td>
+             <td width="12"> </td>
+             <td bgcolor="#E3EEFB" border="1" color="#1565C0" width="18"> </td><td align="left"><font point-size="14">Azul: nuevo o modificado en el TP6</font></td>
+           </tr>
+           <tr>
+             <td bgcolor="#FFF3DC" border="1" color="#C8963E" style="dashed" width="18"> </td><td align="left"><font point-size="14">Ambar punteado: previsto, no desplegado (requiere Blaze)</font></td>
+             <td width="12"> </td>
+             <td border="1" color="#9a96a0" style="dashed" width="18"> </td><td align="left"><font point-size="14">Gris punteado: descartado (publicidad, Premium)</font></td>
+           </tr>
+         </table>>];
+  node  [shape=box, style="rounded,filled", fontname="Calibri", fontsize=14, color="#5c5862", fillcolor="white", penwidth=1.1, margin="0.12,0.06"];
+  edge  [fontname="Calibri", fontsize=11, color="#5c5862", arrowsize=0.7, fontcolor="#3a3740"];
+
+  subgraph cluster_disp {
+    label=<<b>Dispositivo Android</b>  ·  app Park City Film (Kotlin, MVVM)>; labeljust=l; labelloc=t; style="rounded"; color="#8E1B2C"; penwidth=1.6; fontcolor="#8E1B2C";
+
+    subgraph cluster_view {
+      label="Vista  (Activities y Fragments)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F6DADD"; color="#d9a9b0"; fontcolor="#5E0F1C";
+      cart [label="CarteleraActivity\nbarra inferior: Próximas · Archivo · Entradas · Guardadas · Perfil\nRuteo de avisos (funcionId · peliculaClave · destino)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      pel  [label="PeliculaActivity (App Link /pelicula/)\nWatchlist · Watched · Favorita · compartir\nme gusta / no me gusta · comentarios", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      det  [label="DetalleActivity\nfunción por aviso · accesibilidad OC / HI / VI", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      avi  [label="AvisosActivity (TP6)\nun interruptor por tema\npide permiso con explicación", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      ent  [label="EntradasFragment (TP6)\nentradas por función, deslizado\nQR: compartir solo tras confirmar", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      gua  [label="GuardadasFragment\nlista Watchlist (local)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      perf [label="PerfilFragment / EditarPerfilActivity (TP6)\nfoto · alias · nacimiento · película favorita\nvistas con fecha", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      memb [label="MembresiasActivity (TP6)\n«Hazte socio»: membresías y pases", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      don  [label="DonacionActivity\n«Apoyar al cine»", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_vm {
+      label="ViewModel  (LiveData)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F3ECE0"; color="#d8c7a6"; fontcolor="#6b4f1d";
+      cvm  [label="CarteleraViewModel\nfiltros: texto · OC / HI / VI · archivo"];
+      pvm  [label="PeliculaViewModel\nalternarQuieroVer() · alternarVista() · opinar()", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      avm  [label="AvisosViewModel (TP6)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      pevm [label="PerfilViewModel (TP6)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      dnvm [label="DonacionViewModel\n(sin tipos de Billing)"];
+    }
+    subgraph cluster_data {
+      label="Datos  (repositorios: única puerta a cada fuente)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E7EEF5"; color="#a9bdd2"; fontcolor="#1f3b57";
+      cr   [label="CarteleraRepository\ncartelera.json · caché en disco", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      fr   [label="FuncionRepository\nintereses y detalle (Firestore)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      mr   [label="MensajeriaRepository\n(token FCM → usuarios/{uid}.tokenFcm)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      avr  [label="AvisosRepository (TP6)\ntopics <tema>_<idioma> ·\npreferencias en usuarios/{uid}.temas", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      qvr  [label="QuieroVerRepository (TP6)\nWatchlist en el teléfono\n(SharedPreferences)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      vr   [label="VistasRepository (TP6)\nvistas y me gusta por cuenta", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      prr  [label="PerfilRepository (TP6)\nfoto, alias, favorita en el teléfono", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      com  [label="ComentariosRepository (TP6)\ncomentarios por película", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      eva  [label="Entradas y membresías (TP6)\nlectura de cartelera.json y pases", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      rr   [label="RecordatorioRepository\n(aviso 2 h antes)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      ar   [label="AuthRepository\n(sesión anónima y cuenta con email)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      met  [label="Metricas (Analytics)\n+ TP6: avisos_pantalla · tema_activar\nquiero_ver_marcar · propiedades avisos_*", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      br   [label="BillingRepository\núnica puerta a Play Billing", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_svc {
+      label="Servicios y trabajos (WorkManager y FCM en el teléfono)"; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#EDE7F6"; color="#9d8bc4"; fontcolor="#4a2f7a";
+      avs  [label="AvisosService (FCM)\ncanal: «tipo» → canal del tema\nRuteo: funcionId · peliculaClave · destino", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      ntf  [label="Notificador\n5 canales: avisos (general) + 4 temas\nel usuario los silencia en Ajustes", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      rw   [label="RecordatorioWorker\nuna vez, al marcar una función", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      qvw  [label="QuieroVerWorker (TP6)\ncada 12 h, con red · una revisión por día\nsolo dentro de 8:00 a 21:59 (Denver)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+      wm   [label="WorkManager", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+    subgraph cluster_libs {
+      label="Otras librerías"; labeljust=l; labelloc=t; style="rounded,dashed"; color="#2E7D32"; fontcolor="#2E7D32";
+      retro [label="Retrofit + OkHttp\n(TMDB)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+      bc    [label="BillingClient\nbilling-ktx 9.1.0", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    }
+  }
+
+  subgraph cluster_consola {
+    label=<<b>Consola de Firebase</b>  ·  operador del cine (sin código)>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#E3EEFB"; color="#1565C0"; penwidth=1.6; fontcolor="#1565C0";
+    cons [label="Messaging / Notifications\ncampañas: prueba a token ·\ncartelera semanal (topic, zona horaria) ·\naviso OC con «Custom data» (funcionId)\nconversión: ver_funcion", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    seg  [label="Segmentación\npor topic (<tema>_<idioma>)\no por propiedad avisos_* / usa_quiero_ver", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    fun  [label="Cloud Function de envío automático\n(prevista: campañas programadas por código)\nrequiere Blaze, fuera de Spark", style="rounded,dashed", color="#C8963E", fontcolor="#7a5719", fillcolor="#FFF3DC", penwidth=1.6];
+  }
+
+  subgraph cluster_cloud {
+    label=<<b>Firebase / Google (plan Spark)</b>>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#FFF8E8"; color="#C8963E"; penwidth=1.6; fontcolor="#7a5719";
+    ffs  [label="Cloud Firestore\nusuarios/{uid}.temas · .tokenFcm\nusuarios/{uid}/intereses\ncomentarios/{id} (leer si aprobado; crear con cuenta real)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    fauth [label="Firebase Authentication\n(anónimo y email)", fillcolor="#E3F2E5", color="#2E7D32", penwidth=1.6];
+    fcm  [label="Firebase Cloud Messaging\ntopics · token · data payload\n(destino, funcionId, tipo)", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    fan  [label="Google Analytics for Firebase\nnotification_receive / _open (automáticos)\npropiedades de usuario", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    host [label="Firebase Hosting (CDN)\ncartelera.json · pelicula/ · .well-known/assetlinks.json", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+  }
+
+  subgraph cluster_tmdb {
+    label=<<b>The Movie Database (TMDB)</b>  ·  externo>; labeljust=l; labelloc=t; style="rounded,filled"; fillcolor="#F4F4F4"; color="#9a96a0"; fontcolor="#5c5862";
+    tapi [label="API REST v3\n/movie/{id}", fillcolor="white"];
+    timg [label="image.tmdb.org\n(afiches y fotos)", fillcolor="white"];
+  }
+
+  subgraph cluster_fuera {
+    label=<<b>Fuera de la app</b>>; labeljust=l; labelloc=t; style="rounded"; color="#9a96a0"; fontcolor="#5c5862";
+    cine [label="Park City Film\n(equipo del cine: redacta y envía avisos)", fillcolor="#F2F2F2"];
+    pub  [label="Sincronización de la cartelera (TP6)\nseed/desde_eventive.py (solo lectura)\ntarea CarteleraEventive cada 6 h\n→ firebase deploy --only hosting", fillcolor="#E3EEFB", color="#1565C0", penwidth=1.6];
+    venta [label="Eventive\nAPI de solo lectura: funciones, tipos,\nmembresías (clave secreta solo en el PC)", fillcolor="#F2F2F2"];
+    ads  [label="AdMob (publicidad)\n(descartado: sin anuncios)", style="rounded,dashed", color="#9a96a0", fontcolor="#7a7680", fillcolor="white"];
+    prem [label="Premium\n(descartado: modelo de donación)", style="rounded,dashed", color="#9a96a0", fontcolor="#7a7680", fillcolor="white"];
+  }
+
+  // ---- filas y orden horizontal ----
+  {rank=same; cart; pel; det; avi; ent; gua; perf; memb; don}
+  {rank=same; cvm; pvm; avm; pevm; dnvm}
+  {rank=same; cr; fr; mr; avr; qvr; vr; prr; com; eva; rr; ar; met; br}
+  {rank=same; avs; ntf; rw; qvw; wm}
+  {rank=same; retro; bc}
+  {rank=same; cons; seg; fun}
+  {rank=same; ffs; fauth; fcm; fan; host}
+  {rank=same; cine; pub; venta; tapi; timg; ads; prem}
+  cart -> pel -> det -> avi -> ent -> gua -> perf -> memb -> don [style=invis];
+  cvm -> pvm -> avm -> pevm -> dnvm [style=invis];
+  cr -> fr -> mr -> avr -> qvr -> vr -> prr -> com -> eva -> rr -> ar -> met -> br [style=invis];
+  avs -> ntf -> rw -> qvw -> wm [style=invis];
+  cons -> seg -> fun [style=invis];
+  ffs -> fauth -> fcm -> fan -> host [style=invis];
+
+  // ---- vista -> vista model -> repositorios ----
+  cart -> cvm; pel -> pvm; avi -> avm; perf -> pevm; don -> dnvm;
+  cvm -> cr [label=" cartelera"];
+  cvm -> avr [color="#1565C0", penwidth=1.4, label=" sincroniza topics"];
+  avm -> avr [color="#1565C0", penwidth=1.6, label=" temas"];
+  avm -> met [color="#1565C0", penwidth=1.2, style=dashed];
+  pvm -> qvr [color="#1565C0", penwidth=1.6, label=" Watchlist"];
+  pvm -> vr [color="#1565C0", penwidth=1.6, label=" Watched · opinión"];
+  pvm -> com [color="#1565C0", penwidth=1.4, label=" comentarios"];
+  pevm -> prr [color="#1565C0", penwidth=1.4];
+  pevm -> ar [color="#1565C0", penwidth=1.2, style=dashed];
+  ent -> eva [color="#1565C0", penwidth=1.4];
+  memb -> eva [color="#1565C0", penwidth=1.4];
+  gua -> qvr [color="#1565C0", penwidth=1.2];
+  dnvm -> br [label=" donar"];
+  br -> bc [label=" compra / consumo"];
+
+  // ---- preferencias y topics ----
+  avr -> ffs [color="#1565C0", penwidth=1.6, label=" temas (usuarios/{uid})"];
+  avr -> fcm [color="#1565C0", penwidth=1.6, label=" subscribeToTopic"];
+  mr -> fcm [dir=back, label=" token"];
+  cr -> host [label=" HTTPS (CDN)"];
+  eva -> host [color="#1565C0", penwidth=1.4, label=" cartelera.json"];
+  com -> ffs [color="#1565C0", penwidth=1.4, label=" comentarios"];
+  vr -> met [style=dashed, color="#1565C0"];
+
+  // ---- Watchlist: trabajo periódico ----
+  qvr -> wm [color="#1565C0", penwidth=1.6, label=" periódico cada 12 h"];
+  wm -> qvw [color="#1565C0", penwidth=1.4];
+  qvw -> host [color="#1565C0", penwidth=1.4, label=" cartelera.json (sin servidor)"];
+  qvw -> ntf [color="#1565C0", penwidth=1.4, label=" función nueva"];
+  rr -> wm [label=" recordatorio"];
+  wm -> rw [label=" vence"];
+  rw -> ntf;
+
+  // ---- avisos push: entrada, canal y ruteo ----
+  cons -> fcm [color="#1565C0", penwidth=1.6, label=" envía campaña"];
+  seg -> fcm [color="#1565C0", label=" audiencia / topic"];
+  seg -> fan [style=dashed, color="#1565C0", label=" propiedades"];
+  fcm -> avs [color="#2E7D32", penwidth=1.6, label=" data payload"];
+  avs -> ntf [color="#1565C0", penwidth=1.6, label=" canal por tema"];
+  ntf -> det [style=dashed, color="#1565C0", label=" al tocar: detalle, ficha o avisos", constraint=false];
+  met -> fan [color="#1565C0", label=" eventos y propiedades"];
+  fun -> fcm [style=dashed, color="#C8963E", fontcolor="#7a5719", label=" envío programado (prevista)", constraint=false];
+
+  // ---- datos de la cartelera, de auth y de TMDB ----
+  fr -> ffs [label=" gRPC"];
+  ar -> fauth [label=" HTTPS"];
+  retro -> tapi [label=" HTTPS + api_key", color="#2E7D32", fontcolor="#2E7D32"];
+  pub -> host [color="#1565C0", penwidth=1.4, label=" publica"];
+  venta -> pub [color="#1565C0", label=" lectura"];
+  cine -> pub [style=dashed, label=" fuente"];
+  cine -> cons [style=dashed, label=" redacta avisos"];
+  ent -> venta [style=dashed, label=" compra en la web", constraint=false];
+  ads -> cart [style=dashed, color="#9a96a0", constraint=false];
+  prem -> dnvm [style=dashed, color="#9a96a0", constraint=false];
+}

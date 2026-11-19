@@ -98,13 +98,13 @@
                 android:visibility="gone"
                 app:icon="@drawable/ic_play" />
 
+            <!-- Watchlist, Watched, Favorite y compartir. Los iconos siempre se ven; el relleno marca la seleccion. -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
-                <!-- TP6: "Quiero verla" se guarda en el telefono y avisa de funciones nuevas -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnQuieroVer"
                     style="@style/Widget.Material3.Button.OutlinedButton"
@@ -112,18 +112,55 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
+                    android:checkable="true"
                     android:enabled="false"
-                    android:text="@string/btn_quiero_no" />
+                    android:maxLines="1"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/btn_quiero_no"
+                    app:icon="@drawable/ic_marcador"
+                    app:iconGravity="top" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnYaLaVi"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginHorizontal="4dp"
                     android:layout_weight="1"
+                    android:checkable="true"
                     android:enabled="false"
-                    android:text="@string/btn_ya_la_vi_no" />
+                    android:maxLines="1"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/btn_ya_la_vi_no"
+                    app:icon="@drawable/ic_ojo"
+                    app:iconGravity="top" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFavorita"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:enabled="false"
+                    android:maxLines="1"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/btn_favorita"
+                    app:icon="@drawable/ic_estrella_vacia"
+                    app:iconGravity="top" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRecomendar"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:minWidth="56dp"
+                    android:contentDescription="@string/btn_recomendar"
+                    app:icon="@drawable/ic_compartir"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp" />
             </LinearLayout>
 
             <!-- Opinion: solo si ya la vio. Me gusta / no me gusta, sin estrellas. -->
@@ -157,15 +194,6 @@
                     android:text="@string/btn_no_me_gusta"
                     app:icon="@drawable/ic_pulgar_abajo" />
             </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRecomendar"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/btn_recomendar"
-                app:icon="@drawable/ic_compartir" />
 
             <!-- Funciones: el usuario elige cuando verla -->
             <TextView

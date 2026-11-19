@@ -12,6 +12,8 @@ import com.example.cartelera.data.FuncionRepository
 import com.example.cartelera.data.Pelicula
 import com.example.cartelera.data.PeliculaEnCartel
 import com.example.cartelera.data.PeliculaRepository
+import com.example.cartelera.data.Favorita
+import com.example.cartelera.data.PerfilRepository
 import com.example.cartelera.data.QuieroVerRepository
 import com.example.cartelera.data.Suscripcion
 import com.example.cartelera.data.Vista
@@ -63,6 +65,7 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
                 _cartel.value = cartel
                 if (cartel != null) {
                     _quieroVer.value = quieroVer.estaMarcada(clave)
+                    _favorita.value = auth.usuarioActual?.uid?.let { perfilRepo.favorita(it)?.clave } == clave
                     cargarVista(clave)
                     _ficha.value = Ficha.de(cartel.primera, null)
                     cartel.tmdbId?.let { id ->
@@ -143,6 +146,20 @@ class PeliculaViewModel(app: Application) : AndroidViewModel(app) {
         val vista = vistas.vista(uid, clave)
         _vista.value = vista != null
         _gusto.value = vista?.gusto
+    }
+
+    /** Favorita: la pelicula que la persona eligio como favorita en su perfil. */
+    private val perfilRepo = PerfilRepository(app)
+    private val _favorita = MutableLiveData(false)
+    val favorita: LiveData<Boolean> = _favorita
+
+    fun alternarFavorita(): Boolean {
+        val cartel = _cartel.value ?: return false
+        val uid = auth.usuarioActual?.uid ?: return false
+        val marcar = _favorita.value != true
+        perfilRepo.guardarFavorita(uid, if (marcar) Favorita(cartel.clave, cartel.titulo) else null)
+        _favorita.value = marcar
+        return marcar
     }
 
     /** URL del trailer en YouTube; se abre con la app de YouTube o el navegador. */

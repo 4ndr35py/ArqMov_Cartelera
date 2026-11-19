@@ -8,6 +8,7 @@ ni orders: esos datos tienen compradores y no hacen falta para la cartelera.
 Uso:
     python seed/desde_eventive.py --salida RUTA.json
     python seed/desde_eventive.py --salida RUTA.json --desde 2026-11-01 --bucket "Park City Film"
+    python seed/desde_eventive.py --salida RUTA.json --incluir-pruebas   (agrega la funcion de prueba del seed; solo a mano)
 """
 import argparse
 import html
@@ -109,6 +110,40 @@ def pases_de(pases: list, ids_bucket: set) -> list:
     return sorted(filas, key=lambda x: (not x["membresia"], x["precio"]))
 
 
+def funciones_de_prueba(ruta: Path, desde: datetime) -> list:
+    """Funciones de prueba del seed (\"prueba\": true). No son de Eventive: solo con --incluir-pruebas."""
+    if not ruta.exists():
+        return []
+    seed = json.loads(ruta.read_text(encoding="utf-8"))
+    zona = ZoneInfo(ZONA)
+    filas = []
+    for p in seed.get("peliculas", []):
+        if not p.get("prueba"):
+            continue
+        for dia, hora in p["funciones"]:
+            cuando = datetime.combine(date.fromisoformat(dia), time.fromisoformat(hora), zona)
+            if cuando < desde:
+                continue
+            fila = {
+                "id": f"{p['slug']}-{dia}",
+                "titulo": p["titulo"],
+                "director": p.get("director", ""),
+                "anio": p.get("anio", 0),
+                "duracionMin": p.get("duracionMin", 0),
+                "sinopsis": p.get("sinopsis", ""),
+                "sala": p.get("sala", seed.get("sala", "")),
+                "fechaHora": cuando.isoformat(),
+                "precio": float(p.get("precio", 0)),
+                "urlEntradas": p.get("urlEntradas", ""),
+            }
+            if p.get("accesibilidad"):
+                fila["accesibilidad"] = p["accesibilidad"]
+            if p.get("tmdbId"):
+                fila["tmdbId"] = p["tmdbId"]
+            filas.append(fila)
+    return filas
+
+
 def construir(eventos: list, films: dict, ids_bucket: set, desde: datetime, seed: dict) -> list:
     zona = ZoneInfo(ZONA)
     funciones = []
@@ -165,6 +200,8 @@ def main() -> None:
     p.add_argument("--bucket", default=CINE, help="nombre exacto del event bucket")
     p.add_argument("--desde", type=date.fromisoformat, default=None,
                    help="desde esta fecha (AAAA-MM-DD). Por defecto: hoy en la zona del cine")
+    p.add_argument("--incluir-pruebas", action="store_true",
+                   help="agrega las funciones de prueba (\"prueba\": true) del seed. La tarea programada no lo usa")
     args = p.parse_args()
 
     clave = clave_secreta()
@@ -178,7 +215,11 @@ def main() -> None:
 
     zona = ZoneInfo(ZONA)
     desde = datetime.combine(args.desde or datetime.now(zona).date(), time(0, 0), zona)
-    funciones = construir(eventos, films, ids, desde, datos_del_seed(RAIZ / "seed" / "cartelera_parkcity.json"))
+    seed_ruta = RAIZ / "seed" / "cartelera_parkcity.json"
+    funciones = construir(eventos, films, ids, desde, datos_del_seed(seed_ruta))
+    if args.incluir_pruebas:
+        funciones += funciones_de_prueba(seed_ruta, desde)
+        funciones.sort(key=lambda x: x["fechaHora"])
     if not funciones:
         raise SystemExit("Eventive no devolvio funciones desde esa fecha: no se escribe el archivo.")
 
